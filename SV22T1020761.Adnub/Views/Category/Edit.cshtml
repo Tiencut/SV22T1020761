@@ -1,0 +1,61 @@
+@model SV22T1020761.Models.Category
+
+@{
+    ViewBag.Title = "Sửa danh mục";
+}
+
+<!--begin::Breadcrumb-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Category">Danh mục sản phẩm</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sửa</li>
+    </ol>
+</nav>
+<!--end::Breadcrumb-->
+
+<!--begin::Card-->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Sửa danh mục sản phẩm</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="CategoryID" value="@Model.CategoryID" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="CategoryName" class="form-label">Tên danh mục <span class="text-danger">*</span></label>
+                        <input type="text" id="CategoryName" name="CategoryName" class="form-control" value="@Model.CategoryName" required />
+                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Mô tả</label>
+                        <textarea id="Description" name="Description" class="form-control" rows="3">@Model.Description</textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i> Lưu
+                    </button>
+                    <a href="~/Category" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--end::Card-->
+
+@section Scripts {
+    <script>
+        // Client-side validation if needed
+    </script>
+}

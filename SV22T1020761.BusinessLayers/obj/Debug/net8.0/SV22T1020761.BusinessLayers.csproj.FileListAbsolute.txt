@@ -1,0 +1,15 @@
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\bin\Debug\net8.0\SV22T1020761.BusinessLayers.deps.json
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\bin\Debug\net8.0\SV22T1020761.BusinessLayers.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\bin\Debug\net8.0\SV22T1020761.BusinessLayers.pdb
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\bin\Debug\net8.0\SV22T1020761.Models.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\bin\Debug\net8.0\SV22T1020761.Models.pdb
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\SV22T1020761.BusinessLayers.csproj.AssemblyReference.cache
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\SV22T1020761.BusinessLayers.GeneratedMSBuildEditorConfig.editorconfig
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\SV22T1020761.BusinessLayers.AssemblyInfoInputs.cache
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\SV22T1020761.BusinessLayers.AssemblyInfo.cs
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\SV22T1020761.BusinessLayers.csproj.CoreCompileInputs.cache
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\SV22T102.C0775E34.Up2Date
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\SV22T1020761.BusinessLayers.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\refint\SV22T1020761.BusinessLayers.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\SV22T1020761.BusinessLayers.pdb
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.BusinessLayers\obj\Debug\net8.0\ref\SV22T1020761.BusinessLayers.dll

@@ -1,0 +1,58 @@
+@model SV22T1020761.Models.ProductPhoto
+
+@{
+    ViewBag.Title = "Xóa ảnh sản phẩm";
+}
+
+<!--begin::Breadcrumb-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Product">Sản phẩm</a></li>
+        <li class="breadcrumb-item"><a href="~/Product/Detail/@Model.ProductID">Chi tiết</a></li>
+        <li class="breadcrumb-item"><a href="~/Product/ListPhotos/@Model.ProductID">Ảnh</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Xóa</li>
+    </ol>
+</nav>
+<!--end::Breadcrumb-->
+
+<!--begin::Card-->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Xóa ảnh sản phẩm</h3>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle"></i> Bạn có chắc chắn muốn xóa ảnh này? Hành động này không thể hoàn tác.
+        </div>
+        <dl class="row">
+            <dt class="col-sm-3">ID:</dt>
+            <dd class="col-sm-9">@Model.PhotoID</dd>
+            <dt class="col-sm-3">Ảnh:</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.Photo))
+                {
+                    <img src="@Model.Photo" alt="Ảnh sản phẩm" class="img-thumbnail" style="width: 200px; height: 200px;" />
+                }
+            </dd>
+            <dt class="col-sm-3">Mô tả:</dt>
+            <dd class="col-sm-9">@Model.Description</dd>
+            <dt class="col-sm-3">Thứ tự hiển thị:</dt>
+            <dd class="col-sm-9">@Model.DisplayOrder</dd>
+            <dt class="col-sm-3">Ẩn:</dt>
+            <dd class="col-sm-9">@(Model.IsHidden ? "Có" : "Không")</dd>
+        </dl>
+        <form asp-action="DeletePhoto" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="PhotoID" />
+            <input type="hidden" asp-for="ProductID" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Xóa
+            </button>
+            <a href="~/Product/ListPhotos/@Model.ProductID" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Hủy
+            </a>
+        </form>
+    </div>
+</div>
+<!--end::Card-->

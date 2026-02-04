@@ -1,0 +1,91 @@
+@model SV22T1020761.Models.Order
+
+@{
+    ViewData["Title"] = "Xóa đơn hàng";
+}
+
+<div class="app-content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0">Xóa đơn hàng</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="~/Admin">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="~/Admin/Order">Đơn hàng</a></li>
+                    <li class="breadcrumb-item active">Xóa</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">Xác nhận xóa</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Bạn có chắc chắn muốn xóa đơn hàng này không?</p>
+                        <dl class="row">
+                            <dt class="col-sm-3">Mã đơn hàng:</dt>
+                            <dd class="col-sm-9">@Model.OrderID</dd>
+                            <dt class="col-sm-3">Khách hàng:</dt>
+                            <dd class="col-sm-9">@Model.CustomerID</dd>
+                            <dt class="col-sm-3">Thời gian đặt:</dt>
+                            <dd class="col-sm-9">@Model.OrderTime.ToString("dd/MM/yyyy HH:mm")</dd>
+                            <dt class="col-sm-3">Tỉnh giao hàng:</dt>
+                            <dd class="col-sm-9">@Model.DeliveryProvince</dd>
+                            <dt class="col-sm-3">Địa chỉ giao hàng:</dt>
+                            <dd class="col-sm-9">@Model.DeliveryAddress</dd>
+                            <dt class="col-sm-3">Nhân viên:</dt>
+                            <dd class="col-sm-9">@Model.EmployeeID</dd>
+                            <dt class="col-sm-3">Người giao hàng:</dt>
+                            <dd class="col-sm-9">@Model.ShipperID</dd>
+                            <dt class="col-sm-3">Trạng thái:</dt>
+                            <dd class="col-sm-9">
+                                @switch (Model.Status)
+                                {
+                                    case 0:
+                                        Đặt hàng;
+                                        break;
+                                    case 1:
+                                        Đã duyệt;
+                                        break;
+                                    case 2:
+                                        Đang giao;
+                                        break;
+                                    case 3:
+                                        Hoàn tất;
+                                        break;
+                                    case 4:
+                                        Hủy;
+                                        break;
+                                    default:
+                                        @Model.Status
+                                        break;
+                                }
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer">
+                        <form asp-action="Delete" method="post">
+                            <input type="hidden" asp-for="OrderID" />
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Xóa
+                            </button>
+                            <a href="~/Admin/Order" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Quay lại
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

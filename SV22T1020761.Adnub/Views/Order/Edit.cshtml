@@ -1,0 +1,136 @@
+@model SV22T1020761.Models.Order
+
+@{
+    ViewData["Title"] = "Sửa đơn hàng";
+}
+
+<div class="app-content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0">Sửa đơn hàng</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="~/Admin">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="~/Admin/Order">Đơn hàng</a></li>
+                    <li class="breadcrumb-item active">Sửa</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Thông tin đơn hàng</h3>
+                    </div>
+                    <form asp-action="Edit" method="post">
+                        <div class="card-body">
+                            <input type="hidden" asp-for="OrderID" />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="CustomerID">Mã khách hàng</label>
+                                        <input asp-for="CustomerID" class="form-control" />
+                                        <span asp-validation-for="CustomerID" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="OrderTime">Thời gian đặt hàng</label>
+                                        <input asp-for="OrderTime" type="datetime-local" class="form-control" />
+                                        <span asp-validation-for="OrderTime" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="DeliveryProvince">Tỉnh giao hàng</label>
+                                        <input asp-for="DeliveryProvince" class="form-control" />
+                                        <span asp-validation-for="DeliveryProvince" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="DeliveryAddress">Địa chỉ giao hàng</label>
+                                        <input asp-for="DeliveryAddress" class="form-control" />
+                                        <span asp-validation-for="DeliveryAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="EmployeeID">Mã nhân viên</label>
+                                        <input asp-for="EmployeeID" class="form-control" />
+                                        <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="AcceptTime">Thời gian duyệt</label>
+                                        <input asp-for="AcceptTime" type="datetime-local" class="form-control" />
+                                        <span asp-validation-for="AcceptTime" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ShipperID">Mã người giao hàng</label>
+                                        <input asp-for="ShipperID" class="form-control" />
+                                        <span asp-validation-for="ShipperID" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ShippedTime">Thời gian giao hàng</label>
+                                        <input asp-for="ShippedTime" type="datetime-local" class="form-control" />
+                                        <span asp-validation-for="ShippedTime" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="FinishedTime">Thời gian hoàn tất</label>
+                                        <input asp-for="FinishedTime" type="datetime-local" class="form-control" />
+                                        <span asp-validation-for="FinishedTime" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Status">Trạng thái</label>
+                                        <select asp-for="Status" class="form-control">
+                                            <option value="0">Đặt hàng</option>
+                                            <option value="1">Đã duyệt</option>
+                                            <option value="2">Đang giao</option>
+                                            <option value="3">Hoàn tất</option>
+                                            <option value="4">Hủy</option>
+                                        </select>
+                                        <span asp-validation-for="Status" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-warning">
+                                <i class="bi bi-save"></i> Lưu
+                            </button>
+                            <a href="~/Admin/Order" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Quay lại
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

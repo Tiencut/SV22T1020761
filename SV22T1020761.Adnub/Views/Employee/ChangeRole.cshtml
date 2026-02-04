@@ -1,0 +1,48 @@
+@model SV22T1020761.Models.Employee
+
+@{
+    ViewBag.Title = "Thay đổi vai trò nhân viên";
+}
+
+<!--begin::Breadcrumb-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Employee">Nhân viên</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Thay đổi vai trò</li>
+    </ol>
+</nav>
+<!--end::Breadcrumb-->
+
+<!--begin::Card-->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Thay đổi vai trò cho @Model.FullName</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="ChangeRole" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="EmployeeID" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label for="RoleNames" class="form-label">Vai trò mới <span class="text-danger">*</span></label>
+                <input type="text" id="RoleNames" name="RoleNames" class="form-control" value="@Model.RoleNames" placeholder="Nhập vai trò, cách nhau bằng dấu phẩy" required />
+                <span asp-validation-for="RoleNames" class="text-danger"></span>
+                <small class="form-text text-muted">Ví dụ: Admin, Manager, Employee</small>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-person-gear"></i> Thay đổi vai trò
+            </button>
+            <a href="~/Employee" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Hủy
+            </a>
+        </form>
+    </div>
+</div>
+<!--end::Card-->
+
+@section Scripts {
+    <script>
+        // Client-side validation if needed
+    </script>
+}

@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Đăng xuất";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Đăng xuất</h3>
+            </div>
+            <div class="card-body">
+                <p>Bạn có chắc chắn muốn đăng xuất?</p>
+                <form asp-action="Logout" method="post">
+                    <button type="submit" class="btn btn-danger">Đăng xuất</button>
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Hủy</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

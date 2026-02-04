@@ -1,0 +1,63 @@
+@model SV22T1020761.Models.Product
+
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+}
+
+<!--begin::Breadcrumb-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Product">Sản phẩm</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Xóa</li>
+    </ol>
+</nav>
+<!--end::Breadcrumb-->
+
+<!--begin::Card-->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Xóa sản phẩm</h3>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle"></i> Bạn có chắc chắn muốn xóa sản phẩm này? Hành động này không thể hoàn tác.
+        </div>
+        <dl class="row">
+            <dt class="col-sm-3">ID:</dt>
+            <dd class="col-sm-9">@Model.ProductID</dd>
+            <dt class="col-sm-3">Tên sản phẩm:</dt>
+            <dd class="col-sm-9">@Model.ProductName</dd>
+            <dt class="col-sm-3">Mô tả:</dt>
+            <dd class="col-sm-9">@Model.ProductDescription</dd>
+            <dt class="col-sm-3">Nhà cung cấp:</dt>
+            <dd class="col-sm-9">@Model.SupplierID</dd>
+            <dt class="col-sm-3">Danh mục:</dt>
+            <dd class="col-sm-9">@Model.CategoryID</dd>
+            <dt class="col-sm-3">Đơn vị:</dt>
+            <dd class="col-sm-9">@Model.Unit</dd>
+            <dt class="col-sm-3">Giá:</dt>
+            <dd class="col-sm-9">@Model.Price.ToString("N0") VNĐ</dd>
+            <dt class="col-sm-3">Ảnh:</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.Photo))
+                {
+                    <img src="@Model.Photo" alt="Ảnh sản phẩm" class="img-thumbnail" style="width: 100px; height: 100px;" />
+                }
+            </dd>
+            <dt class="col-sm-3">Đang bán:</dt>
+            <dd class="col-sm-9">@(Model.IsSelling ? "Có" : "Không")</dd>
+        </dl>
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="ProductID" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Xóa
+            </button>
+            <a href="~/Product" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Hủy
+            </a>
+        </form>
+    </div>
+</div>
+<!--end::Card-->

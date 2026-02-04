@@ -1,0 +1,5 @@
+﻿@{
+    ViewBag.Title = "Người giao hàng";
+}
+<h2>Danh sách người giao hàng</h2>
+<p>Placeholder view for Shipper Index.</p>

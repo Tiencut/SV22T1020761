@@ -1,0 +1,86 @@
+@model SV22T1020761.Models.ProductPhoto
+
+@{
+    ViewBag.Title = "Chỉnh sửa ảnh sản phẩm";
+    int productId = ViewBag.ProductId;
+}
+
+<!--begin::Breadcrumb-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Product">Sản phẩm</a></li>
+        <li class="breadcrumb-item"><a href="~/Product/Detail/@Model.ProductID">Chi tiết</a></li>
+        <li class="breadcrumb-item"><a href="~/Product/ListPhotos/@Model.ProductID">Ảnh</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sửa</li>
+    </ol>
+</nav>
+<!--end::Breadcrumb-->
+
+<!--begin::Card-->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Chỉnh sửa ảnh sản phẩm</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="EditPhotos" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="PhotoID" />
+            <input type="hidden" asp-for="ProductID" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="Photo" class="form-label">Ảnh <span class="text-danger">*</span></label>
+                        <input type="text" id="Photo" name="Photo" class="form-control" value="@Model.Photo" placeholder="URL ảnh" required />
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="DisplayOrder" class="form-label">Thứ tự hiển thị</label>
+                        <input type="number" id="DisplayOrder" name="DisplayOrder" class="form-control" value="@Model.DisplayOrder" />
+                        <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="IsHidden" class="form-label">Ẩn</label>
+                        <div class="form-check">
+                            <input type="checkbox" id="IsHidden" name="IsHidden" class="form-check-input" @(Model.IsHidden ? "checked" : "") />
+                            <label for="IsHidden" class="form-check-label">Ẩn ảnh</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Mô tả</label>
+                        <textarea id="Description" name="Description" class="form-control" rows="3">@Model.Description</textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i> Lưu
+                    </button>
+                    <a href="~/Product/ListPhotos/@Model.ProductID" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--end::Card-->
+
+@section Scripts {
+    <script>
+        // Client-side validation if needed
+    </script>
+}

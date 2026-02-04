@@ -1,0 +1,63 @@
+@model SV22T1020761.Models.Employee
+
+@{
+    ViewBag.Title = "Xóa nhân viên";
+}
+
+<!--begin::Breadcrumb-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Employee">Nhân viên</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Xóa</li>
+    </ol>
+</nav>
+<!--end::Breadcrumb-->
+
+<!--begin::Card-->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Xóa nhân viên</h3>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle"></i> Bạn có chắc chắn muốn xóa nhân viên này? Hành động này không thể hoàn tác.
+        </div>
+        <dl class="row">
+            <dt class="col-sm-3">ID:</dt>
+            <dd class="col-sm-9">@Model.EmployeeID</dd>
+            <dt class="col-sm-3">Họ tên:</dt>
+            <dd class="col-sm-9">@Model.FullName</dd>
+            <dt class="col-sm-3">Ngày sinh:</dt>
+            <dd class="col-sm-9">@(Model.BirthDate?.ToString("dd/MM/yyyy") ?? "")</dd>
+            <dt class="col-sm-3">Địa chỉ:</dt>
+            <dd class="col-sm-9">@Model.Address</dd>
+            <dt class="col-sm-3">Điện thoại:</dt>
+            <dd class="col-sm-9">@Model.Phone</dd>
+            <dt class="col-sm-3">Email:</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+            <dt class="col-sm-3">Ảnh:</dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.Photo))
+                {
+                    <img src="@Model.Photo" alt="Ảnh" class="img-thumbnail" style="width: 100px; height: 100px;" />
+                }
+            </dd>
+            <dt class="col-sm-3">Đang làm việc:</dt>
+            <dd class="col-sm-9">@(Model.IsWorking ? "Có" : "Không")</dd>
+            <dt class="col-sm-3">Vai trò:</dt>
+            <dd class="col-sm-9">@Model.RoleNames</dd>
+        </dl>
+        <form asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="EmployeeID" />
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Xóa
+            </button>
+            <a href="~/Employee" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Hủy
+            </a>
+        </form>
+    </div>
+</div>
+<!--end::Card-->

@@ -1,0 +1,5 @@
+﻿@{
+    ViewBag.Title = "Nhà cung cấp";
+}
+<h2>Danh sách nhà cung cấp</h2>
+<p>Placeholder view for Supplier Index.</p>

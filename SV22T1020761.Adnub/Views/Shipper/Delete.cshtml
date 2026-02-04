@@ -1,0 +1,59 @@
+@model SV22T1020761.Models.Shipper
+
+@{
+    ViewData["Title"] = "Xóa người giao hàng";
+}
+
+<div class="app-content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0">Xóa người giao hàng</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="~/Admin">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="~/Admin/Shipper">Người giao hàng</a></li>
+                    <li class="breadcrumb-item active">Xóa</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h3 class="card-title">Xác nhận xóa</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Bạn có chắc chắn muốn xóa người giao hàng này không?</p>
+                        <dl class="row">
+                            <dt class="col-sm-3">Mã người giao hàng:</dt>
+                            <dd class="col-sm-9">@Model.ShipperID</dd>
+                            <dt class="col-sm-3">Tên người giao hàng:</dt>
+                            <dd class="col-sm-9">@Model.ShipperName</dd>
+                            <dt class="col-sm-3">Số điện thoại:</dt>
+                            <dd class="col-sm-9">@Model.Phone</dd>
+                        </dl>
+                    </div>
+                    <div class="card-footer">
+                        <form asp-action="Delete" method="post">
+                            <input type="hidden" asp-for="ShipperID" />
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Xóa
+                            </button>
+                            <a href="~/Admin/Shipper" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Quay lại
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

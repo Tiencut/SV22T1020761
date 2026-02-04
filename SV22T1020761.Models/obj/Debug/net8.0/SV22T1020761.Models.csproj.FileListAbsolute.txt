@@ -1,0 +1,11 @@
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\bin\Debug\net8.0\SV22T1020761.Models.deps.json
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\bin\Debug\net8.0\SV22T1020761.Models.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\bin\Debug\net8.0\SV22T1020761.Models.pdb
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\obj\Debug\net8.0\SV22T1020761.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\obj\Debug\net8.0\SV22T1020761.Models.AssemblyInfoInputs.cache
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\obj\Debug\net8.0\SV22T1020761.Models.AssemblyInfo.cs
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\obj\Debug\net8.0\SV22T1020761.Models.csproj.CoreCompileInputs.cache
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\obj\Debug\net8.0\SV22T1020761.Models.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\obj\Debug\net8.0\refint\SV22T1020761.Models.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\obj\Debug\net8.0\SV22T1020761.Models.pdb
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Models\obj\Debug\net8.0\ref\SV22T1020761.Models.dll

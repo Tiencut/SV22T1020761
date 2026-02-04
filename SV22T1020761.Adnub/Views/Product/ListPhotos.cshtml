@@ -1,0 +1,83 @@
+@model IList<SV22T1020761.Models.ProductPhoto>
+
+@{
+    ViewBag.Title = "Ảnh sản phẩm";
+    int productId = ViewBag.ProductId;
+}
+
+<!--begin::Breadcrumb-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Product">Sản phẩm</a></li>
+        <li class="breadcrumb-item"><a href="~/Product/Detail/@productId">Chi tiết</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Ảnh</li>
+    </ol>
+</nav>
+<!--end::Breadcrumb-->
+
+<!--begin::Card-->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Ảnh sản phẩm</h3>
+        <div class="card-tools">
+            <a href="~/Product/CreatePhoto/@productId" class="btn btn-primary btn-sm">
+                <i class="bi bi-plus-circle"></i> Thêm ảnh
+            </a>
+            <a href="~/Product/Detail/@productId" class="btn btn-secondary btn-sm">
+                <i class="bi bi-arrow-left"></i> Quay lại
+            </a>
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin::Table-->
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Ảnh</th>
+                    <th>Mô tả</th>
+                    <th>Thứ tự hiển thị</th>
+                    <th>Ẩn</th>
+                    <th class="text-center">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var photo in Model)
+                    {
+                        <tr>
+                            <td>@photo.PhotoID</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(photo.Photo))
+                                {
+                                    <img src="@photo.Photo" alt="Ảnh sản phẩm" class="img-thumbnail" style="width: 100px; height: 100px;" />
+                                }
+                            </td>
+                            <td>@photo.Description</td>
+                            <td>@photo.DisplayOrder</td>
+                            <td>@(photo.IsHidden ? "Có" : "Không")</td>
+                            <td class="text-center">
+                                <a href="~/Product/EditPhotos/@productId/@photo.PhotoID" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil"></i> Sửa
+                                </a>
+                                <a href="~/Product/DeletePhoto/@productId/@photo.PhotoID" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">Không có dữ liệu</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!--end::Table-->
+    </div>
+</div>
+<!--end::Card-->

@@ -1,0 +1,91 @@
+@model SV22T1020761.Models.Supplier
+
+@{
+    ViewBag.Title = "Thêm nhà cung cấp";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thêm nhà cung cấp</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="~/Home/Index">Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="~/Supplier/Index">Nhà cung cấp</a></li>
+                        <li class="breadcrumb-item active">Thêm mới</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin nhà cung cấp</h3>
+                        </div>
+                        <form asp-action="Create" method="post" class="card-body">
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="SupplierName">Tên nhà cung cấp</label>
+                                        <input type="text" id="SupplierName" name="SupplierName" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="ContactName">Tên liên hệ</label>
+                                        <input type="text" id="ContactName" name="ContactName" class="form-control" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Province">Tỉnh</label>
+                                        <input type="text" id="Province" name="Province" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Address">Địa chỉ</label>
+                                        <input type="text" id="Address" name="Address" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Phone">Điện thoại</label>
+                                        <input type="text" id="Phone" name="Phone" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Email">Email</label>
+                                        <input type="email" id="Email" name="Email" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Lưu
+                                </button>
+                                <a href="~/Supplier/Index" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left"></i> Quay lại
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

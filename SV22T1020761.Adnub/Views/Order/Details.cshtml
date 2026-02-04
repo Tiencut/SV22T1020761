@@ -1,0 +1,92 @@
+@model SV22T1020761.Models.Order
+
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+}
+
+<div class="app-content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mb-0">Chi tiết đơn hàng</h3>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-end">
+                    <li class="breadcrumb-item"><a href="~/Admin">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="~/Admin/Order">Đơn hàng</a></li>
+                    <li class="breadcrumb-item active">Chi tiết</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Thông tin đơn hàng</h3>
+                        <div class="card-tools">
+                            <a href="~/Admin/Order/Edit/@Model.OrderID" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil"></i> Sửa
+                            </a>
+                            <a href="~/Admin/Order" class="btn btn-secondary btn-sm">
+                                <i class="bi bi-arrow-left"></i> Quay lại
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">Mã đơn hàng:</dt>
+                            <dd class="col-sm-9">@Model.OrderID</dd>
+                            <dt class="col-sm-3">Khách hàng:</dt>
+                            <dd class="col-sm-9">@Model.CustomerID</dd>
+                            <dt class="col-sm-3">Thời gian đặt:</dt>
+                            <dd class="col-sm-9">@Model.OrderTime.ToString("dd/MM/yyyy HH:mm")</dd>
+                            <dt class="col-sm-3">Tỉnh giao hàng:</dt>
+                            <dd class="col-sm-9">@Model.DeliveryProvince</dd>
+                            <dt class="col-sm-3">Địa chỉ giao hàng:</dt>
+                            <dd class="col-sm-9">@Model.DeliveryAddress</dd>
+                            <dt class="col-sm-3">Nhân viên:</dt>
+                            <dd class="col-sm-9">@Model.EmployeeID</dd>
+                            <dt class="col-sm-3">Thời gian duyệt:</dt>
+                            <dd class="col-sm-9">@(Model.AcceptTime?.ToString("dd/MM/yyyy HH:mm") ?? "Chưa duyệt")</dd>
+                            <dt class="col-sm-3">Người giao hàng:</dt>
+                            <dd class="col-sm-9">@Model.ShipperID</dd>
+                            <dt class="col-sm-3">Thời gian giao hàng:</dt>
+                            <dd class="col-sm-9">@(Model.ShippedTime?.ToString("dd/MM/yyyy HH:mm") ?? "Chưa giao")</dd>
+                            <dt class="col-sm-3">Thời gian hoàn tất:</dt>
+                            <dd class="col-sm-9">@(Model.FinishedTime?.ToString("dd/MM/yyyy HH:mm") ?? "Chưa hoàn tất")</dd>
+                            <dt class="col-sm-3">Trạng thái:</dt>
+                            <dd class="col-sm-9">
+                                @switch (Model.Status)
+                                {
+                                    case 0:
+                                        <span class="badge bg-secondary">Đặt hàng</span>
+                                        break;
+                                    case 1:
+                                        <span class="badge bg-warning">Đã duyệt</span>
+                                        break;
+                                    case 2:
+                                        <span class="badge bg-info">Đang giao</span>
+                                        break;
+                                    case 3:
+                                        <span class="badge bg-success">Hoàn tất</span>
+                                        break;
+                                    case 4:
+                                        <span class="badge bg-danger">Hủy</span>
+                                        break;
+                                    default:
+                                        <span class="badge bg-light">@Model.Status</span>
+                                        break;
+                                }
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

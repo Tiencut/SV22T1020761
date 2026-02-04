@@ -1,0 +1,104 @@
+@model SV22T1020761.Models.Customer
+
+@{
+    ViewBag.Title = "Sửa khách hàng";
+}
+
+<!--begin::Breadcrumb-->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="~/"><i class="bi bi-house-door"></i> Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="~/Customer">Khách hàng</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Sửa</li>
+    </ol>
+</nav>
+<!--end::Breadcrumb-->
+
+<!--begin::Card-->
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Sửa khách hàng</h3>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="CustomerID" value="@Model.CustomerID" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="CustomerName" class="form-label">Tên khách hàng <span class="text-danger">*</span></label>
+                        <input type="text" id="CustomerName" name="CustomerName" class="form-control" value="@Model.CustomerName" required />
+                        <span asp-validation-for="CustomerName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="ContactName" class="form-label">Tên liên hệ</label>
+                        <input type="text" id="ContactName" name="ContactName" class="form-control" value="@Model.ContactName" />
+                        <span asp-validation-for="ContactName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="Province" class="form-label">Tỉnh</label>
+                        <input type="text" id="Province" name="Province" class="form-control" value="@Model.Province" />
+                        <span asp-validation-for="Province" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="Address" class="form-label">Địa chỉ</label>
+                        <input type="text" id="Address" name="Address" class="form-control" value="@Model.Address" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="Phone" class="form-label">Điện thoại</label>
+                        <input type="text" id="Phone" name="Phone" class="form-control" value="@Model.Phone" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="email" id="Email" name="Email" class="form-control" value="@Model.Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="IsLocked" class="form-label">Khóa tài khoản</label>
+                        <div class="form-check">
+                            <input type="checkbox" id="IsLocked" name="IsLocked" class="form-check-input" @(Model.IsLocked ? "checked" : "") />
+                            <label for="IsLocked" class="form-check-label">Khóa</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i> Lưu
+                    </button>
+                    <a href="~/Customer" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--end::Card-->
+
+@section Scripts {
+    <script>
+        // Client-side validation if needed
+    </script>
+}

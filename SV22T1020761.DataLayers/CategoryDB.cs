@@ -40,9 +40,9 @@ namespace SV22T1020761.DataLayers
                         {
                             data.Add(new Category()
                             {
-                                CategoryID = reader.GetInt32("CategoryID"),
-                                CategoryName = reader.GetString("CategoryName"),
-                                Description = reader.GetString("Description")
+                                CategoryID = reader.GetInt32(reader.GetOrdinal("CategoryID")),
+                                CategoryName = reader.GetString(reader.GetOrdinal("CategoryName")),
+                                Description = reader.GetString(reader.GetOrdinal("Description"))
                             });
                         }
                     }
@@ -70,9 +70,9 @@ namespace SV22T1020761.DataLayers
                         {
                             data = new Category()
                             {
-                                CategoryID = reader.GetInt32("CategoryID"),
-                                CategoryName = reader.GetString("CategoryName"),
-                                Description = reader.GetString("Description")
+                                CategoryID = reader.GetInt32(reader.GetOrdinal("CategoryID")),
+                                CategoryName = reader.GetString(reader.GetOrdinal("CategoryName")),
+                                Description = reader.GetString(reader.GetOrdinal("Description"))
                             };
                         }
                     }

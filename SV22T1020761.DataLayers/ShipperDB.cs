@@ -30,9 +30,9 @@ namespace SV22T1020761.DataLayers
                    {
                        list.Add(new Shipper
                        {
-                           ShipperID = reader.GetInt32("ShipperID"),
-                           ShipperName = reader.GetString("ShipperName"),
-                           Phone = reader.GetString("Phone")
+                           ShipperID = reader.GetInt32(reader.GetOrdinal("ShipperID")),
+                           ShipperName = reader.GetString(reader.GetOrdinal("ShipperName")),
+                           Phone = reader.GetString(reader.GetOrdinal("Phone"))
                        });
                    }
                }
@@ -56,9 +56,9 @@ namespace SV22T1020761.DataLayers
                    {
                        shipper = new Shipper
                        {
-                           ShipperID = reader.GetInt32("ShipperID"),
-                           ShipperName = reader.GetString("ShipperName"),
-                           Phone = reader.GetString("Phone")
+                           ShipperID = reader.GetInt32(reader.GetOrdinal("ShipperID")),
+                           ShipperName = reader.GetString(reader.GetOrdinal("ShipperName")),
+                           Phone = reader.GetString(reader.GetOrdinal("Phone"))
                        };
                    }
                }

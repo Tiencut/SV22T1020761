@@ -3,20 +3,40 @@
   "WorkspaceRootPath": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C16C6239-3285-4F03-8A50-C8EA3ED50542}|SV22T1020761.DataLayers\\SV22T1020761.DataLayers.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.datalayers\\supplierdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16C6239-3285-4F03-8A50-C8EA3ED50542}|SV22T1020761.DataLayers\\SV22T1020761.DataLayers.csproj|solutionrelative:sv22t1020761.datalayers\\supplierdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\views\\supplier\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\views\\supplier\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\views\\shared\\_header.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16C6239-3285-4F03-8A50-C8EA3ED50542}|SV22T1020761.DataLayers\\SV22T1020761.DataLayers.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.datalayers\\isupplierdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16C6239-3285-4F03-8A50-C8EA3ED50542}|SV22T1020761.DataLayers\\SV22T1020761.DataLayers.csproj|solutionrelative:sv22t1020761.datalayers\\isupplierdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{90B0BE24-FFD1-488D-BCC6-E41957934E4E}|SV22T1020761.BusinessLayers\\SV22T1020761.BusinessLayers.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.businesslayers\\supplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{90B0BE24-FFD1-488D-BCC6-E41957934E4E}|SV22T1020761.BusinessLayers\\SV22T1020761.BusinessLayers.csproj|solutionrelative:sv22t1020761.businesslayers\\supplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7E865606-F66E-4DDC-AAE4-4692085A5A3B}|Notes{7E865606-F66E-4DDC-AAE4-4692085A5A3B}|D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\LiteCommerce\\schema.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
@@ -79,9 +99,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.adnub\\views\\order\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Adnub\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.adnub\\views\\order\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E865606-F66E-4DDC-AAE4-4692085A5A3B}|Notes{7E865606-F66E-4DDC-AAE4-4692085A5A3B}|D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\LiteCommerce\\schema.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -91,11 +108,109 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Supplier\\Index.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Supplier\\Index.cshtml",
+              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Supplier\\Index.cshtml",
+              "RelativeToolTip": "SV22T1020761.Adnub\\Views\\Supplier\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-07T07:52:04.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\_ViewImports.cshtml",
+              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "SV22T1020761.Adnub\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-07T06:41:19.201Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\_ViewStart.cshtml",
+              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "SV22T1020761.Adnub\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-07T06:41:17.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "SV22T1020761.Adnub\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-07T06:41:16.48Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "SV22T1020761.Adnub\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-07T06:41:06.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Sidebar.cshtml",
+              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Shared\\_Sidebar.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Shared\\_Sidebar.cshtml",
+              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Shared\\_Sidebar.cshtml",
+              "RelativeToolTip": "SV22T1020761.Adnub\\Views\\Shared\\_Sidebar.cshtml",
+              "ViewState": "AgIAADsAAAAAAAAAAAAAAEoAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-07T06:35:45.698Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "SV22T1020761.Adnub\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAACkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-07T06:30:50.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_Header.cshtml",
+              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Shared\\_Header.cshtml",
+              "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Shared\\_Header.cshtml",
+              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Shared\\_Header.cshtml",
+              "RelativeToolTip": "SV22T1020761.Adnub\\Views\\Shared\\_Header.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-07T06:30:45.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Controllers\\CategoryController.cs",
@@ -103,63 +218,22 @@
               "RelativeToolTip": "SV22T1020761.Adnub\\Controllers\\CategoryController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-04T08:30:15.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-04T08:30:15.459Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ISupplierDAL.cs",
-              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.DataLayers\\ISupplierDAL.cs",
-              "RelativeDocumentMoniker": "SV22T1020761.DataLayers\\ISupplierDAL.cs",
-              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.DataLayers\\ISupplierDAL.cs",
-              "RelativeToolTip": "SV22T1020761.DataLayers\\ISupplierDAL.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-04T08:29:56.782Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SupplierDB.cs",
-              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.DataLayers\\SupplierDB.cs",
-              "RelativeDocumentMoniker": "SV22T1020761.DataLayers\\SupplierDB.cs",
-              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.DataLayers\\SupplierDB.cs",
-              "RelativeToolTip": "SV22T1020761.DataLayers\\SupplierDB.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAiwD0AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-04T08:29:38.009Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SupplierService.cs",
-              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.BusinessLayers\\SupplierService.cs",
-              "RelativeDocumentMoniker": "SV22T1020761.BusinessLayers\\SupplierService.cs",
-              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.BusinessLayers\\SupplierService.cs",
-              "RelativeToolTip": "SV22T1020761.BusinessLayers\\SupplierService.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAowEYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-04T08:17:38.092Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "schema.sql ",
+              "DocumentIndex": 9,
+              "Title": "schema.sql",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\LiteCommerce\\schema.sql",
               "RelativeDocumentMoniker": "..\\LiteCommerce\\schema.sql",
               "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\LiteCommerce\\schema.sql",
               "RelativeToolTip": "..\\LiteCommerce\\schema.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-02-04T07:04:50.482Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-04T07:04:50.482Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "SupplierController.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Controllers\\SupplierController.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Controllers\\SupplierController.cs",
@@ -167,12 +241,11 @@
               "RelativeToolTip": "SV22T1020761.Adnub\\Controllers\\SupplierController.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-04T06:14:33.282Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-04T06:14:33.282Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Employee\\Edit.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Employee\\Edit.cshtml",
@@ -184,7 +257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Customer\\Edit.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Customer\\Edit.cshtml",
@@ -196,7 +269,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Customer\\Create.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Customer\\Create.cshtml",
@@ -208,7 +281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Category\\Edit.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Category\\Edit.cshtml",
@@ -220,7 +293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Category\\Create.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Category\\Create.cshtml",
@@ -232,7 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 18,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Product\\Edit.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Product\\Edit.cshtml",
@@ -244,7 +317,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Product\\Create.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Product\\Create.cshtml",
@@ -256,7 +329,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Supplier\\Edit.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Supplier\\Edit.cshtml",
@@ -268,7 +341,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Shipper\\Edit.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Shipper\\Edit.cshtml",
@@ -276,12 +349,11 @@
               "RelativeToolTip": "SV22T1020761.Adnub\\Views\\Shipper\\Edit.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-01-31T09:07:18.18Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-31T09:07:18.18Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Order\\Edit.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Order\\Edit.cshtml",
@@ -293,7 +365,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Supplier\\Create.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Supplier\\Create.cshtml",
@@ -305,7 +377,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "README.md",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -317,7 +389,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "plan-2f704399-f32d-49ea-b709-14389b57c098.md",
               "DocumentMoniker": "C:\\Users\\tient\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-2f704399-f32d-49ea-b709-14389b57c098.md",
               "ToolTip": "C:\\Users\\tient\\AppData\\Local\\Temp\\VisualStudio\\copilot-vs\\plan-2f704399-f32d-49ea-b709-14389b57c098.md [Read Only]",
@@ -328,7 +400,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Adnub\\Views\\Employee\\Index.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Adnub\\Views\\Employee\\Index.cshtml",

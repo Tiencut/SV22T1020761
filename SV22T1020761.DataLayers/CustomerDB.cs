@@ -28,17 +28,16 @@ namespace SV22T1020761.DataLayers
                {
                    while (reader.Read())
                    {
-                       list.Add(new Customer
+                       list.Add(new Customer()
                        {
-                           CustomerID = reader.GetInt32("CustomerID"),
-                           CustomerName = reader.GetString("CustomerName"),
-                           ContactName = reader.GetString("ContactName"),
-                           Province = reader.GetString("Province"),
-                           Address = reader.GetString("Address"),
-                           Phone = reader.GetString("Phone"),
-                           Email = reader.GetString("Email"),
-                           Password = reader.GetString("Password"),
-                           IsLocked = reader.GetBoolean("IsLocked")
+                           CustomerID = reader.GetInt32(reader.GetOrdinal("CustomerID")),
+                           CustomerName = reader.GetString(reader.GetOrdinal("CustomerName")),
+                           ContactName = reader.GetString(reader.GetOrdinal("ContactName")),
+                           Province = reader.GetString(reader.GetOrdinal("Province")),
+                           Address = reader.GetString(reader.GetOrdinal("Address")),
+                           Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                           Email = reader.GetString(reader.GetOrdinal("Email")),
+                           Password = reader.GetString(reader.GetOrdinal("Password"))
                        });
                    }
                }
@@ -60,17 +59,16 @@ namespace SV22T1020761.DataLayers
                {
                    if (reader.Read())
                    {
-                       customer = new Customer
+                       customer = new Customer()
                        {
-                           CustomerID = reader.GetInt32("CustomerID"),
-                           CustomerName = reader.GetString("CustomerName"),
-                           ContactName = reader.GetString("ContactName"),
-                           Province = reader.GetString("Province"),
-                           Address = reader.GetString("Address"),
-                           Phone = reader.GetString("Phone"),
-                           Email = reader.GetString("Email"),
-                           Password = reader.GetString("Password"),
-                           IsLocked = reader.GetBoolean("IsLocked")
+                           CustomerID = reader.GetInt32(reader.GetOrdinal("CustomerID")),
+                           CustomerName = reader.GetString(reader.GetOrdinal("CustomerName")),
+                           ContactName = reader.GetString(reader.GetOrdinal("ContactName")),
+                           Province = reader.GetString(reader.GetOrdinal("Province")),
+                           Address = reader.GetString(reader.GetOrdinal("Address")),
+                           Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                           Email = reader.GetString(reader.GetOrdinal("Email")),
+                           Password = reader.GetString(reader.GetOrdinal("Password"))
                        };
                    }
                }

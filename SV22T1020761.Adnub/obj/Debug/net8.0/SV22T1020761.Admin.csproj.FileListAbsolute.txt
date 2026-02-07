@@ -39,3 +39,10 @@ D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761
 D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\obj\Debug\net8.0\SV22T1020761.Admin.pdb
 D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\obj\Debug\net8.0\SV22T1020761.Admin.genruntimeconfig.cache
 D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\obj\Debug\net8.0\ref\SV22T1020761.Admin.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\obj\Debug\net8.0\SV22T1020761.Admin.sourcelink.json
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\bin\Debug\net8.0\System.Data.SqlClient.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\TienCut\codeHoc\laptrinhweb_nhom1_hk3_20242025-main\SV22T1020761\SV22T1020761.Adnub\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

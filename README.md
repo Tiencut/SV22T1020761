@@ -14,6 +14,7 @@ Thiết kế layout cho admin
 -	Copy nội dung của file layout.html sang file _layout.cshtml
 Các controller và các action dự kiến 
 home 
+
 -	Home / index: Trang chủ của admin, hiển thị dashboard tổng quan (ví dụ: thống kê đơn hàng, sản phẩm, khách hàng).
 account  : các chức năng liên quan đến tài khoản 
 -	Account/login: Trang đăng nhập cho nhân viên/admin.
@@ -49,7 +50,6 @@ category :
 -	category/delete/{id}: Xóa danh mục theo ID.
 product :
 -	product/index: Hiển thị danh sách sản phẩm.
--	product/detail/{id}: Xem chi tiết sản phẩm theo ID.
 -	product/create: Thêm mới sản phẩm.
 -	product/edit/{id}: Chỉnh sửa sản phẩm theo ID.
 -	product/delete/{id}: Xóa sản phẩm theo ID.

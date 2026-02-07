@@ -1,122 +1,34 @@
-﻿@model SV22T1020761.Models.PaginationSearchResult<SV22T1020761.Models.Employee>
-
-@{
-    ViewBag.Title = "Danh sách nhân viên";
+﻿@{
+    ViewBag.Title = "Nhân viên (Mock)";
+    var data = new System.Collections.Generic.List<SV22T1020761.Models.Employee>
+    {
+        new SV22T1020761.Models.Employee { EmployeeID = 1, FullName = "Nguyen Van A", BirthDate = new System.DateTime(1990,1,1), Address = "Hanoi", Phone = "0123456", Email = "a@ex.com", IsWorking = true, RoleNames = "Admin" },
+        new SV22T1020761.Models.Employee { EmployeeID = 2, FullName = "Tran Thi B", BirthDate = new System.DateTime(1992,2,2), Address = "HCMC", Phone = "0987654", Email = "b@ex.com", IsWorking = true, RoleNames = "Staff" }
+    };
+    var displayCount = System.Math.Min(5, data.Count);
 }
 
-<!--begin::Breadcrumb-->
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="~/"><i class="bi bi-house-door"></i> Trang chủ</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Nhân viên</li>
-    </ol>
-</nav>
-<!--end::Breadcrumb-->
-
-<!--begin::Card-->
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Danh sách nhân viên</h3>
-        <div class="card-tools">
-            <a href="~/Employee/Create" class="btn btn-primary btn-sm">
-                <i class="bi bi-plus-circle"></i> Thêm mới
-            </a>
-        </div>
-    </div>
-    <div class="card-body">
-        <!--begin::Search Form-->
-        <form method="get" class="mb-3">
-            <div class="row">
-                <div class="col-md-6">
-                    <input type="text" name="searchValue" value="@Model.SearchValue" class="form-control" placeholder="Tìm kiếm theo tên nhân viên..." />
-                </div>
-                <div class="col-md-3">
-                    <button type="submit" class="btn btn-outline-secondary">
-                        <i class="bi bi-search"></i> Tìm kiếm
-                    </button>
-                </div>
-            </div>
-        </form>
-        <!--end::Search Form-->
-
-        <!--begin::Table-->
-        <table class="table table-bordered table-hover">
-            <thead class="table-light">
-                <tr>
-                    <th>ID</th>
-                    <th>Họ tên</th>
-                    <th>Ngày sinh</th>
-                    <th>Địa chỉ</th>
-                    <th>Điện thoại</th>
-                    <th>Email</th>
-                    <th>Ảnh</th>
-                    <th>Đang làm việc</th>
-                    <th>Vai trò</th>
-                    <th class="text-center">Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (Model.Data != null && Model.Data.Count > 0)
-                {
-                    foreach (var item in Model.Data)
+<div class="content-wrapper">
+    <section class="content-header"><h1>Nhân viên (Mock)</h1></section>
+    <section class="content">
+        <div class="card"><div class="card-body p-0">
+            <table class="table table-striped mb-0">
+                <thead><tr><th>#</th><th>Họ tên</th><th>Ngày sinh</th><th>Địa chỉ</th><th>Phone</th><th>Email</th><th>Vai trò</th></tr></thead>
+                <tbody>
+                    @for (int i = 0; i < displayCount; i++)
                     {
                         <tr>
-                            <td>@item.EmployeeID</td>
-                            <td>@item.FullName</td>
-                            <td>@(item.BirthDate?.ToString("dd/MM/yyyy") ?? "")</td>
-                            <td>@item.Address</td>
-                            <td>@item.Phone</td>
-                            <td>@item.Email</td>
-                            <td>
-                                @if (!string.IsNullOrEmpty(item.Photo))
-                                {
-                                    <img src="@item.Photo" alt="Ảnh" class="img-thumbnail" style="width: 50px; height: 50px;" />
-                                }
-                            </td>
-                            <td>@(item.IsWorking ? "Có" : "Không")</td>
-                            <td>@item.RoleNames</td>
-                            <td class="text-center">
-                                <a href="~/Employee/Edit/@item.EmployeeID" class="btn btn-warning btn-sm">
-                                    <i class="bi bi-pencil"></i> Sửa
-                                </a>
-                                <a href="~/Employee/Delete/@item.EmployeeID" class="btn btn-danger btn-sm">
-                                    <i class="bi bi-trash"></i> Xóa
-                                </a>
-                                <a href="~/Employee/ChangePassword/@item.EmployeeID" class="btn btn-info btn-sm">
-                                    <i class="bi bi-key"></i> Đổi mật khẩu
-                                </a>
-                                <a href="~/Employee/ChangeRole/@item.EmployeeID" class="btn btn-secondary btn-sm">
-                                    <i class="bi bi-person-gear"></i> Vai trò
-                                </a>
-                            </td>
+                            <td>@data[i].EmployeeID</td>
+                            <td>@data[i].FullName</td>
+                            <td>@data[i].BirthDate?.ToString("dd/MM/yyyy")</td>
+                            <td>@data[i].Address</td>
+                            <td>@data[i].Phone</td>
+                            <td>@data[i].Email</td>
+                            <td>@data[i].RoleNames</td>
                         </tr>
                     }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="10" class="text-center">Không có dữ liệu</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <!--end::Table-->
-
-        <!--begin::Pagination-->
-        @if (Model.RowCount > Model.PageSize)
-        {
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    @for (int i = 1; i <= (Model.RowCount + Model.PageSize - 1) / Model.PageSize; i++)
-                    {
-                        <li class="page-item @(i == Model.Page ? "active" : "")">
-                            <a class="page-link" href="?page=@i&searchValue=@Model.SearchValue">@i</a>
-                        </li>
-                    }
-                </ul>
-            </nav>
-        }
-        <!--end::Pagination-->
-    </div>
+                </tbody>
+            </table>
+        </div></div>
+    </section>
 </div>
-<!--end::Card-->

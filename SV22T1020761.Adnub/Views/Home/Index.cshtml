@@ -1,8 +1,122 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container-fluid my-4">
+    <div class="row g-3">
+        <div class="col-12">
+            <h2 class="h4">Bảng điều khiển</h2>
+            <p class="text-muted">Tổng quan nhanh về cửa hàng</p>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="~/Order" class="text-decoration-none">
+                <div class="card text-white bg-primary">
+                    <div class="card-body py-3 text-center">
+                        <div class="h1">128</div>
+                        <div>Đơn hàng</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="~/Product" class="text-decoration-none">
+                <div class="card text-white bg-success">
+                    <div class="card-body py-3 text-center">
+                        <div class="h1">342</div>
+                        <div>Sản phẩm</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="~/Supplier" class="text-decoration-none">
+                <div class="card text-white bg-warning">
+                    <div class="card-body py-3 text-center">
+                        <div class="h1">27</div>
+                        <div>Nhà cung cấp</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="~/Customer" class="text-decoration-none">
+                <div class="card text-white bg-info">
+                    <div class="card-body py-3 text-center">
+                        <div class="h1">1,024</div>
+                        <div>Khách hàng</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="~/Employee" class="text-decoration-none">
+                <div class="card text-white bg-secondary">
+                    <div class="card-body py-3 text-center">
+                        <div class="h1">12</div>
+                        <div>Nhân viên</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2">
+            <a href="~/Shipper" class="text-decoration-none">
+                <div class="card text-white bg-dark">
+                    <div class="card-body py-3 text-center">
+                        <div class="h1">8</div>
+                        <div>Người giao hàng</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 mt-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Đơn hàng gần đây</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Khách hàng</th>
+                                    <th>Thời gian</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>101</td>
+                                    <td>Nguyễn Văn A</td>
+                                    <td>2026-02-05 14:12</td>
+                                    <td>Hà Nội</td>
+                                    <td><span class="badge bg-warning">Đang xử lý</span></td>
+                                </tr>
+                                <tr>
+                                    <td>100</td>
+                                    <td>Trần Thị B</td>
+                                    <td>2026-02-04 09:30</td>
+                                    <td>Hồ Chí Minh</td>
+                                    <td><span class="badge bg-success">Hoàn thành</span></td>
+                                </tr>
+                                <tr>
+                                    <td>99</td>
+                                    <td>Phạm C</td>
+                                    <td>2026-02-03 11:05</td>
+                                    <td>Đà Nẵng</td>
+                                    <td><span class="badge bg-danger">Hủy</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

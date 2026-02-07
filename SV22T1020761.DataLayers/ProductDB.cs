@@ -30,15 +30,15 @@ namespace SV22T1020761.DataLayers
                    {
                        list.Add(new Product
                        {
-                           ProductID = reader.GetInt32("ProductID"),
-                           ProductName = reader.GetString("ProductName"),
-                           ProductDescription = reader.GetString("ProductDescription"),
-                           SupplierID = reader.IsDBNull("SupplierID") ? null : reader.GetInt32("SupplierID"),
-                           CategoryID = reader.IsDBNull("CategoryID") ? null : reader.GetInt32("CategoryID"),
-                           Unit = reader.GetString("Unit"),
-                           Price = reader.GetDecimal("Price"),
-                           Photo = reader.GetString("Photo"),
-                           IsSelling = reader.GetBoolean("IsSelling")
+                           ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
+                           ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
+                           ProductDescription = reader.GetString(reader.GetOrdinal("ProductDescription")),
+                           SupplierID = reader.IsDBNull(reader.GetOrdinal("SupplierID")) ? null : reader.GetInt32(reader.GetOrdinal("SupplierID")),
+                           CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? null : reader.GetInt32(reader.GetOrdinal("CategoryID")),
+                           Unit = reader.GetString(reader.GetOrdinal("Unit")),
+                           Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                           Photo = reader.GetString(reader.GetOrdinal("Photo")),
+                           IsSelling = reader.GetBoolean(reader.GetOrdinal("IsSelling"))
                        });
                    }
                }
@@ -62,15 +62,15 @@ namespace SV22T1020761.DataLayers
                    {
                        product = new Product
                        {
-                           ProductID = reader.GetInt32("ProductID"),
-                           ProductName = reader.GetString("ProductName"),
-                           ProductDescription = reader.GetString("ProductDescription"),
-                           SupplierID = reader.IsDBNull("SupplierID") ? null : reader.GetInt32("SupplierID"),
-                           CategoryID = reader.IsDBNull("CategoryID") ? null : reader.GetInt32("CategoryID"),
-                           Unit = reader.GetString("Unit"),
-                           Price = reader.GetDecimal("Price"),
-                           Photo = reader.GetString("Photo"),
-                           IsSelling = reader.GetBoolean("IsSelling")
+                           ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
+                           ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
+                           ProductDescription = reader.GetString(reader.GetOrdinal("ProductDescription")),
+                           SupplierID = reader.IsDBNull(reader.GetOrdinal("SupplierID")) ? null : reader.GetInt32(reader.GetOrdinal("SupplierID")),
+                           CategoryID = reader.IsDBNull(reader.GetOrdinal("CategoryID")) ? null : reader.GetInt32(reader.GetOrdinal("CategoryID")),
+                           Unit = reader.GetString(reader.GetOrdinal("Unit")),
+                           Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                           Photo = reader.GetString(reader.GetOrdinal("Photo")),
+                           IsSelling = reader.GetBoolean(reader.GetOrdinal("IsSelling"))
                        };
                    }
                }

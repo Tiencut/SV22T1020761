@@ -30,16 +30,16 @@ namespace SV22T1020761.DataLayers
                    {
                        list.Add(new Employee
                        {
-                           EmployeeID = reader.GetInt32("EmployeeID"),
-                           FullName = reader.GetString("FullName"),
-                           BirthDate = reader.IsDBNull("BirthDate") ? null : reader.GetDateTime("BirthDate"),
-                           Address = reader.GetString("Address"),
-                           Phone = reader.GetString("Phone"),
-                           Email = reader.GetString("Email"),
-                           Password = reader.GetString("Password"),
-                           Photo = reader.GetString("Photo"),
-                           IsWorking = reader.GetBoolean("IsWorking"),
-                           RoleNames = reader.GetString("RoleNames")
+                           EmployeeID = reader.GetInt32(reader.GetOrdinal("EmployeeID")),
+                           FullName = reader.GetString(reader.GetOrdinal("FullName")),
+                           BirthDate = reader.IsDBNull(reader.GetOrdinal("BirthDate")) ? null : reader.GetDateTime(reader.GetOrdinal("BirthDate")),
+                           Address = reader.GetString(reader.GetOrdinal("Address")),
+                           Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                           Email = reader.GetString(reader.GetOrdinal("Email")),
+                           Password = reader.GetString(reader.GetOrdinal("Password")),
+                           Photo = reader.GetString(reader.GetOrdinal("Photo")),
+                           IsWorking = reader.GetBoolean(reader.GetOrdinal("IsWorking")),
+                           RoleNames = reader.GetString(reader.GetOrdinal("RoleNames"))
                        });
                    }
                }
@@ -63,16 +63,16 @@ namespace SV22T1020761.DataLayers
                    {
                        employee = new Employee
                        {
-                           EmployeeID = reader.GetInt32("EmployeeID"),
-                           FullName = reader.GetString("FullName"),
-                           BirthDate = reader.IsDBNull("BirthDate") ? null : reader.GetDateTime("BirthDate"),
-                           Address = reader.GetString("Address"),
-                           Phone = reader.GetString("Phone"),
-                           Email = reader.GetString("Email"),
-                           Password = reader.GetString("Password"),
-                           Photo = reader.GetString("Photo"),
-                           IsWorking = reader.GetBoolean("IsWorking"),
-                           RoleNames = reader.GetString("RoleNames")
+                           EmployeeID = reader.GetInt32(reader.GetOrdinal("EmployeeID")),
+                           FullName = reader.GetString(reader.GetOrdinal("FullName")),
+                           BirthDate = reader.IsDBNull(reader.GetOrdinal("BirthDate")) ? null : reader.GetDateTime(reader.GetOrdinal("BirthDate")),
+                           Address = reader.GetString(reader.GetOrdinal("Address")),
+                           Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                           Email = reader.GetString(reader.GetOrdinal("Email")),
+                           Password = reader.GetString(reader.GetOrdinal("Password")),
+                           Photo = reader.GetString(reader.GetOrdinal("Photo")),
+                           IsWorking = reader.GetBoolean(reader.GetOrdinal("IsWorking")),
+                           RoleNames = reader.GetString(reader.GetOrdinal("RoleNames"))
                        };
                    }
                }

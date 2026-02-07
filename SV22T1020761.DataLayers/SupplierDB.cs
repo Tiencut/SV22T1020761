@@ -30,13 +30,13 @@ namespace SV22T1020761.DataLayers
                    {
                        list.Add(new Supplier
                        {
-                           SupplierID = reader.GetInt32("SupplierID"),
-                           SupplierName = reader.GetString("SupplierName"),
-                           ContactName = reader.GetString("ContactName"),
-                           Province = reader.GetString("Province"),
-                           Address = reader.GetString("Address"),
-                           Phone = reader.GetString("Phone"),
-                           Email = reader.GetString("Email")
+                           SupplierID = reader.GetInt32(reader.GetOrdinal("SupplierID")),
+                           SupplierName = reader.GetString(reader.GetOrdinal("SupplierName")),
+                           ContactName = reader.GetString(reader.GetOrdinal("ContactName")),
+                           Province = reader.GetString(reader.GetOrdinal("Province")),
+                           Address = reader.GetString(reader.GetOrdinal("Address")),
+                           Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                           Email = reader.GetString(reader.GetOrdinal("Email"))
                        });
                    }
                }
@@ -60,13 +60,13 @@ namespace SV22T1020761.DataLayers
                    {
                        supplier = new Supplier
                        {
-                           SupplierID = reader.GetInt32("SupplierID"),
-                           SupplierName = reader.GetString("SupplierName"),
-                           ContactName = reader.GetString("ContactName"),
-                           Province = reader.GetString("Province"),
-                           Address = reader.GetString("Address"),
-                           Phone = reader.GetString("Phone"),
-                           Email = reader.GetString("Email")
+                           SupplierID = reader.GetInt32(reader.GetOrdinal("SupplierID")),
+                           SupplierName = reader.GetString(reader.GetOrdinal("SupplierName")),
+                           ContactName = reader.GetString(reader.GetOrdinal("ContactName")),
+                           Province = reader.GetString(reader.GetOrdinal("Province")),
+                           Address = reader.GetString(reader.GetOrdinal("Address")),
+                           Phone = reader.GetString(reader.GetOrdinal("Phone")),
+                           Email = reader.GetString(reader.GetOrdinal("Email"))
                        };
                    }
                }

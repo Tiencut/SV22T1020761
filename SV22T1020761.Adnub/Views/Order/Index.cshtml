@@ -1,131 +1,55 @@
-@model SV22T1020761.Models.PaginationSearchResult<SV22T1020761.Models.Order>
-
+@model IEnumerable<SV22T1020761.Adnub.Models.OrderListItem>
 @{
-    ViewData["Title"] = "Đơn hàng";
+    ViewBag.Title = "Đơn hàng (Mock)";
 }
 
-<div class="app-content-header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <h3 class="mb-0">Đơn hàng</h3>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                    <li class="breadcrumb-item"><a href="~/Admin">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">Đơn hàng</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
-
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Danh sách đơn hàng</h3>
-                        <div class="card-tools">
-                            <a href="~/Admin/Order/Create" class="btn btn-primary btn-sm">
-                                <i class="bi bi-plus-circle"></i> Thêm mới
-                            </a>
+<div class="content-wrapper">
+    <section class="content-header"><h1>Đơn hàng (Mock)</h1></section>
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <form method="get" asp-action="Index" class="row g-2">
+                    <div class="col-md-3">
+                        <select name="status" class="form-select">
+                            <option value="">Tất cả trạng thái</option>
+                            <option value="0">Đặt hàng</option>
+                            <option value="1">Đã duyệt</option>
+                            <option value="2">Đang giao</option>
+                            <option value="3">Hoàn tất</option>
+                            <option value="4">Hủy</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="date" name="fromDate" class="form-control" />
+                            <input type="date" name="toDate" class="form-control" />
                         </div>
                     </div>
-                    <div class="card-body">
-                        <form method="get" class="mb-3">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" name="searchValue" value="@Model.SearchValue" class="form-control" placeholder="Tìm kiếm..." />
-                                </div>
-                                <div class="col-md-3">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="bi bi-search"></i> Tìm kiếm
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Mã đơn hàng</th>
-                                    <th>Khách hàng</th>
-                                    <th>Thời gian đặt</th>
-                                    <th>Tỉnh giao hàng</th>
-                                    <th>Nhân viên</th>
-                                    <th>Người giao hàng</th>
-                                    <th>Trạng thái</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.Data)
-                                {
-                                    <tr>
-                                        <td>@item.OrderID</td>
-                                        <td>@item.CustomerID</td>
-                                        <td>@item.OrderTime.ToString("dd/MM/yyyy HH:mm")</td>
-                                        <td>@item.DeliveryProvince</td>
-                                        <td>@item.EmployeeID</td>
-                                        <td>@item.ShipperID</td>
-                                        <td>
-                                            @switch (item.Status)
-                                            {
-                                                case 0:
-                                                    <span class="badge bg-secondary">Đặt hàng</span>
-                                                    break;
-                                                case 1:
-                                                    <span class="badge bg-warning">Đã duyệt</span>
-                                                    break;
-                                                case 2:
-                                                    <span class="badge bg-info">Đang giao</span>
-                                                    break;
-                                                case 3:
-                                                    <span class="badge bg-success">Hoàn tất</span>
-                                                    break;
-                                                case 4:
-                                                    <span class="badge bg-danger">Hủy</span>
-                                                    break;
-                                                default:
-                                                    <span class="badge bg-light">@item.Status</span>
-                                                    break;
-                                            }
-                                        </td>
-                                        <td>
-                                            <a href="~/Admin/Order/Details/@item.OrderID" class="btn btn-info btn-sm">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a href="~/Admin/Order/Edit/@item.OrderID" class="btn btn-warning btn-sm">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                            <a href="~/Admin/Order/Delete/@item.OrderID" class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
-                                            <a href="~/Admin/Order/UpdateStatus/@item.OrderID" class="btn btn-secondary btn-sm">
-                                                <i class="bi bi-arrow-repeat"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                        @if (Model.RowCount > Model.PageSize)
-                        {
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-center">
-                                    @for (int i = 1; i <= (Model.RowCount + Model.PageSize - 1) / Model.PageSize; i++)
-                                    {
-                                        <li class="page-item @(i == Model.Page ? "active" : "")">
-                                            <a class="page-link" href="?page=@i&pageSize=@Model.PageSize&searchValue=@Model.SearchValue">@i</a>
-                                        </li>
-                                    }
-                                </ul>
-                            </nav>
-                        }
+                    <div class="col-md-4">
+                        <input type="text" name="customerName" class="form-control" placeholder="Tên khách hàng" />
                     </div>
-                </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary">Tìm</button>
+                    </div>
+                </form>
             </div>
-        </div>
-    </div>
-</section>
+            <div class="card-body p-0">
+            <table class="table table-striped mb-0">
+                <thead><tr><th>#</th><th>Khách</th><th>Thời gian</th><th>Tỉnh</th><th>Địa chỉ</th><th>Trạng thái</th></tr></thead>
+                <tbody>
+                    @foreach (var item in Model ?? Enumerable.Empty<SV22T1020761.Adnub.Models.OrderListItem>())
+                    {
+                        <tr>
+                            <td>@item.OrderID</td>
+                            <td>@item.CustomerName</td>
+                            <td>@item.OrderTime.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@item.DeliveryProvince</td>
+                            <td>@item.DeliveryAddress</td>
+                            <td>@(item.Status == 0 ? "Đặt hàng" : item.Status == 1 ? "Đã duyệt" : item.Status == 2 ? "Đang giao" : item.Status == 3 ? "Hoàn tất" : item.Status == 4 ? "Hủy" : item.Status.ToString())</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div></div>
+    </section>
+</div>

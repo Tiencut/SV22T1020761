@@ -30,17 +30,17 @@ namespace SV22T1020761.DataLayers
                    {
                        list.Add(new Order
                        {
-                           OrderID = reader.GetInt32("OrderID"),
-                           CustomerID = reader.IsDBNull("CustomerID") ? null : reader.GetInt32("CustomerID"),
-                           OrderTime = reader.GetDateTime("OrderTime"),
-                           DeliveryProvince = reader.GetString("DeliveryProvince"),
-                           DeliveryAddress = reader.GetString("DeliveryAddress"),
-                           EmployeeID = reader.IsDBNull("EmployeeID") ? null : reader.GetInt32("EmployeeID"),
-                           AcceptTime = reader.IsDBNull("AcceptTime") ? null : reader.GetDateTime("AcceptTime"),
-                           ShipperID = reader.IsDBNull("ShipperID") ? null : reader.GetInt32("ShipperID"),
-                           ShippedTime = reader.IsDBNull("ShippedTime") ? null : reader.GetDateTime("ShippedTime"),
-                           FinishedTime = reader.IsDBNull("FinishedTime") ? null : reader.GetDateTime("FinishedTime"),
-                           Status = reader.GetInt32("Status")
+                           OrderID = reader.GetInt32(reader.GetOrdinal("OrderID")),
+                           CustomerID = reader.IsDBNull(reader.GetOrdinal("CustomerID")) ? null : reader.GetInt32(reader.GetOrdinal("CustomerID")),
+                           OrderTime = reader.GetDateTime(reader.GetOrdinal("OrderTime")),
+                           DeliveryProvince = reader.GetString(reader.GetOrdinal("DeliveryProvince")),
+                           DeliveryAddress = reader.GetString(reader.GetOrdinal("DeliveryAddress")),
+                           EmployeeID = reader.IsDBNull(reader.GetOrdinal("EmployeeID")) ? null : reader.GetInt32(reader.GetOrdinal("EmployeeID")),
+                           AcceptTime = reader.IsDBNull(reader.GetOrdinal("AcceptTime")) ? null : reader.GetDateTime(reader.GetOrdinal("AcceptTime")),
+                           ShipperID = reader.IsDBNull(reader.GetOrdinal("ShipperID")) ? null : reader.GetInt32(reader.GetOrdinal("ShipperID")),
+                           ShippedTime = reader.IsDBNull(reader.GetOrdinal("ShippedTime")) ? null : reader.GetDateTime(reader.GetOrdinal("ShippedTime")),
+                           FinishedTime = reader.IsDBNull(reader.GetOrdinal("FinishedTime")) ? null : reader.GetDateTime(reader.GetOrdinal("FinishedTime")),
+                           Status = reader.GetInt32(reader.GetOrdinal("Status"))
                        });
                    }
                }
@@ -64,17 +64,17 @@ namespace SV22T1020761.DataLayers
                    {
                        order = new Order
                        {
-                           OrderID = reader.GetInt32("OrderID"),
-                           CustomerID = reader.IsDBNull("CustomerID") ? null : reader.GetInt32("CustomerID"),
-                           OrderTime = reader.GetDateTime("OrderTime"),
-                           DeliveryProvince = reader.GetString("DeliveryProvince"),
-                           DeliveryAddress = reader.GetString("DeliveryAddress"),
-                           EmployeeID = reader.IsDBNull("EmployeeID") ? null : reader.GetInt32("EmployeeID"),
-                           AcceptTime = reader.IsDBNull("AcceptTime") ? null : reader.GetDateTime("AcceptTime"),
-                           ShipperID = reader.IsDBNull("ShipperID") ? null : reader.GetInt32("ShipperID"),
-                           ShippedTime = reader.IsDBNull("ShippedTime") ? null : reader.GetDateTime("ShippedTime"),
-                           FinishedTime = reader.IsDBNull("FinishedTime") ? null : reader.GetDateTime("FinishedTime"),
-                           Status = reader.GetInt32("Status")
+                           OrderID = reader.GetInt32(reader.GetOrdinal("OrderID")),
+                           CustomerID = reader.IsDBNull(reader.GetOrdinal("CustomerID")) ? null : reader.GetInt32(reader.GetOrdinal("CustomerID")),
+                           OrderTime = reader.GetDateTime(reader.GetOrdinal("OrderTime")),
+                           DeliveryProvince = reader.GetString(reader.GetOrdinal("DeliveryProvince")),
+                           DeliveryAddress = reader.GetString(reader.GetOrdinal("DeliveryAddress")),
+                           EmployeeID = reader.IsDBNull(reader.GetOrdinal("EmployeeID")) ? null : reader.GetInt32(reader.GetOrdinal("EmployeeID")),
+                           AcceptTime = reader.IsDBNull(reader.GetOrdinal("AcceptTime")) ? null : reader.GetDateTime(reader.GetOrdinal("AcceptTime")),
+                           ShipperID = reader.IsDBNull(reader.GetOrdinal("ShipperID")) ? null : reader.GetInt32(reader.GetOrdinal("ShipperID")),
+                           ShippedTime = reader.IsDBNull(reader.GetOrdinal("ShippedTime")) ? null : reader.GetDateTime(reader.GetOrdinal("ShippedTime")),
+                           FinishedTime = reader.IsDBNull(reader.GetOrdinal("FinishedTime")) ? null : reader.GetDateTime(reader.GetOrdinal("FinishedTime")),
+                           Status = reader.GetInt32(reader.GetOrdinal("Status"))
                        };
                    }
                }

@@ -77,7 +77,7 @@ order :
 
 
 # Thiết lập và Yêu cầu
-- .NET 8.0 SDK (hoặc phiên bản mới hơn, như được chỉ định trong các file dự án [SV22T1020761.Admin.csproj](SV22T1020761.Adnub/SV22T1020761.Admin.csproj) và [SV22T1020761.Shop.csproj](SV22T1020761.Shop/SV22T1020761.Shop.csproj)).
+- .NET 8.0 SDK (hoặc phiên bản mới hơn, như được chỉ định trong các file dự án [SV22T1020761.Admin.csproj](SV22T1020761.Admin/SV22T1020761.Admin.csproj) và [SV22T1020761.Shop.csproj](SV22T1020761.Shop/SV22T1020761.Shop.csproj)).
 - Visual Studio 2022 hoặc VS Code với các tiện ích mở rộng .NET.
 - CSDL: Đảm bảo thiết lập CSDL SQL tương thích (tham khảo schema.sql nếu có trong các mục giải pháp).
 - Gói NuGet: Khôi phục qua `dotnet restore` hoặc Visual Studio.
@@ -85,26 +85,26 @@ order :
 # Xây dựng Dự án
 1. Mở giải pháp [SV22T1020761.sln](SV22T1020761.sln) trong Visual Studio.
 2. Xây dựng toàn bộ giải pháp (Ctrl+Shift+B) hoặc chạy `dotnet build` trong terminal.
-3. Phụ thuộc dự án: [SV22T1020761.Admin](SV22T1020761.Adnub/) và [SV22T1020761.Shop](SV22T1020761.Shop/) tham chiếu đến [SV22T1020761.Models](SV22T1020761.Models/), [SV22T1020761.BusinessLayers](SV22T1020761.BusinessLayers/), và [SV22T1020761.DataLayers](SV22T1020761.DataLayers/).
+3. Phụ thuộc dự án: [SV22T1020761.Admin](SV22T1020761.Admin/) và [SV22T1020761.Shop](SV22T1020761.Shop/) tham chiếu đến [SV22T1020761.Models](SV22T1020761.Models/), [SV22T1020761.BusinessLayers](SV22T1020761.BusinessLayers/), và [SV22T1020761.DataLayers](SV22T1020761.DataLayers/).
 
 # Chạy Ứng dụng
-- Cho Admin: Đặt [SV22T1020761.Admin](SV22T1020761.Adnub/) làm dự án khởi động và chạy (F5 hoặc `dotnet run`).
+- Cho Admin: Đặt [SV22T1020761.Admin](SV22T1020761.Admin/) làm dự án khởi động và chạy (F5 hoặc `dotnet run`).
 - Cho Shop: Đặt [SV22T1020761.Shop](SV22T1020761.Shop/) làm dự án khởi động và chạy.
 - Cổng mặc định: Admin thường chạy trên http://localhost:5114 (dựa trên nhật ký lỗi), Shop trên cổng riêng biệt.
 
 # Layout và Giao diện
 - Admin sử dụng theme AdminLTE4 với Bootstrap5.
-- Sao chép nội dung của file layout.html sang [Views/Shared/_Layout.cshtml](SV22T1020761.Adnub/Views/Shared/_Layout.cshtml) trong dự án Admin.
+- Sao chép nội dung của file layout.html sang [Views/Shared/_Layout.cshtml](SV22T1020761.Admin/Views/Shared/_Layout.cshtml) trong dự án Admin.
 - Đảm bảo gọi `@RenderBody()` trong _Layout.cshtml để tránh lỗi "RenderBody has not been called" (vấn đề phổ biến trong nhật ký workspace).
 
 # Vấn đề Thường gặp và Khắc phục
-- **View Không Tìm Thấy (ví dụ: ChangePassword)**: Đảm bảo các view như [Views/Account/ChangePassword.cshtml](SV22T1020761.Adnub/Views/Account/ChangePassword.cshtml) tồn tại ở vị trí đúng. Đường dẫn tìm kiếm: /Views/Account/ và /Views/Shared/.
-- **Lỗi RenderBody**: Thêm `@RenderBody()` trong [Views/Shared/_Layout.cshtml](SV22T1020761.Adnub/Views/Shared/_Layout.cshtml) cho cả dự án Admin và Shop.
-- **Lỗi Xây dựng**: Kiểm tra tham chiếu dự án trong các file [project.assets.json](SV22T1020761.Adnub/obj/project.assets.json). Chạy `dotnet clean` và xây dựng lại.
-- **Tài sản Tĩnh**: Bootstrap và các file khác nằm trong [wwwroot](SV22T1020761.Adnub/wwwroot/) (đã xác minh trong staticwebassets.upToDateCheck.txt).
+- **View Không Tìm Thấy (ví dụ: ChangePassword)**: Đảm bảo các view như [Views/Account/ChangePassword.cshtml](SV22T1020761.Admin/Views/Account/ChangePassword.cshtml) tồn tại ở vị trí đúng. Đường dẫn tìm kiếm: /Views/Account/ và /Views/Shared/.
+- **Lỗi RenderBody**: Thêm `@RenderBody()` trong [Views/Shared/_Layout.cshtml](SV22T1020761.Admin/Views/Shared/_Layout.cshtml) cho cả dự án Admin và Shop.
+- **Lỗi Xây dựng**: Kiểm tra tham chiếu dự án trong các file [project.assets.json](SV22T1020761.Admin/obj/project.assets.json). Chạy `dotnet clean` và xây dựng lại.
+- **Tài sản Tĩnh**: Bootstrap và các file khác nằm trong [wwwroot](SV22T1020761.Admin/wwwroot/) (đã xác minh trong staticwebassets.upToDateCheck.txt).
 
 # Tổng quan Cấu trúc Dự án
-- [SV22T1020761.Admin](SV22T1020761.Adnub/): Ứng dụng MVC cho các chức năng admin (controller, view, v.v.).
+- [SV22T1020761.Admin](SV22T1020761.Admin/): Ứng dụng MVC cho các chức năng admin (controller, view, v.v.).
 - [SV22T1020761.Shop](SV22T1020761.Shop/): Ứng dụng MVC cho giao diện shop.
 - [SV22T1020761.Models](SV22T1020761.Models/): Các mô hình dữ liệu.
 - [SV22T1020761.BusinessLayers](SV22T1020761.BusinessLayers/): Logic nghiệp vụ.

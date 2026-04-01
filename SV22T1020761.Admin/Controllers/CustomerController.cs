@@ -130,7 +130,17 @@ namespace SV22T1020761.Admin.Controllers
         {
             try
             {
-                await PartnerDataService.DeleteCustomerAsync(id);
+                bool deleted = await PartnerDataService.DeleteCustomerAsync(id);
+                if (!deleted)
+                {
+                    if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                    {
+                        return BadRequest("Không thể xóa khách hàng này.");
+                    }
+                    TempData["Error"] = "Không thể xóa khách hàng này.";
+                    return RedirectToAction("Index");
+                }
+
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
                     var input = new PaginationSearchInput { Page = 1, PageSize = 10, SearchValue = "" };
@@ -143,6 +153,10 @@ namespace SV22T1020761.Admin.Controllers
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error deleting customer (Id={CustomerId})", id);
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return BadRequest("Lỗi khi xóa: " + ex.Message);
+                }
                 var customer = await PartnerDataService.GetCustomerAsync(id);
                 ModelState.AddModelError(string.Empty, "Không thể xóa khách hàng. Vui lòng thử lại sau.");
                 return View("Delete", customer);

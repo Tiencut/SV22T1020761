@@ -1,26 +1,42 @@
+@{
+    Layout = null;
+}
 @model SV22T1020761.Models.Partner.Supplier
+
+<div class="modal-header">
+    <h5 class="modal-title">@(Model?.SupplierID > 0 ? "Chỉnh sửa nhà cung cấp" : "Thêm mới nhà cung cấp")</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
 <form id="formSupplier" method="post" action="~/Supplier/Create">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="SupplierID" />
-    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
-    <div class="mb-3">
-        <label class="form-label">T�n nh� cung c?p</label>
-        <input asp-for="SupplierName" class="form-control" />
-        <span asp-validation-for="SupplierName" class="text-danger"></span>
+    
+    <div class="modal-body">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+        
+        <div class="mb-3">
+            <label class="form-label">Tên nhà cung cấp <span class="text-danger">*</span></label>
+            <input asp-for="SupplierName" class="form-control" required />
+            <span asp-validation-for="SupplierName" class="text-danger small"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Liên hệ <span class="text-danger">*</span></label>
+            <input asp-for="ContactName" class="form-control" required />
+            <span asp-validation-for="ContactName" class="text-danger small"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Địa chỉ</label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger small"></span>
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label">Li�n h?</label>
-        <input asp-for="ContactName" class="form-control" />
-        <span asp-validation-for="ContactName" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">�?a ch?</label>
-        <input asp-for="Address" class="form-control" />
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-    <div class="text-end">
-        <button type="submit" class="btn btn-primary">L�u</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">H?y</button>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="submit" class="btn btn-primary">Lưu</button>
     </div>
 </form>
 <script>
@@ -48,7 +64,7 @@
                     document.querySelector('#dialogModal .modal-content').innerHTML = html;
                 }
             } catch (err) {
-                showToast('L?i khi l�u: ' + err.message, 'error');
+                showToast('L?i khi l�u: ' + err.message, 'error');
             }
         });
     });

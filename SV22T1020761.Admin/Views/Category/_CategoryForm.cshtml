@@ -1,21 +1,36 @@
+@{
+    Layout = null;
+}
 @model SV22T1020761.Models.Catalog.Category
+
+<div class="modal-header">
+    <h5 class="modal-title" id="dialogModalLabel">@(Model?.CategoryID > 0 ? "Chỉnh sửa danh mục" : "Thêm mới danh mục")</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
 <form id="formCategory" method="post" action="~/Category/Create">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="CategoryID" />
-    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
-    <div class="mb-3">
-        <label class="form-label">T�n danh m?c</label>
-        <input asp-for="CategoryName" class="form-control" />
-        <span asp-validation-for="CategoryName" class="text-danger"></span>
+    
+    <div class="modal-body">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+        
+        <div class="mb-3">
+            <label class="form-label">Tên danh mục</label>
+            <input asp-for="CategoryName" class="form-control" />
+            <span asp-validation-for="CategoryName" class="text-danger small"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Mô tả</label>
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Description" class="text-danger small"></span>
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label">M� t?</label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-    <div class="text-end">
-        <button type="submit" class="btn btn-primary">L�u</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">H?y</button>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="submit" class="btn btn-primary">Lưu</button>
     </div>
 </form>
 <script>
@@ -43,7 +58,7 @@
                     document.querySelector('#dialogModal .modal-content').innerHTML = html;
                 }
             } catch (err) {
-                showToast('L?i khi l�u: ' + err.message, 'error');
+                showToast('L?i khi l�u: ' + err.message, 'error');
             }
         });
     });

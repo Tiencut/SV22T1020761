@@ -1,27 +1,80 @@
 @model PagedResult<SV22T1020761.Models.Partner.Customer>
 
-<table class="table">
-    <thead>
+<table class="table table-bordered table-hover">
+    <thead class="table-secondary">
         <tr>
-            <th>ID</th>
-            <th>Customer Name</th>
-            <th>Contact Name</th>
-            <th>Address</th>
+            <th>Tên khách hàng</th>
+            <th>Tên giao dịch</th>
+            <th>Điện thoại</th>
+            <th>Email</th>
+            <th>Địa chỉ</th>
+            <th>Tỉnh / Thành</th>
+            <th class="text-center" style="width:120px;">Trạng thái</th>
+            <th class="text-center" style="width:100px;">Thao tác</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var customer in Model.DataItems)
+        @if (Model?.DataItems != null && Model.DataItems.Count > 0)
+        {
+            foreach (var item in Model.DataItems)
+            {
+                <tr>
+                    <td>@item.CustomerName</td>
+                    <td>@item.ContactName</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <td>@item.Address</td>
+                    <td>@item.Province</td>
+                    <td class="text-center">
+                        @if (item.IsLocked ?? false)
+                        {
+                            <span class="badge bg-danger">Khóa</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Hoạt động</span>
+                        }
+                    </td>
+                    <td class="text-center text-nowrap">
+                        <a href="#" class="btn btn-sm btn-primary open-modal" data-url="@Url.Action("Form","Customer", new { id = item.CustomerID })">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="#" class="btn btn-sm btn-danger open-modal" data-url="@Url.Action("Form","Customer", new { id = item.CustomerID })?delete=true">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@customer.CustomerID</td>
-                <td>@customer.CustomerName</td>
-                <td>@customer.ContactName</td>
-                <td>@customer.Address</td>
+                <td colspan="8" class="text-center">Không có dữ liệu</td>
             </tr>
         }
     </tbody>
 </table>
 
-<div>
-    <span>Page @Model.Page of @Model.PageCount</span>
-</div>
+<ul class="pagination justify-content-center mt-3">
+    @if (Model != null && Model.PageCount > 1)
+    {
+        if (Model.Page > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="#" data-page="1">&laquo;</a>
+            </li>
+        }
+        for (int i = Math.Max(1, Model.Page - 2); i <= Math.Min(Model.PageCount, Model.Page + 2); i++)
+        {
+            <li class="page-item @(i == Model.Page ? "active" : "")">
+                <a class="page-link" href="#" data-page="@i">@i</a>
+            </li>
+        }
+        if (Model.Page < Model.PageCount)
+        {
+            <li class="page-item">
+                <a class="page-link" href="#" data-page="@Model.PageCount">&raquo;</a>
+            </li>
+        }
+    }
+</ul>

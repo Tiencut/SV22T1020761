@@ -173,7 +173,17 @@ namespace SV22T1020761.Admin.Controllers
         {
             try
             {
-                PartnerDataService.DeleteSupplier(id);
+                bool deleted = PartnerDataService.DeleteSupplier(id);
+                if (!deleted)
+                {
+                    if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                    {
+                        return BadRequest("Không thể xóa nhà cung cấp này.");
+                    }
+                    TempData["Error"] = "Không thể xóa nhà cung cấp này.";
+                    return RedirectToAction("Index");
+                }
+
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
                     var input = new PaginationSearchInput { Page = 1, PageSize = 10, SearchValue = "" };
@@ -194,6 +204,10 @@ namespace SV22T1020761.Admin.Controllers
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error deleting supplier (Id={SupplierId})", id);
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return BadRequest("Lỗi khi xóa: " + ex.Message);
+                }
                 var supplier = PartnerDataService.GetSupplier(id);
                 ModelState.AddModelError(string.Empty, "Không thể xóa nhà cung cấp. Vui lòng thử lại sau.");
                 return View("Delete", supplier);

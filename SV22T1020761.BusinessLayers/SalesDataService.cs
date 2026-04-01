@@ -81,5 +81,20 @@ namespace SV22T1020761.BusinessLayers
             var repo = new OrderRepository(Configuration.ConnectionString);
             return await repo.ListDetailsAsync(orderId);
         }
+
+        public static Order GetLatestOrder()
+        {
+            var repo = new OrderRepository(Configuration.ConnectionString);
+            var task = repo.GetLatestAsync();
+            task.Wait();
+            return task.Result ?? new Order();
+        }
+
+        public static void AddOrderDetail(OrderDetail detail)
+        {
+            var repo = new OrderRepository(Configuration.ConnectionString);
+            var task = repo.AddDetailAsync(detail);
+            task.Wait();
+        }
     }
 }

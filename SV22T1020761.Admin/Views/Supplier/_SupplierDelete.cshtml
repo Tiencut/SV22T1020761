@@ -1,12 +1,15 @@
+@{
+    Layout = null;
+}
 @model SV22T1020761.Models.Partner.Supplier
 <div class="p-3">
-    <h5>B?n c� ch?c ch?n mu?n x�a nh� cung c?p <strong>@Model.SupplierName</strong>?</h5>
+    <h5>Bạn có chắc chắn muốn xóa nhà cung cấp <strong>@Model.SupplierName</strong>?</h5>
     <form id="formSupplierDelete" method="post" action="~/Supplier/DeleteConfirmed">
         @Html.AntiForgeryToken()
-        <input type="hidden" name="SupplierID" value="@Model.SupplierID" />
+        <input type="hidden" name="id" value="@Model.SupplierID" />
         <div class="text-end mt-3">
-            <button type="submit" class="btn btn-danger">X�a</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">H?y</button>
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
         </div>
     </form>
 </div>
@@ -16,24 +19,40 @@
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
             var url = form.action;
-            var formData = new FormData(form);
+            
+            // Lấy CSRF token từ form
+            var token = form.querySelector('input[name="__RequestVerificationToken"]').value;
+            var id = form.querySelector('input[name="id"]').value;
+            
+            console.log('DELETE URL:', url);
+            console.log('CSRF Token:', token);
+            console.log('ID:', id);
+            
             try {
                 var res = await fetch(url, {
                     method: 'POST',
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
-                    body: formData
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: '__RequestVerificationToken=' + encodeURIComponent(token) + '&id=' + encodeURIComponent(id)
                 });
+                
+                console.log('RESPONSE STATUS:', res.status);
+                var responseText = await res.text();
+                console.log('RESPONSE:', responseText.substring(0, 200));
+                
                 if (res.ok) {
-                    var html = await res.text();
-                    document.getElementById('supplierTableContainer').innerHTML = html;
+                    document.getElementById('supplierTableContainer').innerHTML = responseText;
                     var modalEl = document.getElementById('dialogModal');
                     var modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
                     modal.hide();
                 } else {
-                    showToast('L?i khi x�a', 'error');
+                    showToast('Lỗi ' + res.status + ': ' + responseText.substring(0, 100), 'error');
                 }
             } catch (err) {
-                showToast('L?i khi x�a: ' + err.message, 'error');
+                console.error('DELETE ERROR:', err);
+                showToast('Lỗi khi xóa: ' + err.message, 'error');
             }
         });
     });

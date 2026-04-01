@@ -85,6 +85,14 @@ WHERE o.OrderID = @orderID";
             return await conn.QuerySingleOrDefaultAsync<OrderViewInfo>(sql, new { orderID });
         }
 
+        public async Task<Order?> GetLatestAsync()
+        {
+            using var conn = new SqlConnection(_connectionString);
+            await conn.OpenAsync();
+            var sql = @"SELECT TOP 1 * FROM Orders ORDER BY OrderID DESC";
+            return await conn.QuerySingleOrDefaultAsync<Order>(sql);
+        }
+
         public async Task<int> AddAsync(Order data)
         {
             using var conn = new SqlConnection(_connectionString);

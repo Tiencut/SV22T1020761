@@ -1,11 +1,14 @@
+@{
+    Layout = null;
+}
 @model SV22T1020761.Models.HR.Employee
 <form id="formEmployee" method="post" enctype="multipart/form-data" action="~/Employee/SaveData">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="EmployeeID" />
     <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
     <div class="mb-3">
-        <label class="form-label">H? v‡ tÍn</label>
-        <input asp-for="FullName" class="form-control" />
+        <label class="form-label">H·ªç v√† t√™n <span class="text-danger">*</span></label>
+        <input asp-for="FullName" class="form-control" required />
         <span asp-validation-for="FullName" class="text-danger"></span>
     </div>
     <div class="mb-3">
@@ -14,12 +17,12 @@
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">–i?n tho?i</label>
+        <label class="form-label">ÔøΩi?n tho?i</label>
         <input asp-for="Phone" class="form-control" />
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">–?a ch?</label>
+        <label class="form-label">ÔøΩ?a ch?</label>
         <textarea asp-for="Address" class="form-control"></textarea>
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
@@ -33,10 +36,10 @@
     </div>
     <div class="form-check form-switch mb-3">
         <input class="form-check-input" asp-for="IsWorking" type="checkbox" id="IsWorking" />
-        <label class="form-check-label" for="IsWorking">–ang l‡m vi?c</label>
+        <label class="form-check-label" for="IsWorking">ÔøΩang lÔøΩm vi?c</label>
     </div>
     <div class="text-end">
-        <button type="submit" class="btn btn-primary">L˝u</button>
+        <button type="submit" class="btn btn-primary">LÔøΩu</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">H?y</button>
     </div>
 </form>
@@ -67,7 +70,7 @@
                     document.querySelector('#dialogModal .modal-content').innerHTML = html;
                 }
             } catch (err) {
-                showToast('L?i khi l˝u: ' + err.message, 'error');
+                showToast('L?i khi lÔøΩu: ' + err.message, 'error');
             }
         });
     });

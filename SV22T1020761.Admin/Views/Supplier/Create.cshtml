@@ -2,23 +2,81 @@
 @{
     ViewBag.Title = "Thêm Nhà cung cấp";
 }
-<h2>Thêm Nhà cung cấp</h2>
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label for="SupplierName">Tên Nhà cung cấp</label>
-        <input asp-for="SupplierName" class="form-control" />
-        <span asp-validation-for="SupplierName" class="text-danger"></span>
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Thêm Nhà cung cấp</h5>
     </div>
-    <div class="form-group">
-        <label for="ContactName">Liên hệ</label>
-        <input asp-for="ContactName" class="form-control" />
-        <span asp-validation-for="ContactName" class="text-danger"></span>
+    <div class="card-body">
+        <form asp-action="Create" method="post" id="formSupplierCreate">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+            <div class="mb-3">
+                <label asp-for="SupplierName" class="form-label">Tên Nhà cung cấp <span class="text-danger">*</span></label>
+                <input asp-for="SupplierName" class="form-control" required />
+                <span asp-validation-for="SupplierName" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ContactName" class="form-label">Liên hệ <span class="text-danger">*</span></label>
+                <input asp-for="ContactName" class="form-control" required />
+                <span asp-validation-for="ContactName" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Address" class="form-label">Địa chỉ</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Province" class="form-label">Tỉnh / Thành</label>
+                <input asp-for="Province" class="form-control" />
+                <span asp-validation-for="Province" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label">Điện thoại</label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" type="email" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Lưu</button>
+                <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="Address">Địa chỉ</label>
-        <input asp-for="Address" class="form-control" />
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
-</form>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#formSupplierCreate").validate({
+                rules: {
+                    SupplierName: { required: true, minlength: 2, maxlength: 255 },
+                    ContactName: { required: true, minlength: 2, maxlength: 255 },
+                    Email: { email: true, maxlength: 255 }
+                },
+                messages: {
+                    SupplierName: { required: "Vui lòng nhập tên nhà cung cấp" },
+                    ContactName: { required: "Vui lòng nhập tên liên hệ" },
+                    Email: { email: "Vui lòng nhập email hợp lệ" }
+                },
+                errorClass: "is-invalid",
+                errorPlacement: function (error, element) {
+                    error.addClass("text-danger small");
+                    error.insertAfter(element);
+                }
+            });
+        });
+    </script>
+}

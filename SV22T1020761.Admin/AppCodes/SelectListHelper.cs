@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-namespace SV22T1020761.Admin
+namespace SV22T1020761.Admin.AppCodes
 {
     /// <summary>
     /// Lớp cung cấp các hàm tiện ích dùng cho SelectList (DropDownList)

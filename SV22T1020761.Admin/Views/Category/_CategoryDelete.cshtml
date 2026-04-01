@@ -1,12 +1,15 @@
+@{
+    Layout = null;
+}
 @model SV22T1020761.Models.Catalog.Category
 <div class="p-3">
-    <h5>B?n c� ch?c ch?n mu?n x�a danh m?c <strong>@Model.CategoryName</strong>?</h5>
+    <h5>Bạn có chắc chắn muốn xóa danh mục <strong>@Model.CategoryName</strong>?</h5>
     <form id="formCategoryDelete" method="post" action="~/Category/DeleteConfirmed">
         @Html.AntiForgeryToken()
-        <input type="hidden" name="CategoryID" value="@Model.CategoryID" />
+        <input type="hidden" name="id" value="@Model.CategoryID" />
         <div class="text-end mt-3">
-            <button type="submit" class="btn btn-danger">X�a</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">H?y</button>
+            <button type="submit" class="btn btn-danger">Xóa</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
         </div>
     </form>
 </div>
@@ -16,12 +19,17 @@
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
             var url = form.action;
-            var formData = new FormData(form);
+            var token = form.querySelector('input[name="__RequestVerificationToken"]').value;
+            var id = form.querySelector('input[name="id"]').value;
+            
             try {
                 var res = await fetch(url, {
                     method: 'POST',
-                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
-                    body: formData
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: '__RequestVerificationToken=' + encodeURIComponent(token) + '&id=' + encodeURIComponent(id)
                 });
                 if (res.ok) {
                     var html = await res.text();
@@ -30,10 +38,10 @@
                     var modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
                     modal.hide();
                 } else {
-                    showToast('L?i khi x�a', 'error');
+                    showToast('Lỗi khi xóa', 'error');
                 }
             } catch (err) {
-                showToast('L?i khi x�a: ' + err.message, 'error');
+                showToast('Lỗi khi xóa: ' + err.message, 'error');
             }
         });
     });

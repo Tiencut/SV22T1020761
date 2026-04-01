@@ -74,7 +74,9 @@
             btnCreate?.addEventListener('click', function () { openModal('@Url.Action("Form","Supplier")'); });
             async function openModal(url) {
                 try {
-                    var res = await fetch(url);
+                    var res = await fetch(url, {
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                    });
                     if (res.ok) {
                         var html = await res.text();
                         document.querySelector('#dialogModal .modal-content').innerHTML = html;

@@ -10,7 +10,7 @@ function previewImage(input) {
     if (!img) return;
 
     const reader = new FileReader();
-    reader.onload = function (e) {
+    reader.onload = function(e) {
         img.src = e.target.result;
     };
     reader.readAsDataURL(input.files[0]);
@@ -46,27 +46,27 @@ function paginationSearch(event, form, page) {
     }
 
     fetch(fetchUrl, {
-        method: method,
-        body: method === "GET" ? null : formData
-    })
-    .then(res => res.text())
-    .then(html => {
-        if (targetEl) {
-            targetEl.innerHTML = html;
-        }
-    })
-    .catch(() => {
-        if (targetEl) {
-            targetEl.innerHTML = `
+            method: method,
+            body: method === "GET" ? null : formData
+        })
+        .then(res => res.text())
+        .then(html => {
+            if (targetEl) {
+                targetEl.innerHTML = html;
+            }
+        })
+        .catch(() => {
+            if (targetEl) {
+                targetEl.innerHTML = `
                 <div class="text-danger">
                     Không tải được dữ liệu
                 </div>`;
-        }
-    });
+            }
+        });
 }
 
 // Mở modal và load nội dung từ link vào modal
-(function () {
+(function() {
     //dialogModal là id của modal dùng chung đuơc định nghĩa trong _Layout.cshtml
     const modalEl = document.getElementById("dialogModal");
     if (!modalEl) return;
@@ -74,15 +74,15 @@ function paginationSearch(event, form, page) {
     const modalContent = modalEl.querySelector(".modal-content");
 
     // Clear nội dung khi modal đóng
-    modalEl.addEventListener('hidden.bs.modal', function () {
+    modalEl.addEventListener('hidden.bs.modal', function() {
         modalContent.innerHTML = '';
     });
 
-    window.openModal = function (event, link) {
+    window.openModal = function(event, link) {
         if (!link) return;
         if (event) event.preventDefault();
 
-        const url = link.getAttribute("href");
+        const url = link.getAttribute("data-url") || link.getAttribute("href");
 
         // Hiển thị loading
         modalContent.innerHTML = `
@@ -115,5 +115,3 @@ function paginationSearch(event, form, page) {
             });
     };
 })();
-
-

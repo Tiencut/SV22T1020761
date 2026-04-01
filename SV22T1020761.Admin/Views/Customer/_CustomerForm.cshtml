@@ -1,20 +1,23 @@
+@{
+    Layout = null;
+}
 @model SV22T1020761.Models.Partner.Customer
 <form id="formCustomer" method="post" action="~/Customer/Create">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="CustomerID" />
     <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
     <div class="mb-3">
-        <label class="form-label">Tên khách hàng</label>
-        <input asp-for="CustomerName" class="form-control" />
+        <label class="form-label">TÃªn khÃ¡ch hÃ ng <span class="text-danger">*</span></label>
+        <input asp-for="CustomerName" class="form-control" required />
         <span asp-validation-for="CustomerName" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Tên giao d?ch</label>
-        <input asp-for="ContactName" class="form-control" />
+        <label class="form-label">TÃªn giao dá»‹ch <span class="text-danger">*</span></label>
+        <input asp-for="ContactName" class="form-control" required />
         <span asp-validation-for="ContactName" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Ði?n tho?i</label>
+        <label class="form-label">ï¿½i?n tho?i</label>
         <input asp-for="Phone" class="form-control" />
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
@@ -24,12 +27,12 @@
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">Ð?a ch?</label>
+        <label class="form-label">ï¿½?a ch?</label>
         <input asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
     <div class="text-end">
-        <button type="submit" class="btn btn-primary">Lýu</button>
+        <button type="submit" class="btn btn-primary">Lï¿½u</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">H?y</button>
     </div>
 </form>
@@ -58,7 +61,7 @@
                     document.querySelector('#dialogModal .modal-content').innerHTML = html;
                 }
             } catch (err) {
-                showToast('L?i khi lýu: ' + err.message, 'error');
+                showToast('L?i khi lï¿½u: ' + err.message, 'error');
             }
         });
     });

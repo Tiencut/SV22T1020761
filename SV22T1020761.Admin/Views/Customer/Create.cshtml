@@ -2,38 +2,103 @@
 @{
     ViewBag.Title = "Thêm mới Khách hàng";
 }
-<h2>Thêm mới Khách hàng</h2>
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label for="CustomerName">Tên khách hàng</label>
-        <input asp-for="CustomerName" class="form-control" />
-        <span asp-validation-for="CustomerName" class="text-danger"></span>
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Thêm mới Khách hàng</h5>
     </div>
-    <div class="form-group">
-        <label for="ContactName">Tên giao dịch</label>
-        <input asp-for="ContactName" class="form-control" />
-        <span asp-validation-for="ContactName" class="text-danger"></span>
+    <div class="card-body">
+        <form asp-action="Create" method="post" id="formCustomerCreate">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+            <div class="mb-3">
+                <label asp-for="CustomerName" class="form-label">Tên khách hàng <span class="text-danger">*</span></label>
+                <input asp-for="CustomerName" class="form-control" required />
+                <span asp-validation-for="CustomerName" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ContactName" class="form-label">Tên giao dịch <span class="text-danger">*</span></label>
+                <input asp-for="ContactName" class="form-control" required />
+                <span asp-validation-for="ContactName" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label">Điện thoại</label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" type="email" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Address" class="form-label">Địa chỉ</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger small"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Province" class="form-label">Tỉnh / Thành</label>
+                <input asp-for="Province" class="form-control" />
+                <span asp-validation-for="Province" class="text-danger small"></span>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary">Lưu</button>
+                <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="Phone">Điện thoại</label>
-        <input asp-for="Phone" class="form-control" />
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="Email">Email</label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="Address">Địa chỉ</label>
-        <input asp-for="Address" class="form-control" />
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label for="Province">Tỉnh / Thành</label>
-        <input asp-for="Province" class="form-control" />
-        <span asp-validation-for="Province" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Lưu</button>
-    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
-</form>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#formCustomerCreate").validate({
+                rules: {
+                    CustomerName: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 255
+                    },
+                    ContactName: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 255
+                    },
+                    Email: {
+                        email: true,
+                        maxlength: 50
+                    },
+                    Phone: {
+                        maxlength: 255
+                    }
+                },
+                messages: {
+                    CustomerName: {
+                        required: "Vui lòng nhập tên khách hàng",
+                        minlength: "Tên khách hàng phải ít nhất 2 ký tự"
+                    },
+                    ContactName: {
+                        required: "Vui lòng nhập tên giao dịch",
+                        minlength: "Tên giao dịch phải ít nhất 2 ký tự"
+                    },
+                    Email: {
+                        email: "Vui lòng nhập email hợp lệ"
+                    }
+                },
+                errorClass: "is-invalid",
+                errorPlacement: function (error, element) {
+                    error.addClass("text-danger small");
+                    error.insertAfter(element);
+                }
+            });
+        });
+    </script>
+}

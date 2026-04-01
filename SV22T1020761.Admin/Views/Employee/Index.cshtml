@@ -90,21 +90,29 @@
                 }
             });
 
-            btnCreate.addEventListener('click', function () {
+            btnCreate?.addEventListener('click', function () {
                 openModal('@Url.Action("Form","Employee")');
             });
 
             async function openModal(url) {
                 try {
-                    var res = await fetch(url);
+                    var res = await fetch(url, {
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                    });
                     if (res.ok) {
                         var html = await res.text();
                         document.querySelector('#dialogModal .modal-content').innerHTML = html;
                         var modalEl = document.getElementById('dialogModal');
                         var modal = new bootstrap.Modal(modalEl);
                         modal.show();
+                    } else {
+                        showToast('Lỗi khi tải form (HTTP ' + res.status + ')', 'error');
+                        console.error('Error response:', res.status, res.statusText);
                     }
-                } catch (err) { console.error(err); }
+                } catch (err) { 
+                    console.error('Error:', err); 
+                    showToast('Lỗi: ' + err.message, 'error'); 
+                }
             }
         });
     </script>

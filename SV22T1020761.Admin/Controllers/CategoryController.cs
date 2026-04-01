@@ -3,6 +3,7 @@ using SV22T1020761.BusinessLayers;
 using SV22T1020761.Models.Common;
 using SV22T1020761.Models.Catalog;
 using Microsoft.Extensions.Logging;
+using SV22T1020761.Admin.AppCodes;
 
 namespace SV22T1020761.Admin.Controllers
 {
@@ -151,6 +152,10 @@ namespace SV22T1020761.Admin.Controllers
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error deleting category (Id={CategoryId})", id);
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return BadRequest("Lỗi khi xóa: " + ex.Message);
+                }
                 var category = CatalogDataService.GetCategory(id);
                 ModelState.AddModelError(string.Empty, "Không thể xóa danh mục. Vui lòng thử lại sau.");
                 return View("Delete", category);

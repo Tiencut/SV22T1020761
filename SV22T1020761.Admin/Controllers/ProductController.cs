@@ -192,6 +192,10 @@ namespace SV22T1020761.Admin.Controllers
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error deleting product (Id={ProductId})", id);
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return BadRequest("Lỗi khi xóa: " + ex.Message);
+                }
                 var product = CatalogDataService.GetProduct(id);
                 ModelState.AddModelError(string.Empty, "Không thể xóa sản phẩm. Vui lòng thử lại sau.");
                 return View("Delete", product);

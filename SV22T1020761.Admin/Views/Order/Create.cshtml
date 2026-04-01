@@ -36,67 +36,25 @@
 
             <div class="card-body">
                 <!-- Search -->
-                <form method="get" class="mb-3">
+                <form id="searchForm" class="mb-3">
                     <div class="input-group">
                         <input class="form-control"
+                               id="searchValue"
                                name="searchValue"
                                placeholder="Nhập tên mặt hàng cần tìm" autofocus />
-                        <button class="btn btn-primary">
+                        <button type="button" class="btn btn-primary" id="searchBtn">
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
                 </form>
 
                 <!-- Danh sách mặt hàng -->
-                @for (int i = 1; i <= 3; i++)
-                {
-                    <form method="post" class="border rounded p-2 mb-2">
-                        <strong>Macbook Pro 15" M2 2023</strong>
-
-                        <div class="row mt-2">
-                            <div class="col-4">
-                                <img src="~/images/products/demo.png"
-                                     class="img-fluid border" style="max-height:100px" />
-                            </div>
-                            <div class="col-8">
-                                <div class="row g-2">
-                                    <div class="col-7">
-                                        <label class="form-label mb-0">Giá</label>
-                                        <input class="form-control form-control-sm money-input"
-                                               value="45000000" />
-                                    </div>
-                                    <div class="col-5">
-                                        <label class="form-label mb-0">SL</label>
-                                        <input type="number"
-                                               min="1"
-                                               value="1"
-                                               class="form-control form-control-sm" />
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-sm btn-primary mt-2 w-100">
-                                    <i class="bi bi-cart-plus"></i>
-                                    Thêm vào giỏ
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                }
-            </div>
-
-            <div class="card-footer">
-                <ul class="pagination justify-content-between mb-0">
-                    <li class="page-item">
-                        <a class="page-link">
-                            <i class="bi bi-chevron-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link">
-                            <i class="bi bi-chevron-right"></i>
-                        </a>
-                    </li>
-                </ul>
+                <div id="productListContainer">
+                    <div class="text-center text-muted py-5">
+                        <i class="bi bi-inbox"></i>
+                        <p>Nhập tên sản phẩm và bấm tìm kiếm</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -128,22 +86,46 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for (int i = 1; i <= 3; i++)
+                                @{
+                                    int itemIndex = 1;
+                                    decimal totalAmount = 0;
+                                    if (ViewBag.Cart != null && ViewBag.Cart.Count > 0)
+                                    {
+                                        foreach (var item in ViewBag.Cart)
+                                        {
+                                            decimal itemTotal = item.Quantity * item.SalePrice;
+                                            totalAmount += itemTotal;
+                                        }
+                                    }
+                                }
+                                @if (ViewBag.Cart != null && ViewBag.Cart.Count > 0)
+                                {
+                                    foreach (var item in ViewBag.Cart)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@itemIndex</td>
+                                            <td>@item.ProductName</td>
+                                            <td class="text-center">@item.Unit</td>
+                                            <td class="text-center">@item.Quantity</td>
+                                            <td class="text-end">@item.SalePrice.ToString("N0")</td>
+                                            <td class="text-end">@(item.Quantity * item.SalePrice).ToString("N0")</td>
+                                            <td class="text-end text-nowrap">
+                                                <a class="btn btn-sm btn-primary open-modal" href="~/Order/EditCartItem?productId=@item.ProductID" title="Sửa">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <a class="btn btn-sm btn-danger open-modal" href="~/Order/DeleteCartItem?productId=@item.ProductID" title="Xóa">
+                                                    <i class="bi bi-dash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        itemIndex++;
+                                    }
+                                }
+                                else
                                 {
                                     <tr>
-                                        <td class="text-center">@i</td>
-                                        <td>Laptop HP Gaming VICTUS</td>
-                                        <td class="text-center">Bộ</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-end">23.990.000</td>
-                                        <td class="text-end">23.990.000</td>
-                                        <td class="text-end text-nowrap">
-                                            <a class="btn btn-sm btn-primary open-modal" href="~/Order/EditCartItem?productId=456">
-                                                <i class="bi bi-pencil"></i>
-                                            </a>
-                                            <a class="btn btn-sm btn-danger open-modal" href="~/Order/DeleteCartItem?productId=456">
-                                                <i class="bi bi-dash"></i>
-                                            </a>
+                                        <td colspan="7" class="text-center text-muted py-3">
+                                            Chưa có mặt hàng nào được chọn
                                         </td>
                                     </tr>
                                 }
@@ -151,7 +133,7 @@
                             <tfoot>
                                 <tr>
                                     <th colspan="5" class="text-end">Tổng cộng:</th>
-                                    <th class="text-end">71,970,000</th>
+                                    <th class="text-end">@totalAmount.ToString("N0")</th>
                                     <th></th>
                                 </tr>
                             </tfoot>
@@ -180,12 +162,18 @@
                     </div>
 
                     <div class="card-body">
+                        @if (TempData["Error"] != null)
+                        {
+                            <div class="alert alert-danger">
+                                @TempData["Error"]
+                            </div>
+                        }
                         <form method="post">
                             <div class="row mb-3">
                                 <label class="col-md-2 col-form-label">Khách hàng</label>
                                 <div class="col-md-10">
-                                    <select class="form-select">
-                                        <option>-- Chọn khách hàng --</option>
+                                    <select class="form-select" name="CustomerID" asp-items="@(ViewBag.Customers as SelectList)">
+                                        <option value="">-- Chọn khách hàng --</option>
                                     </select>
                                 </div>
                             </div>
@@ -193,8 +181,8 @@
                             <div class="row mb-3">
                                 <label class="col-md-2 col-form-label">Tỉnh/thành</label>
                                 <div class="col-md-10">
-                                    <select class="form-select">
-                                        <option>-- Chọn Tỉnh/thành giao hàng --</option>
+                                    <select class="form-select" name="DeliveryProvince" asp-items="@(ViewBag.Provinces as SelectList)">
+                                        <option value="">-- Chọn Tỉnh/thành giao hàng --</option>
                                     </select>
                                 </div>
                             </div>
@@ -219,3 +207,82 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Search products via AJAX
+    function searchProducts(page = 1) {
+        const searchValue = document.getElementById('searchValue').value;
+        
+        fetch(`@Url.Action("SearchProducts", "Order")?searchValue=${encodeURIComponent(searchValue)}&page=${page}&pageSize=10`)
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('productListContainer').innerHTML = html;
+                // Re-attach event listeners to new buttons
+                attachAddToCartListeners();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('productListContainer').innerHTML = `<div class="alert alert-danger">Lỗi tải dữ liệu: ${error.message}</div>`;
+            });
+    }
+
+    function attachAddToCartListeners() {
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.removeEventListener('click', handleAddToCart);
+            btn.addEventListener('click', handleAddToCart);
+        });
+    }
+
+    function handleAddToCart(e) {
+        e.preventDefault();
+        
+        const productID = this.dataset.productId;
+        const quantity = parseInt(this.parentElement.querySelector('input[name="quantity"]').value);
+        
+        // Call AJAX to add to cart
+        fetch('@Url.Action("AddToCart", "Order")', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                productID: productID,
+                quantity: quantity
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                // Reload cart and refresh page
+                location.reload();
+            } else {
+                alert('Lỗi: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // Load products on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle search button click
+        const searchBtn = document.getElementById('searchBtn');
+        if (searchBtn) {
+            searchBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                searchProducts(1);
+            });
+        }
+
+        // Handle Enter key in search input
+        const searchValue = document.getElementById('searchValue');
+        if (searchValue) {
+            searchValue.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    searchProducts(1);
+                }
+            });
+        }
+    });
+</script>

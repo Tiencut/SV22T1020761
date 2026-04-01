@@ -45,7 +45,7 @@ namespace SV22T1020761.Admin.Controllers
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error loading shippers");
-                TempData["Error"] = "Không th? k?t n?i t?i cõ s? d? li?u. Vui l?ng ki?m tra c?u h?nh và th? l?i.";
+                TempData["Error"] = "Khï¿½ng th? k?t n?i t?i cï¿½ s? d? li?u. Vui l?ng ki?m tra c?u h?nh vï¿½ th? l?i.";
                 var empty = new PagedResult<SV22T1020761.Models.Shipper> { Page = page, PageSize = pageSize, RowCount = 0, DataItems = new System.Collections.Generic.List<SV22T1020761.Models.Shipper>() };
                 return View(empty);
             }
@@ -112,13 +112,13 @@ namespace SV22T1020761.Admin.Controllers
                     };
                     return PartialView("_ShipperTable", model);
                 }
-                TempData["Success"] = "Thêm ð?i tác giao hàng thành công.";
+                TempData["Success"] = "Thï¿½m ï¿½?i tï¿½c giao hï¿½ng thï¿½nh cï¿½ng.";
                 return RedirectToAction("Index");
             }
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error creating shipper");
-                ModelState.AddModelError(string.Empty, "H? th?ng ðang b?n. Vui l?ng th? l?i sau.");
+                ModelState.AddModelError(string.Empty, "H? th?ng ï¿½ang b?n. Vui l?ng th? l?i sau.");
                 return View(shipper);
             }
         }
@@ -154,13 +154,13 @@ namespace SV22T1020761.Admin.Controllers
                     };
                     return PartialView("_ShipperTable", model);
                 }
-                TempData["Success"] = "C?p nh?t ð?i tác giao hàng thành công.";
+                TempData["Success"] = "C?p nh?t ï¿½?i tï¿½c giao hï¿½ng thï¿½nh cï¿½ng.";
                 return RedirectToAction("Index");
             }
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error updating shipper (Id={ShipperId})", shipper?.ShipperID);
-                ModelState.AddModelError(string.Empty, "H? th?ng ðang b?n. Vui l?ng th? l?i sau.");
+                ModelState.AddModelError(string.Empty, "H? th?ng ï¿½ang b?n. Vui l?ng th? l?i sau.");
                 return View(shipper);
             }
         }
@@ -181,7 +181,17 @@ namespace SV22T1020761.Admin.Controllers
         {
             try
             {
-                PartnerDataService.DeleteShipper(id);
+                bool deleted = PartnerDataService.DeleteShipper(id);
+                if (!deleted)
+                {
+                    if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                    {
+                        return BadRequest("KhÃ´ng thá»ƒ xÃ³a Ä‘á»‘i tÃ¡c giao hÃ ng nÃ y.");
+                    }
+                    TempData["Error"] = "KhÃ´ng thá»ƒ xÃ³a Ä‘á»‘i tÃ¡c giao hÃ ng nÃ y.";
+                    return RedirectToAction("Index");
+                }
+
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
                     var input = new PaginationSearchInput { Page = 1, PageSize = 10, SearchValue = "" };
@@ -195,14 +205,18 @@ namespace SV22T1020761.Admin.Controllers
                     };
                     return PartialView("_ShipperTable", model);
                 }
-                TempData["Success"] = "Xóa ð?i tác giao hàng thành công.";
+                TempData["Success"] = "XÃ³a Ä‘á»‘i tÃ¡c giao hÃ ng thÃ nh cÃ´ng.";
                 return RedirectToAction("Index");
             }
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error deleting shipper (Id={ShipperId})", id);
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return BadRequest("Lá»—i khi xÃ³a: " + ex.Message);
+                }
                 var shipper = PartnerDataService.GetShipper(id);
-                ModelState.AddModelError(string.Empty, "Không th? xóa ð?i tác giao hàng. Vui l?ng th? l?i sau.");
+                ModelState.AddModelError(string.Empty, "KhÃ´ng thá»ƒ xÃ³a Ä‘á»‘i tÃ¡c giao hÃ ng. Vui lÃ²ng thá»­ láº¡i sau.");
                 return View("Delete", shipper);
             }
         }

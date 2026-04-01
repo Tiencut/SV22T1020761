@@ -73,71 +73,9 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table table-bordered table-hover align-middle">
-                            <thead class="table-success">
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th style="width:auto">Tên hàng</th>
-                                    <th class="text-center" style="width:100px">ĐVT</th>
-                                    <th class="text-center" style="width:100px">SL</th>
-                                    <th class="text-end" style="width:150px">Giá</th>
-                                    <th class="text-end" style="width:150px">Thành tiền</th>
-                                    <th style="width:80px"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    int itemIndex = 1;
-                                    decimal totalAmount = 0;
-                                    if (ViewBag.Cart != null && ViewBag.Cart.Count > 0)
-                                    {
-                                        foreach (var item in ViewBag.Cart)
-                                        {
-                                            decimal itemTotal = item.Quantity * item.SalePrice;
-                                            totalAmount += itemTotal;
-                                        }
-                                    }
-                                }
-                                @if (ViewBag.Cart != null && ViewBag.Cart.Count > 0)
-                                {
-                                    foreach (var item in ViewBag.Cart)
-                                    {
-                                        <tr>
-                                            <td class="text-center">@itemIndex</td>
-                                            <td>@item.ProductName</td>
-                                            <td class="text-center">@item.Unit</td>
-                                            <td class="text-center">@item.Quantity</td>
-                                            <td class="text-end">@item.SalePrice.ToString("N0")</td>
-                                            <td class="text-end">@(item.Quantity * item.SalePrice).ToString("N0")</td>
-                                            <td class="text-end text-nowrap">
-                                                <a class="btn btn-sm btn-primary open-modal" href="~/Order/EditCartItem?productId=@item.ProductID" title="Sửa">
-                                                    <i class="bi bi-pencil"></i>
-                                                </a>
-                                                <a class="btn btn-sm btn-danger open-modal" href="~/Order/DeleteCartItem?productId=@item.ProductID" title="Xóa">
-                                                    <i class="bi bi-dash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        itemIndex++;
-                                    }
-                                }
-                                else
-                                {
-                                    <tr>
-                                        <td colspan="7" class="text-center text-muted py-3">
-                                            Chưa có mặt hàng nào được chọn
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="5" class="text-end">Tổng cộng:</th>
-                                    <th class="text-end">@totalAmount.ToString("N0")</th>
-                                    <th></th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                        <div id="cartTableContainer">
+                            <partial name="_CartTable" model="@(ViewBag.Cart as List<SV22T1020761.Models.Sales.OrderDetailViewInfo>)" />
+                        </div>
 
                         <div class="text-end">
                             <a class="btn btn-sm btn-danger mt-2 open-modal"                               
@@ -226,43 +164,6 @@
             });
     }
 
-    function attachAddToCartListeners() {
-        document.querySelectorAll('.add-to-cart').forEach(btn => {
-            btn.removeEventListener('click', handleAddToCart);
-            btn.addEventListener('click', handleAddToCart);
-        });
-    }
-
-    function handleAddToCart(e) {
-        e.preventDefault();
-        
-        const productID = this.dataset.productId;
-        const quantity = parseInt(this.parentElement.querySelector('input[name="quantity"]').value);
-        
-        // Call AJAX to add to cart
-        fetch('@Url.Action("AddToCart", "Order")', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                productID: productID,
-                quantity: quantity
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
-                // Reload cart and refresh page
-                location.reload();
-            } else {
-                alert('Lỗi: ' + data.message);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    }
-
     // Load products on page load
     document.addEventListener('DOMContentLoaded', function() {
         // Handle search button click
@@ -284,5 +185,62 @@
                 }
             });
         }
+
+        // Re-attach "Add to Cart" listeners after products loaded
+        attachAddToCartListeners();
     });
+
+    // Function to refresh cart display
+    function refreshCartTable() {
+        fetch('@Url.Action("GetCartTable", "Order")')
+            .then(response => response.text())
+            .then(html => {
+                const cartContainer = document.getElementById('cartTableContainer');
+                if (cartContainer) {
+                    cartContainer.innerHTML = html;
+                }
+            })
+            .catch(error => console.error('Error refreshing cart:', error));
+    }
+
+    // Function to attach "Add to Cart" event listeners
+    function attachAddToCartListeners() {
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.removeEventListener('click', handleAddToCart);
+            btn.addEventListener('click', handleAddToCart);
+        });
+    }
+
+    // Handle "Add to Cart" click
+    function handleAddToCart(e) {
+        e.preventDefault();
+        
+        const productID = this.dataset.productId;
+        const quantity = parseInt(this.parentElement.querySelector('input[name="quantity"]').value);
+        
+        fetch('@Url.Action("AddToCart", "Order")', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                productID: productID,
+                quantity: quantity
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                // Refresh cart table WITHOUT reloading page
+                refreshCartTable();
+            } else {
+                alert('Lỗi: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Lỗi: ' + error.message);
+        });
+    }
 </script>

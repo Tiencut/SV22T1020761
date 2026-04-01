@@ -332,5 +332,15 @@ namespace SV22T1020761.Admin.Controllers
                 return Content($"<div class='alert alert-danger'>Lỗi: {ex.Message}</div>");
             }
         }
+
+        /// <summary>
+        /// Lấy HTML giỏ hàng cập nhật
+        /// </summary>
+        [HttpGet]
+        public IActionResult GetCartTable()
+        {
+            var cart = AppCodes.ShoppingCartService.GetShoppingCart();
+            return PartialView("_CartTable", cart);
+        }
     }
 }

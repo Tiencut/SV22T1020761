@@ -4,7 +4,7 @@ using SV22T1020761.Models.Common;
 namespace SV22T1020761.BusinessLayers
 {
     /// <summary>
-    /// Service cung c?p d? li?u cho c�c b?ng d? li?u chu?n (dictionary) nh� Provinces
+    /// Service cung c?p dữ liệu cho c�c b?ndữ liệu?u chu?n (dictionary) nh� Provinces
     /// </summary>
     public static class DictionaryDataService
     {

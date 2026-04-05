@@ -35,7 +35,7 @@ namespace SV22T1020761.Admin.Controllers
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error loading employees");
-                TempData["Error"] = "Kh�ng th? k?t n?i t?i c� s? d? li?u. Vui l?ng ki?m tra c?u h?nh v� th? l?i.";
+                TempData["Error"] = "Không thể kết nối tới CSDL. Vui lòng kiểm tra cấu hình và thử lại.";
                 var empty = new PagedResult<Employee> { Page = page, PageSize = pageSize, RowCount = 0, DataItems = new System.Collections.Generic.List<Employee>() };
                 return View(empty);
             }
@@ -47,14 +47,14 @@ namespace SV22T1020761.Admin.Controllers
         {
             if (id == null || id == 0)
             {
-                ViewBag.Title = "B? sung nh�n vi�n";
+                ViewBag.Title = "Bổ sung nhân viên";
                 var model = new Employee() { EmployeeID = 0, IsWorking = true };
                 if (delete) return BadRequest();
                 return PartialView("_EmployeeForm", model);
             }
             else
             {
-                ViewBag.Title = "C?p nh?t th�ng tin nh�n vi�n";
+                ViewBag.Title = "Cập nhật thông tin nhân viên";
                 var model = await HRDataService.GetEmployeeAsync(id.Value);
                 if (model == null) return NotFound();
                 if (delete) return PartialView("_EmployeeDelete", model);
@@ -64,7 +64,7 @@ namespace SV22T1020761.Admin.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.Title = "B? sung nh�n vi�n";
+            ViewBag.Title = "Bổ sung nhân viên";
             var model = new Employee()
             {
                 EmployeeID = 0,
@@ -75,7 +75,7 @@ namespace SV22T1020761.Admin.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            ViewBag.Title = "C?p nh?t th�ng tin nh�n vi�n";
+            ViewBag.Title = "Cập nhật thông tin nhân vien";
             var model = await HRDataService.GetEmployeeAsync(id);
             if (model == null)
                 return RedirectToAction("Index");
@@ -89,16 +89,16 @@ namespace SV22T1020761.Admin.Controllers
         {
             try
             {
-                ViewBag.Title = data.EmployeeID == 0 ? "B? sung nh�n vi�n" : "C?p nh?t th�ng tin nh�n vi�n";
+                ViewBag.Title = data.EmployeeID == 0 ? "Bổ sung nhân viên" : "Cập nhật thông tin nhân vien";
 
-                //Ki?m tra d? li?u �?u v�o: FullName v� Email l� b?t bu?c, Email ch�a ��?c s? d?ng b?i nh�n vi�n kh�c
+                //Ki?m tra dữ liệu �?u v�o: FullName v� Email l� b?t bu?c, Email ch�a ��?c s? d?ng b?i nhân viên kh�c
                 if (string.IsNullOrWhiteSpace(data.FullName))
-                    ModelState.AddModelError(nameof(data.FullName), "Vui l?ng nh?p h? t�n nh�n vi�n");
+                    ModelState.AddModelError(nameof(data.FullName), "Vui lòng nhập họ tên nhân viên");
 
                 if (string.IsNullOrWhiteSpace(data.Email))
-                    ModelState.AddModelError(nameof(data.Email), "Vui l?ng nh?p email nh�n vi�n");
+                    ModelState.AddModelError(nameof(data.Email), "Vui lòng nhập email nhân viên");
                 else if (!await HRDataService.ValidateEmployeeEmailAsync(data.Email, data.EmployeeID))
-                    ModelState.AddModelError(nameof(data.Email), "Email �? ��?c s? d?ng b?i nh�n vi�n kh�c");
+                    ModelState.AddModelError(nameof(data.Email), "Email đã được sử dụng bởi nhân viên khác");
 
                 if (!ModelState.IsValid)
                 {
@@ -122,12 +122,12 @@ namespace SV22T1020761.Admin.Controllers
                     data.Photo = fileName;
                 }
 
-                //Ti?n x? l? d? li?u tr�?c khi l�u v�o database
+                //Ti?n x? l? dữ liệu tr�?c khi Lưu v�o database
                 if (string.IsNullOrEmpty(data.Address)) data.Address = "";
                 if (string.IsNullOrEmpty(data.Phone)) data.Phone = "";
                 if (string.IsNullOrEmpty(data.Photo)) data.Photo = "nophoto.png";
 
-                //L�u d? li?u v�o database (b? sung ho?c c?p nh?t)
+                //Lưu dữ liệu v�o database (Bổ sung ho?c Cập nhật)
                 if (data.EmployeeID == 0)
                 {
                     await HRDataService.AddEmployeeAsync(data);
@@ -145,14 +145,14 @@ namespace SV22T1020761.Admin.Controllers
                     return PartialView("_EmployeeTable", result);
                 }
 
-                TempData["Success"] = data.EmployeeID == 0 ? "B? sung nh�n vi�n th�nh c�ng." : "C?p nh?t nh�n vi�n th�nh c�ng.";
+                TempData["Success"] = data.EmployeeID == 0 ? "Bổ sung nhân viên thành công." : "Cập nhật nhân viên thành công.";
                 return RedirectToAction("Index");
             }
             catch (System.Exception ex)
             {
                 // Log the error and return the Edit view with a friendly message
                 _logger?.LogError(ex, "Error saving employee data (EmployeeID={EmployeeID}).", data?.EmployeeID);
-                ModelState.AddModelError(string.Empty, "H? th?ng �ang b?n ho?c d? li?u kh�ng h?p l?. Vui l?ng ki?m tra d? li?u ho?c th? l?i sau");
+                ModelState.AddModelError(string.Empty, "Hệ thống đang bận hoặc dữ liệu không hợp lệ. Vui lòng kiểm tra dữ liệu hoặc thử lại sau");
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                     return PartialView("_EmployeeForm", data);
                 return View("Edit", data);

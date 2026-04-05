@@ -13,8 +13,8 @@ builder.Services.AddControllersWithViews()
                 });
 
 // Configure Authentication
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(option =>
+builder.Services.AddAuthentication("Cookies")
+                .AddCookie("Cookies", option =>
                 {
                     option.Cookie.Name = "SV22T1020761.Admin";
                     option.LoginPath = "/Account/Login";

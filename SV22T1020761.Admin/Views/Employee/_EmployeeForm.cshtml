@@ -17,12 +17,12 @@
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">�i?n tho?i</label>
+        <label class="form-label">Điện thoại</label>
         <input asp-for="Phone" class="form-control" />
         <span asp-validation-for="Phone" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label class="form-label">�?a ch?</label>
+        <label class="form-label">Địa chỉ</label>
         <textarea asp-for="Address" class="form-control"></textarea>
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
@@ -36,11 +36,11 @@
     </div>
     <div class="form-check form-switch mb-3">
         <input class="form-check-input" asp-for="IsWorking" type="checkbox" id="IsWorking" />
-        <label class="form-check-label" for="IsWorking">�ang l�m vi?c</label>
+        <label class="form-check-label" for="IsWorking">Đang làm việc</label>
     </div>
     <div class="text-end">
-        <button type="submit" class="btn btn-primary">L�u</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">H?y</button>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
     </div>
 </form>
 <script>
@@ -70,7 +70,7 @@
                     document.querySelector('#dialogModal .modal-content').innerHTML = html;
                 }
             } catch (err) {
-                showToast('L?i khi l�u: ' + err.message, 'error');
+                showToast('L?i khi Lưu: ' + err.message, 'error');
             }
         });
     });

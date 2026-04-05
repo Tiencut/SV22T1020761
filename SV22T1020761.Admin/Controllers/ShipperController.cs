@@ -45,7 +45,7 @@ namespace SV22T1020761.Admin.Controllers
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error loading shippers");
-                TempData["Error"] = "Kh�ng th? k?t n?i t?i c� s? d? li?u. Vui l?ng ki?m tra c?u h?nh v� th? l?i.";
+                TempData["Error"] = "Không thể kết nối tới CSDL. Vui lòng kiểm tra cấu hình và thử lại.";
                 var empty = new PagedResult<SV22T1020761.Models.Shipper> { Page = page, PageSize = pageSize, RowCount = 0, DataItems = new System.Collections.Generic.List<SV22T1020761.Models.Shipper>() };
                 return View(empty);
             }
@@ -112,13 +112,13 @@ namespace SV22T1020761.Admin.Controllers
                     };
                     return PartialView("_ShipperTable", model);
                 }
-                TempData["Success"] = "Th�m �?i t�c giao h�ng th�nh c�ng.";
+                TempData["Success"] = "Thêm đối tác giao hàng thành công.";
                 return RedirectToAction("Index");
             }
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error creating shipper");
-                ModelState.AddModelError(string.Empty, "H? th?ng �ang b?n. Vui l?ng th? l?i sau.");
+                ModelState.AddModelError(string.Empty, "hệ thống đang bận. Vui lòng thử lại sau.");
                 return View(shipper);
             }
         }
@@ -154,13 +154,13 @@ namespace SV22T1020761.Admin.Controllers
                     };
                     return PartialView("_ShipperTable", model);
                 }
-                TempData["Success"] = "C?p nh?t �?i t�c giao h�ng th�nh c�ng.";
+                TempData["Success"] = "Cập nhật đối tác giao hàng thành công.";
                 return RedirectToAction("Index");
             }
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error updating shipper (Id={ShipperId})", shipper?.ShipperID);
-                ModelState.AddModelError(string.Empty, "H? th?ng �ang b?n. Vui l?ng th? l?i sau.");
+                ModelState.AddModelError(string.Empty, "hệ thống đang bận. Vui lòng thử lại sau.");
                 return View(shipper);
             }
         }

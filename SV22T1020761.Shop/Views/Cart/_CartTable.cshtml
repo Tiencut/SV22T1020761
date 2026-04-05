@@ -4,9 +4,9 @@
     <thead>
         <tr>
             <th>S?n ph?m</th>
-            <th>S? l�?ng</th>
-            <th>Gi�</th>
-            <th>Th�nh ti?n</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Thành tiền</th>
             <th></th>
         </tr>
     </thead>
@@ -20,7 +20,7 @@
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="productId" value="@item.ProductID" />
                         <input type="number" name="qty" value="@item.Qty" min="1" style="width:80px;" />
-                        <button class="btn btn-sm btn-primary">C?p nh?t</button>
+                        <button class="btn btn-sm btn-primary">Cập nhật</button>
                     </form>
                 </td>
                 <td>@item.Price</td>
@@ -29,7 +29,7 @@
                     <form method="post" asp-controller="Cart" asp-action="Remove">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="productId" value="@item.ProductID" />
-                        <button class="btn btn-sm btn-danger">X�a</button>
+                        <button class="btn btn-sm btn-danger">Xoá</button>
                     </form>
                 </td>
             </tr>
@@ -43,9 +43,9 @@
 <div class="d-flex justify-content-between align-items-center border-top pt-3">
     <div>
         <div class="h5 mb-0">T?ng: <strong class="text-primary">@total.ToString("C")</strong></div>
-        <div class="text-muted small">(Ch�a bao g?m ph� v?n chuy?n)</div>
+        <div class="text-muted small">(Chưa bao gồm phí vận chuyển)</div>
     </div>
     <div>
-        <a class="btn btn-success btn-lg" asp-controller="Checkout" asp-action="Index">�?t mua h�ng</a>
+        <a class="btn btn-success btn-lg" asp-controller="Checkout" asp-action="Index">Đặt mua hàng</a>
     </div>
 </div>

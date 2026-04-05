@@ -29,7 +29,7 @@ namespace SV22T1020761.Shop.Controllers
             var cart = CartHelper.GetCart(HttpContext.Session);
             if (cart == null || cart.Count == 0)
             {
-                TempData["Error"] = "Gi? h‡ng r?ng";
+                TempData["Error"] = "Gi·ªè h√†ng r·ªóng";
                 return RedirectToAction("Index", "Cart");
             }
 
@@ -70,12 +70,12 @@ namespace SV22T1020761.Shop.Controllers
             {
                 var orderId = await SalesDataService.AddOrderAsync(order, details);
                 CartHelper.ClearCart(HttpContext.Session);
-                TempData["Success"] = "–?t h‡ng th‡nh cÙng";
+                TempData["Success"] = "ƒê·∫∑t h√†ng th√†nh c√¥ng";
                 return RedirectToAction("Details", "Orders", new { id = orderId });
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "KhÙng th? t?o ın h‡ng. Vui l?ng th? l?i.";
+                TempData["Error"] = "Kh√¥ng th·ªÉ t·∫°o ƒë∆°n h√†ng. Vui l√≤ng th·ª≠ l·∫°i.";
                 return RedirectToAction("Index", "Checkout");
             }
         }

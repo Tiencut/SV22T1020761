@@ -42,6 +42,14 @@ namespace SV22T1020761.Models.HR
         /// <summary>
         /// Nhân viên đang làm việc hay không?
         /// </summary>
-        public bool? IsWorking { get; set; }        
+        public bool? IsWorking { get; set; }
+        /// <summary>
+        /// Mật khẩu (hash)
+        /// </summary>
+        public string? Password { get; set; }
+        /// <summary>
+        /// Danh sách các role (phân cách bằng dấu phẩy)
+        /// </summary>
+        public string? RoleNames { get; set; }        
     }
 }

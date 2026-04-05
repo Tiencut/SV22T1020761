@@ -9,18 +9,22 @@
         /// Mã đơn hàng
         /// </summary>
         public int OrderID { get; set; }
+        
         /// <summary>
         /// Mã mặt hàng
         /// </summary>
         public int ProductID { get; set; }
+        
         /// <summary>
         /// Số lượng
         /// </summary>
         public int Quantity { get; set; }
+        
         /// <summary>
         /// Giá bán
         /// </summary>
         public decimal SalePrice { get; set; }
+        
         /// <summary>
         /// Tổng số tiền
         /// </summary>

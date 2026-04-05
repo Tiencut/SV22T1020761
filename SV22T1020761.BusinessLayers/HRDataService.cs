@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace SV22T1020761.BusinessLayers
 {
     /// <summary>
-    /// Service cung c?p d? li?u cho domain HR (Employees)
+    /// Service cung c?p dữ liệu cho domain HR (Employees)
     /// </summary>
     public static class HRDataService
     {
@@ -47,5 +47,11 @@ namespace SV22T1020761.BusinessLayers
         public static Task<int> AddEmployeeAsync(Employee employee) => _employeeRepo.AddAsync(employee);
 
         public static Task<bool> UpdateEmployeeAsync(Employee employee) => _employeeRepo.UpdateAsync(employee);
+
+        public static Employee? GetEmployeeByEmail(string email)
+            => _employeeRepo.GetByEmailAsync(email).GetAwaiter().GetResult();
+
+        public static Task<Employee?> GetEmployeeByEmailAsync(string email)
+            => _employeeRepo.GetByEmailAsync(email);
     }
 }

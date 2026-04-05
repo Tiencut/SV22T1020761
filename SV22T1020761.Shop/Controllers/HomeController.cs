@@ -32,7 +32,7 @@ namespace SV22T1020761.Shop.Controllers
             catch (System.Exception ex)
             {
                 _logger?.LogError(ex, "Error loading home featured products");
-                TempData["Error"] = "Kh�ng th? t?i danh s�ch s?n ph?m. Vui l?ng th? l?i sau.";
+                TempData["Error"] = "Không thể tải danh sách sản phẩm Thử lại sau.";
                 var empty = new PagedResult<Product> { Page = 1, PageSize = 8, RowCount = 0, DataItems = new System.Collections.Generic.List<Product>() };
                 ViewBag.CartCount = 0;
                 return View(empty);

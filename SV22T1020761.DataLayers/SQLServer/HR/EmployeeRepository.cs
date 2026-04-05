@@ -62,6 +62,14 @@ OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
             return await conn.QuerySingleOrDefaultAsync<Employee>(sql, new { id });
         }
 
+        public async Task<Employee?> GetByEmailAsync(string email)
+        {
+            using var conn = new SqlConnection(_connectionString);
+            await conn.OpenAsync();
+            var sql = "SELECT EmployeeID, FullName, BirthDate, Address, Phone, Email, Password, Photo, IsWorking, RoleNames FROM Employees WHERE Email = @email";
+            return await conn.QuerySingleOrDefaultAsync<Employee>(sql, new { email });
+        }
+
         public async Task<int> AddAsync(Employee data)
         {
             using var conn = new SqlConnection(_connectionString);

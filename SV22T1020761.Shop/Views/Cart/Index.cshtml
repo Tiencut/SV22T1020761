@@ -1,6 +1,6 @@
 @model System.Collections.Generic.List<SV22T1020761.Shop.AppCodes.CartItem>
 @{
-    ViewData["Title"] = "Gi? h�ng";
+    ViewData["Title"] = "Giỏ hàng";
 }
 
 <h3>@ViewData["Title"]</h3>
@@ -22,7 +22,7 @@
                     if (res.ok) {
                         var html = await res.text();
                         container.innerHTML = html;
-                        showToast('C?p nh?t gi? h�ng', 'success');
+                        showToast('Cập nhật Giỏ hàng', 'success');
                     } else showToast('L?i', 'error');
                 } catch (err) { showToast(err.message, 'error'); }
             });

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace SV22T1020761.BusinessLayers
 {
     /// <summary>
-    /// Service cung c?p d? li?u cho domain Catalog (Categories, Products)
+    /// Service cung c?p dữ liệu cho domain Catalog (Categories, Products)
     /// </summary>
     public static class CatalogDataService
     {

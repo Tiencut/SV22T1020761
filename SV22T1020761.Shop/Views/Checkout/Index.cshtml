@@ -1,8 +1,16 @@
 @{
-    ViewData["Title"] = "Checkout";
+    ViewData["Title"] = "Thanh toán";
 }
 
-<h3>Checkout</h3>
+<h3>Thanh toán</h3>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
 
 <div class="row">
     <div class="col-md-6">
@@ -10,19 +18,38 @@
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
             <div class="mb-3">
-                <label class="form-label">T?nh/Th�nh</label>
-                <input name="deliveryProvince" class="form-control" placeholder="V� d?: H� N?i" autofocus />
-                <span class="form-help">Ch?n t?nh/th�nh �? t�nh ph� v?n chuy?n.</span>
+                <label class="form-label">Tỉnh/Thành</label>
+                <select name="deliveryProvince" class="form-select" required>
+                    @{
+                        var provinces = ViewBag.Provinces as System.Collections.Generic.List<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>;
+                        var defaultProvince = ViewBag.CustomerProvince as string;
+                    }
+                    @if (!string.IsNullOrWhiteSpace(defaultProvince))
+                    {
+                        <option value="@defaultProvince" selected>@defaultProvince</option>
+                    }
+                    @if (provinces != null)
+                    {
+                        @foreach(var p in provinces)
+                        {
+                            @if (p.Value != defaultProvince)
+                            {
+                                <option value="@p.Value">@p.Text</option>
+                            }
+                        }
+                    }
+                </select>
+                <span class="form-help">Chọn tỉnh/thành để tính phí vận chuyển.</span>
             </div>
             <div class="mb-3">
-                <label class="form-label">�?a ch?</label>
-                <input name="deliveryAddress" class="form-control" placeholder="S? nh�, ��?ng, ph�?ng/qu?n" />
+                <label class="form-label">Địa chỉ</label>
+                <input name="deliveryAddress" class="form-control" placeholder="Số nhà, đường, phường/quận" value="@(ViewBag.CustomerAddress as string ?? "")" required />
             </div>
-            <button class="btn btn-success">�?t h�ng</button>
+            <button class="btn btn-success">Đặt hàng</button>
         </form>
     </div>
     <div class="col-md-6">
-        <h5>T�m t?t gi? h�ng</h5>
+        <h5>Tóm tắt giỏ hàng</h5>
         <div id="checkoutCart">
             @{
                 var summary = ViewBag.Summary as (int Count, decimal Total)?;
@@ -31,24 +58,24 @@
             @if (cart != null && cart.Count>0)
             {
                 <table class="table">
-                    <thead><tr><th>S?n ph?m</th><th>S? l�?ng</th><th>Gi�</th><th>Th�nh ti?n</th></tr></thead>
+                    <thead><tr><th>Sản phẩm</th><th>Số lượng</th><th>Giá</th><th>Thành tiền</th></tr></thead>
                     <tbody>
                         @foreach(var it in cart)
                         {
                             <tr>
                                 <td>@it.ProductName</td>
                                 <td>@it.Qty</td>
-                                <td>@it.Price</td>
-                                <td>@(it.Price*it.Qty)</td>
+                                <td>@it.Price.ToString("N0") đ</td>
+                                <td>@String.Format("{0:N0}", it.Price * it.Qty) đ</td>
                             </tr>
                         }
                     </tbody>
                 </table>
-                <p>T?ng: @summary?.Total</p>
+                <p class="h5">Tổng: <strong>@summary?.Total.ToString("N0") đ</strong></p>
             }
             else
             {
-                <div class="alert alert-warning">Gi? h�ng tr?ng</div>
+                <div class="alert alert-warning">Giỏ hàng trống</div>
             }
         </div>
     </div>
@@ -59,8 +86,21 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var form = document.querySelector('form[asp-action="Place"]');
-            form?.addEventListener('submit', function () {
-                setTimeout(function(){ window.focusFirstInvalid && window.focusFirstInvalid(); }, 50);
+            form?.addEventListener('submit', function (e) {
+                var province = document.querySelector('select[name="deliveryProvince"]').value;
+                var address = document.querySelector('input[name="deliveryAddress"]').value;
+                
+                if (!province || province.trim() === '') {
+                    e.preventDefault();
+                    alert('Vui lòng chọn Tỉnh/Thành phố');
+                    return false;
+                }
+                
+                if (!address || address.trim() === '') {
+                    e.preventDefault();
+                    alert('Vui lòng nhập địa chỉ giao hàng');
+                    return false;
+                }
             });
         });
     </script>

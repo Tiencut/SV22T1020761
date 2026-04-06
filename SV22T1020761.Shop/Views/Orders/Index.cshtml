@@ -1,7 +1,7 @@
 @model SV22T1020761.Models.Common.PagedResult<SV22T1020761.Models.Sales.OrderViewInfo>
 @using SV22T1020761.Models.Sales
 @{
-    ViewData["Title"] = "��n h�ng c?a t�i";
+    ViewData["Title"] = "Đơn hàng của tôi";
 }
 
 <div class="auth-card">
@@ -9,7 +9,7 @@
     <div>
         <table class="table">
             <thead>
-                <tr><th>M?</th><th>Th?i gian</th><th>Kh�ch h�ng</th><th>Tr?ng th�i</th><th>T?ng</th><th></th></tr>
+                <tr><th>Mã đơn hàng</th><th>Thời gian</th><th>Khách hàng</th><th>Trạng thái</th><th>Tổng cộng</th><th></th></tr>
             </thead>
             <tbody>
                 @foreach(var o in Model.DataItems)

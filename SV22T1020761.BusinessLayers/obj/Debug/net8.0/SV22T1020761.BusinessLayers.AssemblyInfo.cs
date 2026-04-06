@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SV22T1020761.BusinessLayers")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+94cff7319ec402352b85c5fba374f7478c21d67c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8a0ce3ea4db0c5dc034dc59245668bbb9756ea4")]
 [assembly: System.Reflection.AssemblyProductAttribute("SV22T1020761.BusinessLayers")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SV22T1020761.BusinessLayers")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

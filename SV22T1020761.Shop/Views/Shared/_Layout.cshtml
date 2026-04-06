@@ -40,7 +40,7 @@
 
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item me-2">
-                        @Html.Partial("_CartSummary", CartHelper.GetCartSummary(Context.Session))
+                        @await Component.InvokeAsync("CartSummary")
                     </li>
 
                     @if (User.Identity?.IsAuthenticated == true)

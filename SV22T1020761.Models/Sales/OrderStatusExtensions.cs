@@ -16,6 +16,7 @@
             {
                 OrderStatusEnum.Rejected => "Đơn hàng bị từ chối",
                 OrderStatusEnum.Cancelled => "Đơn hàng đã bị hủy",
+                OrderStatusEnum.Draft => "Giỏ hàng (nháp)",
                 OrderStatusEnum.New => "Đơn hàng vừa tạo",
                 OrderStatusEnum.Accepted => "Đơn hàng đã được duyệt",
                 OrderStatusEnum.Shipping => "Đơn hàng đang được vận chuyển",

@@ -1,6 +1,6 @@
 @model SV22T1020761.Models.Catalog.ProductDetailsViewModel
 @{
-    ViewData["Title"] = "Chi ti?t s?n ph?m";
+    ViewData["Title"] = "Chi tiết sản phẩm";
 }
 <div class="container">
     <div class="product-details">
@@ -36,24 +36,24 @@
             <div class="col-md-6">
                 <h2>@Model.Product.ProductName</h2>
                 <p class="text-muted">@Model.Product.ProductDescription</p>
-                <p><strong>Gi�:</strong> <span class="text-primary">@Model.Product.Price.ToString("C")</span></p>
-                <p><strong>��n v?:</strong> @Model.Product.Unit</p>
+                <p><strong>Giá:</strong> <span class="text-primary">@Model.Product.Price.ToString("N0") đ</span></p>
+                <p><strong>Đơn vị:</strong> @Model.Product.Unit</p>
                 <p><strong>Kho:</strong> @Model.Product.Quantity</p>
-                @if (!string.IsNullOrEmpty(Model.CategoryName)) { <p><strong>Lo?i:</strong> @Model.CategoryName</p> }
-                @if (!string.IsNullOrEmpty(Model.SupplierName)) { <p><strong>Nh� cung c?p:</strong> @Model.SupplierName</p> }
+                @if (!string.IsNullOrEmpty(Model.CategoryName)) { <p><strong>Loại:</strong> @Model.CategoryName</p> }
+                @if (!string.IsNullOrEmpty(Model.SupplierName)) { <p><strong>Nhà cung cấp:</strong> @Model.SupplierName</p> }
 
                 <form id="formAddToCart" method="post" asp-controller="Cart" asp-action="Add">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="productId" value="@Model.Product.ProductID" />
                     <div class="input-group mb-3" style="max-width:200px;">
                         <input type="number" name="qty" value="1" min="1" class="form-control" />
-                        <button class="btn btn-success">Th�m v�o gi?</button>
+                        <button class="btn btn-success">Thêm vào giỏ</button>
                     </div>
                 </form>
 
                 @if (Model.Attributes != null && Model.Attributes.Count > 0)
                 {
-                    <h5>Th�ng s? k? thu?t</h5>
+                    <h5>Thông số kỹ thuật</h5>
                     <table class="table table-sm">
                         <tbody>
                             @foreach(var a in Model.Attributes)
@@ -84,11 +84,11 @@
                         var html = await res.text();
                         var el = document.getElementById('cartSummary');
                         if (el) el.innerHTML = html;
-                        showToast('�? th�m v�o gi?', 'success');
+                        showToast('Đã thêm vào giỏ', 'success');
                     } else {
-                        showToast('L?i khi th�m v�o gi?', 'error');
+                        showToast('Lỗi khi thêm vào giỏ', 'error');
                     }
-                } catch (err) { showToast('L?i: ' + err.message, 'error'); }
+                } catch (err) { showToast('Lỗi: ' + err.message, 'error'); }
             });
         });
     </script>

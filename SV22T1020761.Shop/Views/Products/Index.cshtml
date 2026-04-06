@@ -48,7 +48,7 @@
     </form>
 
     <div id="productTableContainer">
-        @Html.Partial("_ProductGrid", Model)
+        @Html.Partial("../Shared/_ProductGrid", Model)
     </div>
 </div>
 
@@ -71,7 +71,8 @@
             };
         }
 
-        async function doSearch(page) {
+        // Make doSearch global
+        window.doSearch = async function(page) {
             var data = new URLSearchParams(new FormData(form));
             if (page) data.set('Page', page);
             
@@ -95,7 +96,7 @@
             } catch (err) {
                 console.error('Error:', err);
             }
-        }
+        };
 
         if (form) {
             var input = form.querySelector('input[name="SearchValue"]');
@@ -111,16 +112,6 @@
                     doSearch(1);
                 });
             }
-
-            // Handle pagination
-            document.addEventListener('click', function (e) {
-                if (e.target.hasAttribute('data-page')) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var page = e.target.getAttribute('data-page');
-                    doSearch(page);
-                }
-            });
         }
     </script>
 }

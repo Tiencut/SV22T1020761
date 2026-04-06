@@ -93,7 +93,7 @@ namespace SV22T1020761.Shop.Controllers
                 var result = SV22T1020761.BusinessLayers.CatalogDataService.ListProducts(input);
 
                 // Render only the product grid partial view
-                return PartialView("_ProductGrid", result);
+                return PartialView("../Shared/_ProductGrid", result);
             }
             catch (Exception ex)
             {

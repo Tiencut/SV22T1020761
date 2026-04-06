@@ -56,14 +56,13 @@ namespace SV22T1020761.Shop.Controllers
             try
             {
                 await AccountService.RegisterAsync(model, password);
-                TempData["Success"] = "Đăng ký thành công. Vui lòng đăng nhập.";
+                TempData["Success"] = "Đăng ký thành công! Dữ liệu lưu vào Database. Vui lòng đăng nhập.";
                 return RedirectToAction("Login");
             }
             catch (System.Exception ex)
             {
-                // log if you have logger
-                ModelState.AddModelError("", "Có lỗi khi xử lý đăng ký. Vui lòng thử lại sau.");
-                TempData["Error"] = "Đăng ký thất bại do lỗi hệ thống.";
+                ModelState.AddModelError("", ex.Message);
+                TempData["Error"] = ex.Message;
                 return View(model);
             }
         }

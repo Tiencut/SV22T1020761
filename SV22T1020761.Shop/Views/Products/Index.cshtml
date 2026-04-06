@@ -61,6 +61,8 @@
 
 @section Scripts {
     <script>
+        var form = document.getElementById('formSearch');
+        
         function debounce(fn, delay) {
             var t;
             return function () {
@@ -69,48 +71,56 @@
             };
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var form = document.getElementById('formSearch');
-            var input = form.querySelector('input[name="SearchValue"]');
-
-            async function doSearch(page) {
-                var token = form.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
-                var data = new URLSearchParams(new FormData(form));
-                if (page) data.set('Page', page);
-                try {
-                    var res = await fetch(form.action, {
-                        method: 'POST',
-                        headers: {
-                            'RequestVerificationToken': token,
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: data.toString()
-                    });
-                    if (res.ok) {
-                        var html = await res.text();
-                        document.getElementById('productTableContainer').innerHTML = html;
-                        if (window.focusFirstInvalid) window.focusFirstInvalid();
-                        if (window.initTooltips) window.initTooltips('#productTableContainer');
-                        var searchVal = form.querySelector('input[name="SearchValue"]')?.value || '';
-                        var params = new URLSearchParams();
-                        if (searchVal) params.set('searchValue', searchVal);
-                        params.set('page', page || 1);
-                        history.replaceState(null, '', window.location.pathname + '?' + params.toString());
-                    } else {
-                        console.error('Search failed');
-                    }
-                } catch (err) {
-                    console.error(err);
+        async function doSearch(page) {
+            var data = new URLSearchParams(new FormData(form));
+            if (page) data.set('Page', page);
+            
+            var url = '/Products/Search';
+            
+            try {
+                var res = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: data.toString()
+                });
+                
+                if (res.ok) {
+                    var html = await res.text();
+                    document.getElementById('productTableContainer').innerHTML = html;
+                } else {
+                    console.error('Search failed');
                 }
+            } catch (err) {
+                console.error('Error:', err);
+            }
+        }
+
+        if (form) {
+            var input = form.querySelector('input[name="SearchValue"]');
+            var searchBtn = document.getElementById('searchBtn');
+            
+            if (input) {
+                var debounced = debounce(function () { doSearch(1); }, 300);
+                input.addEventListener('keyup', debounced);
             }
 
-            var debounced = debounce(function () { doSearch(1); }, 300);
-            input.addEventListener('keyup', debounced);
+            if (searchBtn) {
+                searchBtn.addEventListener('click', function () {
+                    doSearch(1);
+                });
+            }
 
-            document.getElementById('searchBtn').addEventListener('click', function () {
-                doSearch(1);
+            // Handle pagination
+            document.addEventListener('click', function (e) {
+                if (e.target.hasAttribute('data-page')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var page = e.target.getAttribute('data-page');
+                    doSearch(page);
+                }
             });
-        });
+        }
     </script>
 }

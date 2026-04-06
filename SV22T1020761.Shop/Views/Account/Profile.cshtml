@@ -1,27 +1,55 @@
 @model SV22T1020761.Models.Security.UserAccount
 
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Hồ sơ";
 }
 
 <div class="auth-card">
-    <h1>Profile</h1>
+    <h1>Hồ sơ</h1>
 
     <form asp-action="Profile" method="post">
         @Html.AntiForgeryToken()
         <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
 
         <div class="form-group mb-3">
-            <label asp-for="UserName"></label>
+            <label for="UserName">Tên đăng nhập</label>
             <input asp-for="UserName" class="form-control" readonly />
         </div>
         <div class="form-group mb-3">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" />
+            <label for="Email">Email</label>
+            <input asp-for="Email" class="form-control" maxlength="255" />
             <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="CustomerName">Tên khách hàng</label>
+            <input asp-for="CustomerName" class="form-control" />
+            <span asp-validation-for="CustomerName" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="ContactName">Tên liên hệ</label>
+            <input asp-for="ContactName" class="form-control" />
+            <span asp-validation-for="ContactName" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="Phone">Điện thoại</label>
+            <input asp-for="Phone" class="form-control" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="Province">Tỉnh/Thành phố</label>
+            <input asp-for="Province" class="form-control" />
+            <span asp-validation-for="Province" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="Address">Địa chỉ</label>
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-primary">Cập nhật</button>
     </form>
+    <div class="text-center mt-3">
+        <p><a asp-action="ChangePassword" class="btn btn-secondary">Đổi mật khẩu</a></p>
+    </div>
 </div>
 
 @section Scripts {

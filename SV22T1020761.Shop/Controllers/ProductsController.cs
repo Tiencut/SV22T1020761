@@ -86,7 +86,6 @@ namespace SV22T1020761.Shop.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Search(ProductSearchInput input)
         {
             try

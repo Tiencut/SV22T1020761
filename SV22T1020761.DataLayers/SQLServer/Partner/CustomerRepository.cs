@@ -59,7 +59,7 @@ OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
         {
             using var conn = new SqlConnection(_connectionString);
             await conn.OpenAsync();
-            var sql = "SELECT CustomerID, CustomerName, ContactName, Province, Address, Phone, Email, IsLocked FROM Customers WHERE CustomerID = @id";
+            var sql = "SELECT CustomerID, CustomerName, ContactName, Province, Address, Phone, Email, Password, IsLocked FROM Customers WHERE CustomerID = @id";
             return await conn.QuerySingleOrDefaultAsync<Customer>(sql, new { id });
         }
 
@@ -67,7 +67,7 @@ OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
         {
             using var conn = new SqlConnection(_connectionString);
             await conn.OpenAsync();
-            var sql = "SELECT CustomerID, CustomerName, ContactName, Province, Address, Phone, Email, IsLocked FROM Customers WHERE Email = @email";
+            var sql = "SELECT CustomerID, CustomerName, ContactName, Province, Address, Phone, Email, Password, IsLocked FROM Customers WHERE Email = @email";
             return await conn.QuerySingleOrDefaultAsync<Customer>(sql, new { email });
         }
 

@@ -22,14 +22,17 @@
         </div>
         <div class="form-group mb-3">
             <label for="password">Mật khẩu</label>
-            <input type="password" name="password" class="form-control" placeholder="T?i thi?u 6 k? t?" />
+            <input type="password" name="password" class="form-control" placeholder="Tối thiểu 6 kí tự" />
             <div class="form-help">Mật khẩu nên gồm chữ, số và ký tự đặc biệt.</div>
         </div>
         <div class="form-group mb-3">
             <label for="confirmPassword">Xác nhận Mật khẩu</label>
             <input type="password" name="confirmPassword" class="form-control" />
         </div>
-        <button type="submit" class="btn btn-primary">Đăng ký</button>
+        <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+        <div class="text-center mt-3">
+            <p class="text-muted">Đã có tài khoản? <a asp-action="Login">Đăng nhập</a></p>
+        </div>
     </form>
 </div>
 

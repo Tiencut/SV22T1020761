@@ -25,9 +25,30 @@ namespace SV22T1020761.Shop.Services
             {
                 try
                 {
-                    var repo = new CustomerAccountRepository(_connectionString);
-                    var acc = await repo.Authorize(username, password);
-                    if (acc != null) return acc;
+                    var custRepo = new CustomerRepository(_connectionString);
+                    var cust = await custRepo.GetByEmailAsync(username);
+                    if (cust != null && cust.IsLocked != true)
+                    {
+                        // Get stored hash and verify
+                        if (!string.IsNullOrEmpty(cust.Password) && PasswordHasher.VerifyHashedPassword(cust.Password, password))
+                        {
+                            return new UserAccount
+                            {
+                                UserId = cust.CustomerID.ToString(),
+                                UserName = cust.Email,
+                                DisplayName = cust.CustomerName,
+                                Email = cust.Email,
+                                Photo = string.Empty,
+                                RoleNames = string.Empty,
+                                CustomerName = cust.CustomerName,
+                                ContactName = cust.ContactName,
+                                Province = cust.Province ?? string.Empty,
+                                Address = cust.Address ?? string.Empty,
+                                Phone = cust.Phone ?? string.Empty,
+                                IsLocked = cust.IsLocked
+                            };
+                        }
+                    }
                 }
                 catch
                 {
@@ -65,7 +86,13 @@ namespace SV22T1020761.Shop.Services
                             DisplayName = cust.CustomerName,
                             Email = cust.Email,
                             Photo = string.Empty,
-                            RoleNames = string.Empty
+                            RoleNames = string.Empty,
+                            CustomerName = cust.CustomerName,
+                            ContactName = cust.ContactName,
+                            Province = cust.Province ?? string.Empty,
+                            Address = cust.Address ?? string.Empty,
+                            Phone = cust.Phone ?? string.Empty,
+                            IsLocked = cust.IsLocked
                         };
                     }
                 }
@@ -94,9 +121,12 @@ namespace SV22T1020761.Shop.Services
                     var cust = custRepo.GetByEmailAsync(model.UserName).GetAwaiter().GetResult();
                     if (cust != null)
                     {
-                        cust.CustomerName = model.DisplayName;
+                        cust.CustomerName = model.CustomerName;
+                        cust.ContactName = model.ContactName;
                         cust.Email = model.Email;
-                        cust.Phone = model.Email; // keep phone unchanged if not provided
+                        cust.Phone = model.Phone;
+                        cust.Province = model.Province;
+                        cust.Address = model.Address;
                         custRepo.UpdateAsync(cust).GetAwaiter().GetResult();
                     }
                 }
@@ -115,9 +145,12 @@ namespace SV22T1020761.Shop.Services
             {
                 try
                 {
-                    var custRepo = new CustomerAccountRepository(_connectionString);
-                    var acc = custRepo.Authorize(username, password).GetAwaiter().GetResult();
-                    return acc != null;
+                    var custRepo = new CustomerRepository(_connectionString);
+                    var cust = custRepo.GetByEmailAsync(username).GetAwaiter().GetResult();
+                    if (cust != null && !string.IsNullOrEmpty(cust.Password))
+                    {
+                        return PasswordHasher.VerifyHashedPassword(cust.Password, password);
+                    }
                 }
                 catch
                 {
@@ -141,7 +174,8 @@ namespace SV22T1020761.Shop.Services
                 try
                 {
                     var repo = new CustomerAccountRepository(_connectionString);
-                    repo.ChangePassword(username, newPassword).GetAwaiter().GetResult();
+                    var hashedPassword = PasswordHasher.HashPassword(newPassword);
+                    repo.ChangePassword(username, hashedPassword).GetAwaiter().GetResult();
                 }
                 catch
                 {
@@ -155,43 +189,33 @@ namespace SV22T1020761.Shop.Services
 
         public static async Task RegisterAsync(UserAccount model, string password)
         {
-            if (model == null || string.IsNullOrEmpty(model.UserName)) return;
+            if (model == null || string.IsNullOrEmpty(model.UserName))
+                throw new InvalidOperationException("UserName không được để trống.");
 
-            // Try DB register
-            if (!string.IsNullOrEmpty(_connectionString))
+            if (string.IsNullOrEmpty(_connectionString))
+                throw new InvalidOperationException("Không có cấu hình kết nối Database. Đăng ký thất bại.");
+
+            try
             {
-                try
+                var custRepo = new CustomerRepository(_connectionString);
+                var cust = new Customer
                 {
-                    var custRepo = new CustomerRepository(_connectionString);
-                    var cust = new Customer
-                    {
-                        CustomerName = string.IsNullOrWhiteSpace(model.DisplayName) ? model.UserName : model.DisplayName,
-                        ContactName = model.DisplayName,
-                        Email = model.UserName,
-                        Phone = model.Email,
-                        Address = string.Empty,
-                        Province = string.Empty,
-                        Password = password,
-                        IsLocked = false
-                    };
-                    var id = await custRepo.AddAsync(cust);
-                    model.UserId = id.ToString();
-                    // add to in-memory copy
-                    users.AddOrUpdate(model.UserName.ToLowerInvariant(), model, (k, v) => model);
-                    var hash = PasswordHasher.HashPassword(password);
-                    passwords.AddOrUpdate(model.UserName.ToLowerInvariant(), hash, (k, v) => hash);
-                    return;
-                }
-                catch
-                {
-                    // fallback to in-memory registration
-                }
+                    CustomerName = string.IsNullOrWhiteSpace(model.CustomerName) ? model.UserName : model.CustomerName,
+                    ContactName = model.ContactName ?? string.Empty,
+                    Email = model.Email,
+                    Phone = model.Phone ?? string.Empty,
+                    Address = model.Address ?? string.Empty,
+                    Province = null,
+                    Password = PasswordHasher.HashPassword(password),
+                    IsLocked = false
+                };
+                var id = await custRepo.AddAsync(cust);
+                model.UserId = id.ToString();
             }
-
-            model.UserId = System.Guid.NewGuid().ToString();
-            users.TryAdd(model.UserName.ToLowerInvariant(), model);
-            var h = PasswordHasher.HashPassword(password);
-            passwords.TryAdd(model.UserName.ToLowerInvariant(), h);
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException($"Đăng ký thất bại. Lỗi Database: {ex.Message}", ex);
+            }
         }
     }
 }

@@ -18,10 +18,10 @@ namespace SV22T1020761.DataLayers.SQLServer.Auth
         {
             using var conn = new SqlConnection(_connectionString);
             await conn.OpenAsync();
-            var sql = @"SELECT CustomerID AS UserId, Email AS UserName, CustomerName AS DisplayName, Email, '' AS Photo, '' AS RoleNames
+            var sql = @"SELECT CustomerID AS UserId, Email AS UserName, CustomerName AS DisplayName, Email, '' AS Photo, '' AS RoleNames, Password
 FROM Customers
-WHERE Email = @userName AND Password = @password AND IsLocked = 0";
-            var acc = await conn.QuerySingleOrDefaultAsync<UserAccount>(sql, new { userName, password });
+WHERE Email = @userName AND IsLocked = 0";
+            var acc = await conn.QuerySingleOrDefaultAsync<dynamic>(sql, new { userName });
             return acc;
         }
 

@@ -22,12 +22,36 @@
         /// </summary>
         public string Email { get; set; } = "";
         /// <summary>
-        /// Tên fie ảnh đại diện của người dùng (nếu có)
+        /// Tên file ảnh đại diện của người dùng (nếu có)
         /// </summary>
         public string Photo { get; set; } = "";
         /// <summary>
         /// Danh sách tên các vai trò/quyền của người dùng, được phân cách bởi dấu chấm phẩy (nếu có)
         /// </summary>
         public string RoleNames { get; set; } = "";
+        /// <summary>
+        /// Tên khách hàng (tên công ty/cá nhân)
+        /// </summary>
+        public string CustomerName { get; set; } = "";
+        /// <summary>
+        /// Tên liên hệ
+        /// </summary>
+        public string ContactName { get; set; } = "";
+        /// <summary>
+        /// Tỉnh/Thành phố
+        /// </summary>
+        public string Province { get; set; } = "";
+        /// <summary>
+        /// Địa chỉ
+        /// </summary>
+        public string Address { get; set; } = "";
+        /// <summary>
+        /// Điện thoại
+        /// </summary>
+        public string Phone { get; set; } = "";
+        /// <summary>
+        /// Tài khoản bị khóa hay không
+        /// </summary>
+        public bool? IsLocked { get; set; }
     }
 }

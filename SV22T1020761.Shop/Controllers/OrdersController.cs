@@ -12,7 +12,12 @@ namespace SV22T1020761.Shop.Controllers
     {
         public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            var input = new OrderSearchInput { Page = page, PageSize = pageSize };
+            var input = new OrderSearchInput 
+            { 
+                Page = page, 
+                PageSize = pageSize,
+                Status = (OrderStatusEnum)(-999) // Use invalid status to bypass Status filter in repository
+            };
 
             // try to filter by current customer if available
             var ua = SV22T1020761.Shop.Services.AccountService.GetUser(User?.Identity?.Name);

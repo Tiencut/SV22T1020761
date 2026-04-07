@@ -41,7 +41,8 @@ namespace SV22T1020761.DataLayers.SQLServer.Sales
             {
                 dataSql = $@"SELECT o.OrderID, o.CustomerID, c.CustomerName, c.ContactName AS CustomerContactName, c.Email AS CustomerEmail, c.Phone AS CustomerPhone, c.Address AS CustomerAddress,
 o.OrderTime, o.DeliveryProvince, o.DeliveryAddress, o.EmployeeID, o.AcceptTime, o.ShipperID, o.ShippedTime, o.FinishedTime, o.Status,
-ISNULL(e.FullName, '') AS EmployeeName, ISNULL(s.ShipperName, '') AS ShipperName, ISNULL(s.Phone, '') AS ShipperPhone
+ISNULL(e.FullName, '') AS EmployeeName, ISNULL(s.ShipperName, '') AS ShipperName, ISNULL(s.Phone, '') AS ShipperPhone,
+(SELECT ISNULL(SUM(od.SalePrice * od.Quantity), 0) FROM OrderDetails od WHERE od.OrderID = o.OrderID) AS TotalAmount
 FROM Orders o
 LEFT JOIN Customers c ON o.CustomerID = c.CustomerID
 LEFT JOIN Employees e ON o.EmployeeID = e.EmployeeID
@@ -53,7 +54,8 @@ ORDER BY o.OrderID";
             {
                 dataSql = $@"SELECT o.OrderID, o.CustomerID, c.CustomerName, c.ContactName AS CustomerContactName, c.Email AS CustomerEmail, c.Phone AS CustomerPhone, c.Address AS CustomerAddress,
 o.OrderTime, o.DeliveryProvince, o.DeliveryAddress, o.EmployeeID, o.AcceptTime, o.ShipperID, o.ShippedTime, o.FinishedTime, o.Status,
-ISNULL(e.FullName, '') AS EmployeeName, ISNULL(s.ShipperName, '') AS ShipperName, ISNULL(s.Phone, '') AS ShipperPhone
+ISNULL(e.FullName, '') AS EmployeeName, ISNULL(s.ShipperName, '') AS ShipperName, ISNULL(s.Phone, '') AS ShipperPhone,
+(SELECT ISNULL(SUM(od.SalePrice * od.Quantity), 0) FROM OrderDetails od WHERE od.OrderID = o.OrderID) AS TotalAmount
 FROM Orders o
 LEFT JOIN Customers c ON o.CustomerID = c.CustomerID
 LEFT JOIN Employees e ON o.EmployeeID = e.EmployeeID
@@ -76,7 +78,8 @@ OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
             await conn.OpenAsync();
             var sql = @"SELECT o.OrderID, o.CustomerID, c.CustomerName, c.ContactName AS CustomerContactName, c.Email AS CustomerEmail, c.Phone AS CustomerPhone, c.Address AS CustomerAddress,
 o.OrderTime, o.DeliveryProvince, o.DeliveryAddress, o.EmployeeID, o.AcceptTime, o.ShipperID, o.ShippedTime, o.FinishedTime, o.Status,
-ISNULL(e.FullName, '') AS EmployeeName, ISNULL(s.ShipperName, '') AS ShipperName, ISNULL(s.Phone, '') AS ShipperPhone
+ISNULL(e.FullName, '') AS EmployeeName, ISNULL(s.ShipperName, '') AS ShipperName, ISNULL(s.Phone, '') AS ShipperPhone,
+(SELECT ISNULL(SUM(od.SalePrice * od.Quantity), 0) FROM OrderDetails od WHERE od.OrderID = o.OrderID) AS TotalAmount
 FROM Orders o
 LEFT JOIN Customers c ON o.CustomerID = c.CustomerID
 LEFT JOIN Employees e ON o.EmployeeID = e.EmployeeID

@@ -4,23 +4,30 @@
     ViewData["Title"] = "Đơn hàng của tôi";
 }
 
-<div class="auth-card">
+<div style="width: 100%; overflow-x: auto;">
     <h3>@ViewData["Title"]</h3>
-    <div>
-        <table class="table">
-            <thead>
-                <tr><th>Mã đơn hàng</th><th>Thời gian</th><th>Khách hàng</th><th>Trạng thái</th><th>Tổng cộng</th><th></th></tr>
+    <div style="min-width: 900px;">
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th style="width: 15%;">Mã đơn hàng</th>
+                    <th style="width: 20%;">Thời gian</th>
+                    <th style="width: 20%;">Khách hàng</th>
+                    <th style="width: 20%;">Trạng thái</th>
+                    <th style="width: 15%;">Tổng cộng</th>
+                    <th style="width: 10%;"></th>
+                </tr>
             </thead>
             <tbody>
                 @foreach(var o in Model.DataItems)
                 {
                     <tr>
                         <td>@o.OrderID</td>
-                        <td>@o.OrderTime</td>
+                        <td>@o.OrderTime.ToString("dd/MM/yyyy HH:mm")</td>
                         <td>@o.CustomerName</td>
-                        <td>@(((OrderStatusEnum)o.Status).GetDescription())</td>
-                        <td>@o.TotalAmount</td>
-                        <td><a asp-controller="Orders" asp-action="Details" asp-route-id="@o.OrderID" class="btn btn-sm btn-primary">Chi ti?t</a></td>
+                        <td><span class="badge bg-info">@(((OrderStatusEnum)o.Status).GetDescription())</span></td>
+                        <td><strong>@o.TotalAmount?.ToString("N0") đ</strong></td>
+                        <td><a asp-controller="Orders" asp-action="Details" asp-route-id="@o.OrderID" class="btn btn-sm btn-primary">Chi tiết</a></td>
                     </tr>
                 }
             </tbody>

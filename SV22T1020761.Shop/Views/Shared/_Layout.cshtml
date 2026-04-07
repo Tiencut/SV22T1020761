@@ -33,25 +33,30 @@
             </button>
 
             <div class="collapse navbar-collapse" id="mainNav">
-                <form class="d-flex ms-3 flex-fill" asp-controller="Products" asp-action="Index" method="get" id="formSearch">
-                    <input class="form-control me-2" type="search" placeholder="Tìm sản phẩm, ví dụ: điện thoại" name="SearchValue" aria-label="Search">
+                <form class="d-flex ms-3 flex-grow-1" asp-controller="Products" asp-action="Index" method="get" id="formSearch">
+                    <input class="form-control me-2" type="search" placeholder="Tìm sản phẩm..." name="SearchValue" aria-label="Search">
                     <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" aria-hidden="true"></i></button>
                 </form>
 
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item me-2">
+                    <li class="nav-item me-3">
                         @await Component.InvokeAsync("CartSummary")
                     </li>
 
                     @if (User.Identity?.IsAuthenticated == true)
                     {
+                        <li class="nav-item me-3">
+                            <a class="nav-link d-flex align-items-center" asp-controller="Orders" asp-action="Index">
+                                <i class="bi bi-receipt me-1" aria-hidden="true"></i> Đơn hàng
+                            </a>
+                        </li>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-person-circle me-1" aria-hidden="true"></i> @User.Identity.Name
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                                 <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile">Hồ sơ</a></li>
-                                <li><a class="dropdown-item" asp-controller="Orders" asp-action="Index">Đơn hàng</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li>
                                     <form asp-controller="Account" asp-action="Logout" method="post" class="m-0 px-3 py-1">

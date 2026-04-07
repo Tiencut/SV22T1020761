@@ -22,6 +22,9 @@ namespace SV22T1020761.Shop.Controllers
             {
                 var input = new PaginationSearchInput { Page = 1, PageSize = 8 };
                 var model = SV22T1020761.BusinessLayers.CatalogDataService.ListProducts(input);
+                
+                // Set flag to hide pagination on home page
+                ViewBag.IsHomeFeatured = true;
 
                 // cart summary via session helper
                 var summary = SV22T1020761.Shop.AppCodes.CartHelper.GetCartSummary(HttpContext.Session);

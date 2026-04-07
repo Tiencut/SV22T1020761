@@ -44,7 +44,18 @@ namespace SV22T1020761.Shop.Controllers
 
         public IActionResult Privacy()
         {
-            return View();
+            try
+            {
+                var summary = SV22T1020761.Shop.AppCodes.CartHelper.GetCartSummary(HttpContext.Session);
+                ViewBag.CartCount = summary.Count;
+                return View();
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading privacy page");
+                ViewBag.CartCount = 0;
+                return View();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

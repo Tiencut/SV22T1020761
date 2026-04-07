@@ -22,7 +22,7 @@
     </div>
 </div>
 <div class="mb-2 text-muted">
-    Danh sách này có <strong>@Model?.RowCount ?? 0</strong> khách hàng
+    Danh sách này có <strong>@(Model?.RowCount ?? 0)</strong> khách hàng
 </div>
 <div class="card">
     <div class="card-body p-1">
@@ -64,6 +64,10 @@
             }
             var debounced = debounce(function () { doSearch(1); }, 300);
             input.addEventListener('keyup', debounced);
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                doSearch(1);
+            });
             document.getElementById('customerTableContainer').addEventListener('click', function (e) {
                 var target = e.target.closest('a[data-page]');
                 if (target) { e.preventDefault(); doSearch(target.getAttribute('data-page')); return; }

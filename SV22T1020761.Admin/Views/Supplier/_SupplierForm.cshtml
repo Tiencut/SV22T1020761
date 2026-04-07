@@ -8,7 +8,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
-<form id="formSupplier" method="post" action="~/Supplier/Create">
+<form id="formSupplier" method="post" action="@(Model?.SupplierID > 0 ? Url.Action("Edit", "Supplier") : Url.Action("Create", "Supplier"))">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="SupplierID" />
     

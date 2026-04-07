@@ -1,0 +1,74 @@
+@model SV22T1020761.Models.Common.PagedResult<SV22T1020761.Models.Catalog.Product>
+@{
+    ViewBag.Title = "Tìm kiếm Sản phẩm";
+}
+@section PageToolBar {
+    <button id="btnCreateProduct" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i>
+        Thêm mới
+    </button>
+    <a href="@Url.Action("Index", "Product")" class="btn btn-secondary ms-2">
+        <i class="bi bi-arrow-left"></i> Quay lại danh sách
+    </a>
+}
+<div class="card mb-3">
+    <div class="card-body">
+        <form id="formSearch" method="post" asp-action="Search" asp-controller="Product">
+            @Html.AntiForgeryToken()
+            <div class="input-group">
+                <input type="text" id="searchInput" name="SearchValue" value="@Context.Request.Query["searchValue"]" class="form-control" placeholder="Tên sản phẩm..." autofocus />
+                <button class="btn btn-info d-flex align-items-center">
+                    <i class="bi bi-search me-1"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="mb-2 text-muted">
+    Kết quả: <strong>@(Model?.RowCount ?? 0)</strong> sản phẩm
+</div>
+<div class="card">
+    <div class="card-body p-1">
+        <div id="productTableContainer">
+            @Html.Partial("_ProductTable", Model)
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function debounce(fn, delay) {
+            var t;
+            return function () { clearTimeout(t); t = setTimeout(fn, delay); };
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('formSearch');
+            var input = document.getElementById('searchInput');
+            var btnCreate = document.getElementById('btnCreateProduct');
+            async function doSearch(page) {
+                var url = form.action;
+                var data = new URLSearchParams(new FormData(form));
+                if (page) data.set('Page', page);
+                try {
+                    var res = await fetch(url, {
+                        method: 'POST',
+                        body: data
+                    });
+                    if (res.ok) {
+                        var html = await res.text();
+                        document.getElementById('productTableContainer').innerHTML = html;
+                    }
+                } catch (ex) {
+                    console.error(ex);
+                }
+            }
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                doSearch(1);
+            });
+            btnCreate.addEventListener('click', function () {
+                window.location.href = "@Url.Action("Form", "Product")";
+            });
+        });
+    </script>
+}

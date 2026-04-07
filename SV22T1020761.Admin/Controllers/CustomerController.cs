@@ -4,9 +4,11 @@ using SV22T1020761.Models.Common;
 using SV22T1020761.Models.Partner;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SV22T1020761.Admin.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
         private readonly ILogger<CustomerController> _logger;
@@ -49,7 +51,16 @@ namespace SV22T1020761.Admin.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            try
+            {
+                return View(new Customer());
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading create customer form");
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]

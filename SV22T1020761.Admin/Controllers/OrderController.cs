@@ -4,9 +4,11 @@ using SV22T1020761.Admin.AppCodes;
 using SV22T1020761.Models.Common;
 using SV22T1020761.Models.Sales;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SV22T1020761.Admin.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         public IActionResult Index(string searchValue, int page = 1, int pageSize = 10)

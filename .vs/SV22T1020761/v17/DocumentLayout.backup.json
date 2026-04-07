@@ -3,21 +3,6 @@
   "WorkspaceRootPath": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7E865606-F66E-4DDC-AAE4-4692085A5A3B}|Notes{7E865606-F66E-4DDC-AAE4-4692085A5A3B}|D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\LiteCommerce\\schema.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Admin\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.admin\\appcodes\\applicationcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Admin\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.admin\\appcodes\\applicationcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Admin\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.admin\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Admin\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.admin\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Admin\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Admin\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Admin\\SV22T1020761.Admin.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BFD85825-E870-4675-B5CE-A1685A34AA2C}|SV22T1020761.Admin\\SV22T1020761.Admin.csproj|solutionrelative:sv22t1020761.admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -172,9 +157,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3B41234C-9F75-47A0-B875-37361FB18650}|SV22T1020761.Shop\\SV22T1020761.Shop.csproj|d:\\tiencut\\codehoc\\laptrinhweb_nhom1_hk3_20242025-main\\sv22t1020761\\sv22t1020761.shop\\views\\cart\\_carttable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3B41234C-9F75-47A0-B875-37361FB18650}|SV22T1020761.Shop\\SV22T1020761.Shop.csproj|solutionrelative:sv22t1020761.shop\\views\\cart\\_carttable.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7E865606-F66E-4DDC-AAE4-4692085A5A3B}|Notes{7E865606-F66E-4DDC-AAE4-4692085A5A3B}|D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\LiteCommerce\\schema.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -184,35 +166,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ApplicationContext.cs",
-              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\AppCodes\\ApplicationContext.cs",
-              "RelativeDocumentMoniker": "SV22T1020761.Admin\\AppCodes\\ApplicationContext.cs",
-              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\AppCodes\\ApplicationContext.cs",
-              "RelativeToolTip": "SV22T1020761.Admin\\AppCodes\\ApplicationContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T13:57:27.552Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\appsettings.json",
-              "RelativeDocumentMoniker": "SV22T1020761.Admin\\appsettings.json",
-              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\appsettings.json",
-              "RelativeToolTip": "SV22T1020761.Admin\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-31T07:53:50.199Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Admin\\Controllers\\CategoryController.cs",
@@ -220,35 +178,12 @@
               "RelativeToolTip": "SV22T1020761.Admin\\Controllers\\CategoryController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAKgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-31T07:40:51.409Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "schema.sql ",
-              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\LiteCommerce\\schema.sql",
-              "RelativeDocumentMoniker": "..\\LiteCommerce\\schema.sql",
-              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\LiteCommerce\\schema.sql",
-              "RelativeToolTip": "..\\LiteCommerce\\schema.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2026-03-27T16:12:24.832Z",
+              "WhenOpened": "2026-03-31T07:40:51.409Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "SV22T1020761.Admin\\appsettings.Development.json",
-              "ToolTip": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\appsettings.Development.json",
-              "RelativeToolTip": "SV22T1020761.Admin\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-31T08:07:25.72Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\_ViewStart.cshtml",
@@ -260,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Products\\Index.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Products\\Index.cshtml",
@@ -272,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "ProductsController.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Controllers\\ProductsController.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Controllers\\ProductsController.cs",
@@ -284,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Home\\Index.cshtml",
@@ -296,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "encoding-test-vn.txt",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\encoding-test-vn.txt",
               "RelativeDocumentMoniker": "encoding-test-vn.txt",
@@ -308,7 +243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 29,
               "Title": "ProductDetailsViewModel.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Models\\Catalog\\ProductDetailsViewModel.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Models\\Catalog\\ProductDetailsViewModel.cs",
@@ -320,7 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 30,
               "Title": "CatalogDataService.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.BusinessLayers\\CatalogDataService.cs",
               "RelativeDocumentMoniker": "SV22T1020761.BusinessLayers\\CatalogDataService.cs",
@@ -332,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 38,
               "Title": "_CartTable.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Cart\\_CartTable.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Cart\\_CartTable.cshtml",
@@ -344,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 37,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Orders\\Details.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Orders\\Details.cshtml",
@@ -356,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 36,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Orders\\Index.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Orders\\Index.cshtml",
@@ -368,7 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 35,
               "Title": "OrdersController.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Controllers\\OrdersController.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Controllers\\OrdersController.cs",
@@ -380,7 +315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 34,
               "Title": "CheckoutController.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Controllers\\CheckoutController.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Controllers\\CheckoutController.cs",
@@ -392,7 +327,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 33,
               "Title": "SalesDataService.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.BusinessLayers\\SalesDataService.cs",
               "RelativeDocumentMoniker": "SV22T1020761.BusinessLayers\\SalesDataService.cs",
@@ -404,7 +339,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 32,
               "Title": "OrderRepository.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.DataLayers\\SQLServer\\Sales\\OrderRepository.cs",
               "RelativeDocumentMoniker": "SV22T1020761.DataLayers\\SQLServer\\Sales\\OrderRepository.cs",
@@ -416,7 +351,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 31,
               "Title": "OrderSearchInput.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Models\\Sales\\OrderSearchInput.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Models\\Sales\\OrderSearchInput.cs",
@@ -428,7 +363,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 26,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Controllers\\AccountController.cs",
@@ -440,7 +375,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 25,
               "Title": "Register.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Account\\Register.cshtml",
@@ -452,7 +387,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 24,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Account\\Login.cshtml",
@@ -464,7 +399,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 6,
               "Title": "_ProductGrid.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Shared\\_ProductGrid.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Shared\\_ProductGrid.cshtml",
@@ -476,7 +411,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 28,
               "Title": "ChangePassword.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Account\\ChangePassword.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Account\\ChangePassword.cshtml",
@@ -488,7 +423,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 27,
               "Title": "Profile.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Account\\Profile.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Account\\Profile.cshtml",
@@ -500,7 +435,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 7,
               "Title": "site.css",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\wwwroot\\css\\site.css",
@@ -512,7 +447,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 23,
               "Title": "site.js",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\wwwroot\\js\\site.js",
@@ -524,7 +459,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 9,
               "Title": "Layout.html",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\wwwroot\\Layout.html",
               "RelativeDocumentMoniker": "SV22T1020761.Admin\\wwwroot\\Layout.html",
@@ -536,7 +471,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 10,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Admin\\Views\\Home\\Index.cshtml",
@@ -548,7 +483,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 11,
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\Views\\Home\\Privacy.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Admin\\Views\\Home\\Privacy.cshtml",
@@ -560,7 +495,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 8,
               "Title": "HandleExceptionFilter.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Filters\\HandleExceptionFilter.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Filters\\HandleExceptionFilter.cs",
@@ -572,7 +507,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 12,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Admin\\Views\\_ViewStart.cshtml",
@@ -584,7 +519,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 13,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Admin\\Views\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Admin\\Views\\_ViewImports.cshtml",
@@ -596,7 +531,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 19,
               "Title": "Customer.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Models\\Partner\\Customer.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Models\\Partner\\Customer.cs",
@@ -608,7 +543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 18,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Shared\\_Layout.cshtml",
@@ -620,7 +555,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 15,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Program.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Program.cs",
@@ -632,7 +567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 22,
               "Title": "AccountService.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Services\\AccountService.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Services\\AccountService.cs",
@@ -644,7 +579,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 21,
               "Title": "CustomerRepository.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.DataLayers\\SQLServer\\Partner\\CustomerRepository.cs",
               "RelativeDocumentMoniker": "SV22T1020761.DataLayers\\SQLServer\\Partner\\CustomerRepository.cs",
@@ -656,7 +591,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 20,
               "Title": "ICustomerRepository.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.DataLayers\\Interfaces\\ICustomerRepository.cs",
               "RelativeDocumentMoniker": "SV22T1020761.DataLayers\\Interfaces\\ICustomerRepository.cs",
@@ -668,7 +603,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 17,
               "Title": "_ProductQuickView.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Shared\\_ProductQuickView.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Shared\\_ProductQuickView.cshtml",
@@ -680,7 +615,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 14,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Controllers\\HomeController.cs",
@@ -692,7 +627,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 16,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\TienCut\\codeHoc\\laptrinhweb_nhom1_hk3_20242025-main\\SV22T1020761\\SV22T1020761.Shop\\Views\\Products\\Details.cshtml",
               "RelativeDocumentMoniker": "SV22T1020761.Shop\\Views\\Products\\Details.cshtml",

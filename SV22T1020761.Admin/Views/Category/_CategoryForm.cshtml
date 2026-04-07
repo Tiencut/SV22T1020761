@@ -8,7 +8,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
-<form id="formCategory" method="post" action="~/Category/Create">
+<form id="formCategory" method="post" action="@(Model?.CategoryID > 0 ? Url.Action("Edit", "Category") : Url.Action("Create", "Category"))">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="CategoryID" />
     

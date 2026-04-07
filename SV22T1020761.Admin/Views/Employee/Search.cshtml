@@ -1,0 +1,74 @@
+@model SV22T1020761.Models.Common.PagedResult<SV22T1020761.Models.HR.Employee>
+@{
+    ViewBag.Title = "Tìm kiếm Nhân viên";
+}
+@section PageToolBar {
+    <button id="btnCreateEmployee" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-1"></i>
+        Thêm mới
+    </button>
+    <a href="@Url.Action("Index", "Employee")" class="btn btn-secondary ms-2">
+        <i class="bi bi-arrow-left"></i> Quay lại danh sách
+    </a>
+}
+<div class="card mb-3">
+    <div class="card-body">
+        <form id="formSearch" method="post" asp-action="Search" asp-controller="Employee">
+            @Html.AntiForgeryToken()
+            <div class="input-group">
+                <input type="text" id="searchInput" name="SearchValue" value="@Context.Request.Query["searchValue"]" class="form-control" placeholder="Tên nhân viên..." autofocus />
+                <button class="btn btn-info d-flex align-items-center">
+                    <i class="bi bi-search me-1"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="mb-2 text-muted">
+    Kết quả: <strong>@(Model?.RowCount ?? 0)</strong> nhân viên
+</div>
+<div class="card">
+    <div class="card-body p-1">
+        <div id="employeeTableContainer">
+            @Html.Partial("_EmployeeTable", Model)
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function debounce(fn, delay) {
+            var t;
+            return function () { clearTimeout(t); t = setTimeout(fn, delay); };
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('formSearch');
+            var input = document.getElementById('searchInput');
+            var btnCreate = document.getElementById('btnCreateEmployee');
+            async function doSearch(page) {
+                var url = form.action;
+                var data = new URLSearchParams(new FormData(form));
+                if (page) data.set('Page', page);
+                try {
+                    var res = await fetch(url, {
+                        method: 'POST',
+                        body: data
+                    });
+                    if (res.ok) {
+                        var html = await res.text();
+                        document.getElementById('employeeTableContainer').innerHTML = html;
+                    }
+                } catch (ex) {
+                    console.error(ex);
+                }
+            }
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                doSearch(1);
+            });
+            btnCreate.addEventListener('click', function () {
+                window.location.href = "@Url.Action("Form", "Employee")";
+            });
+        });
+    </script>
+}

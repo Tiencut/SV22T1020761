@@ -2,38 +2,72 @@
     Layout = null;
 }
 @model SV22T1020761.Models.Partner.Customer
-<form id="formCustomer" method="post" action="~/Customer/Create">
+
+<div class="modal-header">
+    <h5 class="modal-title">@(Model?.CustomerID > 0 ? "Chỉnh sửa khách hàng" : "Thêm mới khách hàng")</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<form id="formCustomer" method="post" action="@(Model?.CustomerID > 0 ? Url.Action("Edit", "Customer") : Url.Action("Create", "Customer"))">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="CustomerID" />
-    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
-    <div class="mb-3">
-        <label class="form-label">Tên khách hàng <span class="text-danger">*</span></label>
-        <input asp-for="CustomerName" class="form-control" required />
-        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    
+    <div class="modal-body">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+        
+        <div class="mb-3">
+            <label class="form-label">Tên khách hàng <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-shop"></i></span>
+                <input asp-for="CustomerName" class="form-control" placeholder="Nhập tên khách hàng" required />
+            </div>
+            <span asp-validation-for="CustomerName" class="text-danger small d-block mt-1"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Tên giao dịch <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                <input asp-for="ContactName" class="form-control" placeholder="Nhập tên liên hệ" required />
+            </div>
+            <span asp-validation-for="ContactName" class="text-danger small d-block mt-1"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Điện thoại</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+                <input asp-for="Phone" type="tel" class="form-control" placeholder="0123456789" />
+            </div>
+            <span asp-validation-for="Phone" class="text-danger small d-block mt-1"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                <input asp-for="Email" type="email" class="form-control" placeholder="example@domain.com" />
+            </div>
+            <span asp-validation-for="Email" class="text-danger small d-block mt-1"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Địa chỉ</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                <input asp-for="Address" class="form-control" placeholder="Nhập địa chỉ" />
+            </div>
+            <span asp-validation-for="Address" class="text-danger small d-block mt-1"></span>
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label">Tên giao dịch <span class="text-danger">*</span></label>
-        <input asp-for="ContactName" class="form-control" required />
-        <span asp-validation-for="ContactName" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Điện thoại</label>
-        <input asp-for="Phone" class="form-control" />
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Địa chỉ</label>
-        <input asp-for="Address" class="form-control" />
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-    <div class="text-end">
-        <button type="submit" class="btn btn-primary">Lưu</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">H?y</button>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x-circle"></i> Hủy
+        </button>
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save"></i> Lưu
+        </button>
     </div>
 </form>
 <script>

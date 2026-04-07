@@ -58,7 +58,7 @@ OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
         {
             using var conn = new SqlConnection(_connectionString);
             await conn.OpenAsync();
-            var sql = "SELECT EmployeeID, FullName, BirthDate, Address, Phone, Email, Photo, IsWorking, RoleNames FROM Employees WHERE EmployeeID = @id";
+            var sql = "SELECT EmployeeID, FullName, BirthDate, Address, Phone, Email, Password, Photo, IsWorking, RoleNames FROM Employees WHERE EmployeeID = @id";
             return await conn.QuerySingleOrDefaultAsync<Employee>(sql, new { id });
         }
 
@@ -84,7 +84,7 @@ SELECT CAST(SCOPE_IDENTITY() AS int);";
         {
             using var conn = new SqlConnection(_connectionString);
             await conn.OpenAsync();
-            var sql = @"UPDATE Employees SET FullName=@FullName, BirthDate=@BirthDate, Address=@Address, Phone=@Phone, Email=@Email, Photo=@Photo, IsWorking=@IsWorking, RoleNames=@RoleNames WHERE EmployeeID=@EmployeeID";
+            var sql = @"UPDATE Employees SET FullName=@FullName, BirthDate=@BirthDate, Address=@Address, Phone=@Phone, Email=@Email, Password=@Password, Photo=@Photo, IsWorking=@IsWorking, RoleNames=@RoleNames WHERE EmployeeID=@EmployeeID";
             var affected = await conn.ExecuteAsync(sql, data);
             return affected > 0;
         }

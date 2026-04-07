@@ -22,7 +22,7 @@
     </div>
 </div>
 <div class="mb-2 text-muted">
-    Danh sách này có <strong>@Model?.RowCount ?? 0</strong> sản phẩm
+    Danh sách này có <strong>@(Model?.RowCount ?? 0)</strong> sản phẩm
 </div>
 <div class="card">
     <div class="card-body p-1">
@@ -34,6 +34,25 @@
 
 @section Scripts {
     <script>
+        async function openModal(url) {
+            try {
+                var res = await fetch(url, {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                });
+                if (res.ok) {
+                    var html = await res.text();
+                    document.querySelector('#dialogModal .modal-content').innerHTML = html;
+                    var modalEl = document.getElementById('dialogModal');
+                    var modal = new bootstrap.Modal(modalEl);
+                    modal.show();
+                } else {
+                    showToast('Lỗi khi tải form: HTTP ' + res.status, 'error');
+                }
+            } catch (err) {
+                showToast('Lỗi khi tải form: ' + err.message, 'error');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             var form = document.getElementById('formSearch');
             var btnCreate = document.getElementById('btnCreateProduct');

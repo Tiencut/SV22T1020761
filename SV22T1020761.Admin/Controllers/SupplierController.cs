@@ -3,9 +3,11 @@ using SV22T1020761.Models.Common;
 using SV22T1020761.Models.Partner;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SV22T1020761.Admin.Controllers
 {
+    [Authorize]
     public class SupplierController : Controller
     {
         private readonly ILogger<SupplierController> _logger;
@@ -76,7 +78,16 @@ namespace SV22T1020761.Admin.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            try
+            {
+                return View(new Supplier());
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading create supplier form");
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]

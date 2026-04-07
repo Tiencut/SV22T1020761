@@ -5,6 +5,7 @@
     <table class="table table-bordered table-hover mb-0">
         <thead class="table-secondary">
             <tr>
+                <th class="text-center" style="width:80px;">Ảnh</th>
                 <th>Tên sản phẩm</th>
                 <th>Giá</th>
                 <th>Số lượng</th>
@@ -17,6 +18,12 @@
                 foreach (var item in Model.DataItems)
                 {
                     <tr>
+                        <td class="text-center">
+                            <img src="@Url.Content("~/images/products/" + (item.Photo ?? "nophoto.png"))" 
+                                 style="height:50px; width:50px; object-fit:cover; border-radius:4px;" 
+                                 alt="@item.ProductName"
+                                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2250%22%3E%3Crect fill=%22%23ddd%22 width=%2250%22 height=%2250%22/%3E%3Ctext x=%2225%22 y=%2225%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2212%22%3ENo Image%3C/text%3E%3C/svg%3E'" />
+                        </td>
                         <td>@item.ProductName</td>
                         <td>@item.Price</td>
                         <td>@item.Quantity</td>
@@ -34,7 +41,7 @@
             else
             {
                 <tr>
-                    <td colspan="4" class="text-center">Khng c dữ liệu</td>
+                    <td colspan="5" class="text-center">Không có dữ liệu</td>
                 </tr>
             }
         </tbody>

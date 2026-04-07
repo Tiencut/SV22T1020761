@@ -2,53 +2,338 @@
 @{
     ViewData["Title"] = "Danh sách sản phẩm";
 }
-<div class="container">
-    <h3>@ViewData["Title"]</h3>
-    <form id="formSearch" method="post" asp-action="Search" asp-controller="Products">
-        @Html.AntiForgeryToken()
-        <div class="row mb-3 g-3">
-            <div class="col-lg-5 col-md-4 col-sm-12">
-                <input type="text" name="SearchValue" value="@ViewBag.FilterSearchValue"
-                       class="form-control form-control-lg"
-                       placeholder="Tìm kiếm sản phẩm..."
-                       autofocus />
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <select name="CategoryID" class="form-select form-select-lg">
-                    <option value="0">-- Tất cả loại --</option>
-                    @foreach (var c in (System.Collections.Generic.List<SV22T1020761.Models.Catalog.Category>)(ViewBag.Categories ?? new System.Collections.Generic.List<SV22T1020761.Models.Catalog.Category>()))
-                    {
-                        if (ViewBag.FilterCategoryId == c.CategoryID)
-                        {
-                            <option value="@c.CategoryID" selected>@c.CategoryName</option>
-                        }
-                        else
-                        {
-                            <option value="@c.CategoryID">@c.CategoryName</option>
-                        }
-                    }
-                </select>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-3">
-                <input type="number" name="MinPrice" step="0.01"
-                       placeholder="Min"
-                       value="@ViewBag.FilterMinPrice"
-                       class="form-control form-control-lg" />
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-3">
-                <input type="number" name="MaxPrice" step="0.01"
-                       placeholder="Max"
-                       value="@ViewBag.FilterMaxPrice"
-                       class="form-control form-control-lg" />
-            </div>
-            <div class="col-lg-1 col-md-1 col-sm-12">
-                <button type="button" id="searchBtn" class="btn btn-primary btn-lg w-100 h-100">Tìm</button>
+
+<style>
+    /* Sidebar styling */
+    .search-sidebar .card {
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .search-sidebar .card-header {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%) !important;
+        padding: 1.25rem;
+        font-weight: 600;
+    }
+
+    .search-sidebar .card-body {
+        padding: 1.5rem;
+    }
+
+    .search-sidebar .form-label {
+        color: #333;
+        font-size: 0.95rem;
+        margin-bottom: 0.6rem;
+        font-weight: 500;
+    }
+
+    .search-sidebar .form-control,
+    .search-sidebar .form-select {
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .search-sidebar .form-control:focus,
+    .search-sidebar .form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.1);
+    }
+
+    .search-sidebar .btn-primary {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        border: none;
+        border-radius: 8px;
+        padding: 0.875rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .search-sidebar .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+    }
+
+    .search-sidebar .btn-primary:active {
+        transform: translateY(0);
+    }
+
+    /* Products header */
+    .products-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid #f0f0f0;
+    }
+
+    .products-header h3 {
+        font-size: 1.75rem;
+        color: #333;
+        font-weight: 700;
+    }
+
+    /* Alert styling */
+    .alert {
+        border-radius: 10px;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Product grid responsive */
+    .product-grid {
+        row-gap: 1.5rem;
+    }
+
+    .product-card {
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: #fff;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        border-color: #0d6efd;
+    }
+
+    .product-photo {
+        height: 220px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-title {
+        font-weight: 600;
+        color: #333;
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+        line-height: 1.4;
+    }
+
+    .card-text {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .price {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #0d6efd;
+    }
+
+    .product-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #28a745;
+        color: white;
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        z-index: 10;
+    }
+
+    .product-actions {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        gap: 0.5rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 5;
+    }
+
+    .product-card:hover .product-actions {
+        opacity: 1;
+    }
+
+    .btn-outline-primary,
+    .btn-add-to-cart {
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+
+    .btn-outline-primary:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-add-to-cart {
+        background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+        border: none;
+        color: white;
+        padding: 0.5rem 0.75rem;
+        min-width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-add-to-cart:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+    }
+
+    /* Pagination styling */
+    .pagination {
+        gap: 0.5rem;
+    }
+
+    .page-link {
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        color: #0d6efd;
+        transition: all 0.2s ease;
+        font-weight: 500;
+    }
+
+    .page-link:hover {
+        background-color: #0d6efd;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .page-item.active .page-link {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 768px) {
+        .products-header h3 {
+            font-size: 1.4rem;
+        }
+
+        .price {
+            font-size: 1.1rem;
+        }
+
+        .product-photo {
+            height: 180px;
+        }
+    }
+</style>
+<div class="container-fluid py-4">
+    <div class="products-header">
+        <h3><i class="bi bi-shop me-2"></i>@ViewData["Title"]</h3>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Left Sidebar: Search & Filters -->
+        <div class="col-lg-3 col-md-4">
+            <div class="search-sidebar">
+                <div class="card sticky-top" style="top: 80px;">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="bi bi-funnel me-2"></i>Tìm kiếm & Lọc</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="formSearch" method="post" asp-action="Search" asp-controller="Products">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="Page" id="hiddenPage" value="1" />
+                            <input type="hidden" name="PageSize" id="hiddenPageSize" value="10" />
+                            
+                            <!-- Search Value -->
+                            <div class="mb-3">
+                                <label class="form-label">📝 Tìm kiếm sản phẩm</label>
+                                <input type="text" name="SearchValue" value="@ViewBag.FilterSearchValue"
+                                       class="form-control"
+                                       placeholder="Nhập tên sản phẩm..."
+                                       autofocus />
+                            </div>
+                            
+                            <!-- Category -->
+                            <div class="mb-3">
+                                <label class="form-label">📦 Loại sản phẩm</label>
+                                <select name="CategoryID" class="form-select">
+                                    <option value="0">-- Tất cả loại --</option>
+                                    @foreach (var c in (System.Collections.Generic.List<SV22T1020761.Models.Catalog.Category>)(ViewBag.Categories ?? new System.Collections.Generic.List<SV22T1020761.Models.Catalog.Category>()))
+                                    {
+                                        if (ViewBag.FilterCategoryId == c.CategoryID)
+                                        {
+                                            <option value="@c.CategoryID" selected>@c.CategoryName</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@c.CategoryID">@c.CategoryName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            
+                            <!-- Price Range -->
+                            <div class="mb-4">
+                                <label class="form-label">💰 Khoảng giá</label>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <input type="number" name="MinPrice" step="0.01"
+                                               placeholder="Từ"
+                                               value="@ViewBag.FilterMinPrice"
+                                               class="form-control" />
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="number" name="MaxPrice" step="0.01"
+                                               placeholder="Đến"
+                                               value="@ViewBag.FilterMaxPrice"
+                                               class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Search Button -->
+                            <div class="d-grid">
+                                <button type="button" id="searchBtn" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-search me-2"></i>Tìm kiếm
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+        
+        <!-- Right: Products Display -->
+        <div class="col-lg-9 col-md-8">
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="alert alert-danger mb-4" role="alert">
+                    <strong>❌ Lỗi:</strong> @ViewBag.ErrorMessage
+                    @if (!string.IsNullOrEmpty(ViewBag.ErrorStackTrace))
+                    {
+                        <hr />
+                        <small><pre>@ViewBag.ErrorStackTrace</pre></small>
+                    }
+                </div>
+            }
 
-    <div id="productTableContainer">
-        @Html.Partial("../Shared/_ProductGrid", Model)
+            <div id="productTableContainer" class="product-grid">
+                @Html.Partial("../Shared/_ProductGrid", Model)
+            </div>
+        </div>
     </div>
 </div>
 
@@ -61,57 +346,78 @@
 
 @section Scripts {
     <script>
-        var form = document.getElementById('formSearch');
-        
-        function debounce(fn, delay) {
-            var t;
-            return function () {
-                clearTimeout(t);
-                t = setTimeout(fn, delay);
-            };
-        }
-
-        // Make doSearch global
-        window.doSearch = async function(page) {
-            var data = new URLSearchParams(new FormData(form));
-            if (page) data.set('Page', page);
+        // paginationSearch - like Admin
+        function paginationSearch(e, form, pageNum) {
+            if (e) e.preventDefault();
             
-            var url = '/Products/Search';
+            // Set page
+            var pageInp = form.querySelector('input[name="Page"]');
+            if (pageInp) pageInp.value = pageNum;
             
-            try {
-                var res = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: data.toString()
-                });
-                
-                if (res.ok) {
-                    var html = await res.text();
-                    document.getElementById('productTableContainer').innerHTML = html;
-                } else {
-                    console.error('Search failed');
+            // Get values from form only (not doc)
+            var searchValue = form.querySelector('input[name="SearchValue"]')?.value || '';
+            var categoryId = form.querySelector('select[name="CategoryID"]')?.value || '0';
+            var minPrice = form.querySelector('input[name="MinPrice"]')?.value || '0';
+            var maxPrice = form.querySelector('input[name="MaxPrice"]')?.value || '0';
+            var pageSize = form.querySelector('input[name="PageSize"]')?.value || '10';
+            
+            // Build FormData from form only
+            var formData = new FormData(form);
+            
+            // POST to /Products/Search
+            fetch('/Products/Search', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
-            } catch (err) {
-                console.error('Error:', err);
-            }
-        };
-
-        if (form) {
-            var input = form.querySelector('input[name="SearchValue"]');
-            var searchBtn = document.getElementById('searchBtn');
+            })
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('productTableContainer').innerHTML = html;
+                attachPaginationHandlers();
+            })
+            .catch(err => {
+                document.getElementById('productTableContainer').innerHTML = '<div class="alert alert-danger">Lỗi: ' + err.message + '</div>';
+            });
+        }
+        
+        function attachPaginationHandlers() {
+            var form = document.getElementById('formSearch');
+            document.querySelectorAll('[data-page]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var page = parseInt(this.getAttribute('data-page'));
+                    if (!isNaN(page)) {
+                        paginationSearch(null, form, page);
+                    }
+                });
+            });
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('formSearch');
+            paginationSearch(null, form, 1);
             
-            if (input) {
-                var debounced = debounce(function () { doSearch(1); }, 300);
-                input.addEventListener('keyup', debounced);
-            }
-
+            // Search button handler
+            var searchBtn = document.getElementById('searchBtn');
             if (searchBtn) {
-                searchBtn.addEventListener('click', function () {
-                    doSearch(1);
+                searchBtn.addEventListener('click', function() {
+                    paginationSearch(null, form, 1);
                 });
             }
-        }
+            
+            // Enter key handler in search input
+            var searchInput = form.querySelector('input[name="SearchValue"]');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        paginationSearch(null, form, 1);
+                    }
+                });
+            }
+        });
     </script>
 }

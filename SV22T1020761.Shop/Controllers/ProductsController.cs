@@ -76,9 +76,15 @@ namespace SV22T1020761.Shop.Controllers
             }
             catch (Exception ex)
             {
-                // Log and show friendly message
-                System.Diagnostics.Trace.TraceError("ProductsController.Index error: {0}", ex.Message);
-                TempData["Error"] = "Không thể kết nối tới cơ sở dữ liệu. Vui lòng kiểm tra cấu hình và thử lại.";
+                // Log full error details
+                string errorMsg = $"ProductsController.Index error - Message: {ex.Message} | StackTrace: {ex.StackTrace}";
+                System.Diagnostics.Trace.TraceError(errorMsg);
+                Console.WriteLine($"❌ ERROR: {errorMsg}");
+                
+                TempData["Error"] = $"Lỗi: {ex.Message}";
+                ViewBag.ErrorMessage = ex.Message;
+                ViewBag.ErrorStackTrace = ex.StackTrace;
+                
                 var empty = new PagedResult<Product> { Page = page, PageSize = pageSize, RowCount = 0, DataItems = new System.Collections.Generic.List<Product>() };
                 ViewBag.Categories = new System.Collections.Generic.List<Category>();
                 return View(empty);
@@ -88,16 +94,21 @@ namespace SV22T1020761.Shop.Controllers
         [HttpPost]
         public IActionResult Search(ProductSearchInput input)
         {
+            Console.WriteLine($"🔍 Search called! Page={input?.Page}, PageSize={input?.PageSize}, SearchValue={input?.SearchValue}, CategoryID={input?.CategoryID}");
+            
             try
             {
                 var result = SV22T1020761.BusinessLayers.CatalogDataService.ListProducts(input);
+                Console.WriteLine($"✅ Search result: RowCount={result.RowCount}, Items={result.DataItems?.Count}");
 
                 // Render only the product grid partial view
                 return PartialView("../Shared/_ProductGrid", result);
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Trace.TraceError("ProductsController.Search error: {0}", ex.Message);
+                string errorMsg = $"ProductsController.Search error - Message: {ex.Message} | StackTrace: {ex.StackTrace}";
+                System.Diagnostics.Trace.TraceError(errorMsg);
+                Console.WriteLine($"❌ ERROR: {errorMsg}");
 
                 // Return an empty product grid in case of error
                 var empty = new PagedResult<Product> { Page = input.Page, PageSize = input.PageSize, RowCount = 0, DataItems = new System.Collections.Generic.List<Product>() };

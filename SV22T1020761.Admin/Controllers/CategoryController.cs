@@ -4,9 +4,11 @@ using SV22T1020761.Models.Common;
 using SV22T1020761.Models.Catalog;
 using Microsoft.Extensions.Logging;
 using SV22T1020761.Admin.AppCodes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SV22T1020761.Admin.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ILogger<CategoryController> _logger;
@@ -56,7 +58,16 @@ namespace SV22T1020761.Admin.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            try
+            {
+                return View(new Category());
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading create category form");
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]

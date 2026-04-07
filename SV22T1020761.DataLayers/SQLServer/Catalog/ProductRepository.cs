@@ -36,7 +36,12 @@ namespace SV22T1020761.DataLayers.SQLServer.Catalog
             string where = whereClauses.Count > 0 ? "WHERE " + string.Join(" AND ", whereClauses) : string.Empty;
 
             var countSql = $"SELECT COUNT(*) FROM Products {where}";
+            System.Diagnostics.Trace.TraceInformation($"ProductRepository.ListAsync - CountSql: {countSql}");
+            Console.WriteLine($"📊 ProductRepository.ListAsync - CountSql: {countSql}");
+            
             result.RowCount = await conn.ExecuteScalarAsync<int>(countSql, parameters);
+            System.Diagnostics.Trace.TraceInformation($"ProductRepository.ListAsync - RowCount: {result.RowCount}");
+            Console.WriteLine($"📊 ProductRepository.ListAsync - RowCount: {result.RowCount}");
 
             string dataSql;
             if (input.PageSize == 0)
@@ -53,8 +58,14 @@ OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
                 parameters.Add("PageSize", input.PageSize);
             }
 
+            System.Diagnostics.Trace.TraceInformation($"ProductRepository.ListAsync - DataSql: {dataSql}");
+            Console.WriteLine($"📊 ProductRepository.ListAsync - DataSql: {dataSql}");
+            
             var items = await conn.QueryAsync<Product>(dataSql, parameters);
             result.DataItems = items.AsList();
+            System.Diagnostics.Trace.TraceInformation($"ProductRepository.ListAsync - Items loaded: {result.DataItems.Count}");
+            Console.WriteLine($"📊 ProductRepository.ListAsync - Items loaded: {result.DataItems.Count}");
+            
             return result;
         }
 

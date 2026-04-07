@@ -2,32 +2,62 @@
     Layout = null;
 }
 @model SV22T1020761.Models.Catalog.Product
-<form id="formProduct" method="post" enctype="multipart/form-data" action="~/Product/Create">
+
+<div class="modal-header">
+    <h5 class="modal-title">@(Model?.ProductID > 0 ? "Chỉnh sửa sản phẩm" : "Thêm mới sản phẩm")</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<form id="formProduct" method="post" enctype="multipart/form-data" action="@(Model?.ProductID > 0 ? Url.Action("Edit", "Product") : Url.Action("Create", "Product"))">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="ProductID" />
-    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
-    <div class="mb-3">
-        <label class="form-label">Tên sản phẩm</label>
-        <input asp-for="ProductName" class="form-control" />
-        <span asp-validation-for="ProductName" class="text-danger"></span>
+    
+    <div class="modal-body">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+        
+        <div class="mb-3">
+            <label class="form-label">Tên sản phẩm <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-box"></i></span>
+                <input asp-for="ProductName" class="form-control" placeholder="Nhập tên sản phẩm" required />
+            </div>
+            <span asp-validation-for="ProductName" class="text-danger small d-block mt-1"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Giá <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                <input asp-for="Price" type="number" step="0.01" class="form-control" placeholder="0.00" required />
+            </div>
+            <span asp-validation-for="Price" class="text-danger small d-block mt-1"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Số lượng</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-bag"></i></span>
+                <input asp-for="Quantity" type="number" class="form-control" placeholder="0" />
+            </div>
+            <span asp-validation-for="Quantity" class="text-danger small d-block mt-1"></span>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Ảnh sản phẩm</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-image"></i></span>
+                <input type="file" name="uploadPhoto" class="form-control" accept="image/*" />
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label">Giá</label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Số lượng</label>
-        <input asp-for="Quantity" class="form-control" />
-        <span asp-validation-for="Quantity" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">?nh</label>
-        <input type="file" name="uploadPhoto" class="form-control" accept="image/*" />
-    </div>
-    <div class="text-end">
-        <button type="submit" class="btn btn-primary">Lưu</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">H?y</button>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x-circle"></i> Hủy
+        </button>
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-save"></i> Lưu
+        </button>
     </div>
 </form>
 <script>

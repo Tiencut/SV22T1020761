@@ -2,47 +2,105 @@
     Layout = null;
 }
 @model SV22T1020761.Models.HR.Employee
-<form id="formEmployee" method="post" enctype="multipart/form-data" action="~/Employee/SaveData">
-    @Html.AntiForgeryToken()
-    <input type="hidden" asp-for="EmployeeID" />
-    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
-    <div class="mb-3">
-        <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
-        <input asp-for="FullName" class="form-control" required />
-        <span asp-validation-for="FullName" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Điện thoại</label>
-        <input asp-for="Phone" class="form-control" />
-        <span asp-validation-for="Phone" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Địa chỉ</label>
-        <textarea asp-for="Address" class="form-control"></textarea>
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label class="form-label">?nh</label>
-        <input type="file" name="uploadPhoto" class="form-control" accept="image/*" />
-        @if (!string.IsNullOrEmpty(Model.Photo))
-        {
-            <img src="~/images/employees/@Model.Photo" class="img-thumbnail mt-2" style="max-height:120px;" />
-        }
-    </div>
-    <div class="form-check form-switch mb-3">
-        <input class="form-check-input" asp-for="IsWorking" type="checkbox" id="IsWorking" />
-        <label class="form-check-label" for="IsWorking">Đang làm việc</label>
-    </div>
-    <div class="text-end">
-        <button type="submit" class="btn btn-primary">Lưu</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-    </div>
-</form>
+<div class="modal-header">
+    <h5 class="modal-title">@(Model.EmployeeID == 0 ? "Thêm nhân viên" : "Chỉnh sửa nhân viên")</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form id="formEmployee" method="post" enctype="multipart/form-data" action="~/Employee/SaveData">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="EmployeeID" />
+        
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert" style="display:none;"></div>
+
+        <!-- Họ và tên -->
+        <div class="mb-3">
+            <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                <input asp-for="FullName" class="form-control" placeholder="Nhập họ và tên" required />
+            </div>
+            <span asp-validation-for="FullName" class="text-danger small d-block mt-1"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                <input asp-for="Email" type="email" class="form-control" placeholder="example@domain.com" />
+            </div>
+            <span asp-validation-for="Email" class="text-danger small d-block mt-1"></span>
+        </div>
+
+        <!-- Ngày sinh -->
+        <div class="mb-3">
+            <label class="form-label">Ngày sinh</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-calendar-event-fill"></i></span>
+                <input asp-for="BirthDate" type="date" class="form-control" />
+            </div>
+            <span asp-validation-for="BirthDate" class="text-danger small d-block mt-1"></span>
+        </div>
+
+        <!-- Điện thoại -->
+        <div class="mb-3">
+            <label class="form-label">Điện thoại</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+                <input asp-for="Phone" type="tel" class="form-control" placeholder="0123456789" />
+            </div>
+            <span asp-validation-for="Phone" class="text-danger small d-block mt-1"></span>
+        </div>
+
+        <!-- Địa chỉ -->
+        <div class="mb-3">
+            <label class="form-label">Địa chỉ</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-geo-alt-fill"></i></span>
+                <textarea asp-for="Address" class="form-control" placeholder="Nhập địa chỉ" rows="2"></textarea>
+            </div>
+            <span asp-validation-for="Address" class="text-danger small d-block mt-1"></span>
+        </div>
+
+        <!-- Ảnh đại diện -->
+        <div class="mb-3">
+            <label class="form-label">Ảnh đại diện</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-image-fill"></i></span>
+                <input type="file" name="uploadPhoto" class="form-control" accept="image/*" />
+            </div>
+            @if (!string.IsNullOrEmpty(Model.Photo))
+            {
+                <div class="mt-2">
+                    <small class="text-muted">Ảnh hiện tại:</small>
+                    <br />
+                    <img src="~/images/employees/@Model.Photo" class="img-thumbnail mt-2" style="max-height:120px; max-width:150px;" alt="Employee Photo" />
+                </div>
+            }
+        </div>
+
+        <!-- Trạng thái làm việc -->
+        <div class="mb-3">
+            <div class="form-check form-switch">
+                <input type="hidden" name="IsWorking" value="false" />
+                <input type="checkbox" name="IsWorking" id="IsWorking" class="form-check-input" value="true" @(Model.IsWorking == true ? "checked" : "") />
+                <label class="form-check-label" for="IsWorking">
+                    <strong>Đang làm việc</strong>
+                </label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+        <i class="bi bi-x-circle"></i> Hủy
+    </button>
+    <button type="submit" form="formEmployee" class="btn btn-primary">
+        <i class="bi bi-save"></i> Lưu
+    </button>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var form = document.getElementById('formEmployee');
@@ -59,9 +117,7 @@
                 });
                 if (res.ok) {
                     var html = await res.text();
-                    // replace table
                     document.getElementById('employeeTableContainer').innerHTML = html;
-                    // close modal
                     var modalEl = document.getElementById('dialogModal');
                     var modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
                     modal.hide();
@@ -70,7 +126,7 @@
                     document.querySelector('#dialogModal .modal-content').innerHTML = html;
                 }
             } catch (err) {
-                showToast('L?i khi Lưu: ' + err.message, 'error');
+                showToast('Lỗi khi Lưu: ' + err.message, 'error');
             }
         });
     });

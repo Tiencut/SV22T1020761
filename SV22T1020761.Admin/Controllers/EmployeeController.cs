@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SV22T1020761.Admin.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly ILogger<EmployeeController> _logger;

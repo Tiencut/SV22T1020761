@@ -33,11 +33,6 @@
             </button>
 
             <div class="collapse navbar-collapse" id="mainNav">
-                <form class="d-flex ms-3 flex-grow-1" asp-controller="Products" asp-action="Index" method="get" id="formSearch">
-                    <input class="form-control me-2" type="search" placeholder="Tìm sản phẩm..." name="SearchValue" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit"><i class="bi bi-search" aria-hidden="true"></i></button>
-                </form>
-
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item me-3">
                         @await Component.InvokeAsync("CartSummary")

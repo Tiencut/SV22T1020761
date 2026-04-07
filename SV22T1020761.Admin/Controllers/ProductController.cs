@@ -3,9 +3,11 @@ using SV22T1020761.BusinessLayers;
 using SV22T1020761.Models.Common;
 using SV22T1020761.Models.Catalog;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SV22T1020761.Admin.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly ILogger<ProductController> _logger;
@@ -207,7 +209,18 @@ namespace SV22T1020761.Admin.Controllers
         // =====================================================
         public IActionResult ListAttributes(int id)
         {
-            return View();
+            try
+            {
+                var attributes = CatalogDataService.ListAttributes(id);
+                ViewBag.ProductID = id;
+                return View(attributes);
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading product attributes (Id={ProductId})", id);
+                TempData["Error"] = "Không thể tải thuộc tính sản phẩm. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         // =====================================================
@@ -215,14 +228,50 @@ namespace SV22T1020761.Admin.Controllers
         // =====================================================
         public IActionResult CreateAttribute(int id)
         {
-            return View();
+            try
+            {
+                var product = CatalogDataService.GetProduct(id);
+                if (product == null) return NotFound();
+                ViewBag.ProductID = id;
+                ViewBag.ProductName = product.ProductName;
+                return View();
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading create attribute form (Id={ProductId})", id);
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CreateAttribute(int id, ProductAttribute model)
         {
-            return View();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.ProductID = id;
+                    return View(model);
+                }
+
+                var product = CatalogDataService.GetProduct(id);
+                if (product == null) return NotFound();
+
+                model.ProductID = id;
+                CatalogDataService.AddProductAttribute(model);
+
+                TempData["Success"] = "Thêm thuộc tính sản phẩm thành công.";
+                return RedirectToAction("ListAttributes", new { id });
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error creating product attribute (Id={ProductId})", id);
+                ModelState.AddModelError(string.Empty, "Lỗi khi thêm thuộc tính. Vui lòng thử lại sau.");
+                ViewBag.ProductID = id;
+                return View(model);
+            }
         }
 
         // =====================================================
@@ -230,14 +279,50 @@ namespace SV22T1020761.Admin.Controllers
         // =====================================================
         public IActionResult EditAttribute(int id, int attributeId)
         {
-            return View();
+            try
+            {
+                var attribute = CatalogDataService.GetProductAttribute(attributeId);
+                if (attribute == null || attribute.ProductID != id) return NotFound();
+                ViewBag.ProductID = id;
+                return View(attribute);
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading edit attribute form (Id={ProductId}, AttributeId={AttributeId})", id, attributeId);
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditAttribute(int id, ProductAttribute model)
+        public IActionResult EditAttribute(int id, int attributeId, ProductAttribute model)
         {
-            return View();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.ProductID = id;
+                    return View(model);
+                }
+
+                var attribute = CatalogDataService.GetProductAttribute(attributeId);
+                if (attribute == null || attribute.ProductID != id) return NotFound();
+
+                model.ProductID = id;
+                model.AttributeID = attributeId;
+                CatalogDataService.UpdateProductAttribute(model);
+
+                TempData["Success"] = "Cập nhật thuộc tính sản phẩm thành công.";
+                return RedirectToAction("ListAttributes", new { id });
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error updating product attribute (Id={ProductId}, AttributeId={AttributeId})", id, attributeId);
+                ModelState.AddModelError(string.Empty, "Lỗi khi cập nhật thuộc tính. Vui lòng thử lại sau.");
+                ViewBag.ProductID = id;
+                return View(model);
+            }
         }
 
         // =====================================================
@@ -245,14 +330,41 @@ namespace SV22T1020761.Admin.Controllers
         // =====================================================
         public IActionResult DeleteAttribute(int id, int attributeId)
         {
-            return View();
+            try
+            {
+                var attribute = CatalogDataService.GetProductAttribute(attributeId);
+                if (attribute == null || attribute.ProductID != id) return NotFound();
+                ViewBag.ProductID = id;
+                return View(attribute);
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading delete attribute form (Id={ProductId}, AttributeId={AttributeId})", id, attributeId);
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost, ActionName("DeleteAttribute")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteAttributeConfirmed(int id, int attributeId)
         {
-            return View();
+            try
+            {
+                var attribute = CatalogDataService.GetProductAttribute(attributeId);
+                if (attribute == null || attribute.ProductID != id) return NotFound();
+
+                CatalogDataService.DeleteProductAttribute(attributeId);
+
+                TempData["Success"] = "Xóa thuộc tính sản phẩm thành công.";
+                return RedirectToAction("ListAttributes", new { id });
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error deleting product attribute (Id={ProductId}, AttributeId={AttributeId})", id, attributeId);
+                TempData["Error"] = "Lỗi khi xóa thuộc tính. Vui lòng thử lại sau.";
+                return RedirectToAction("ListAttributes", new { id });
+            }
         }
 
         // =====================================================
@@ -260,7 +372,17 @@ namespace SV22T1020761.Admin.Controllers
         // =====================================================
         public IActionResult ListPhotos(int id)
         {
-            return View();
+            try
+            {
+                var photos = CatalogDataService.ListProductPhotos(id);
+                return View(photos);
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading product photos (Id={ProductId})", id);
+                TempData["Error"] = "Không thể tải ảnh sản phẩm. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         // =====================================================
@@ -268,44 +390,176 @@ namespace SV22T1020761.Admin.Controllers
         // =====================================================
         public IActionResult CreatePhoto(int id)
         {
-            return View();
+            try
+            {
+                var product = CatalogDataService.GetProduct(id);
+                if (product == null) return NotFound();
+                ViewBag.ProductID = id;
+                ViewBag.ProductName = product.ProductName;
+                return View();
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading create photo form (Id={ProductId})", id);
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreatePhoto(int id, ProductPhoto model)
+        public IActionResult CreatePhoto(int id, IFormFile photo, string description = "")
         {
-            return View();
+            try
+            {
+                if (photo == null || photo.Length == 0)
+                {
+                    ModelState.AddModelError("photo", "Vui lòng chọn một tệp ảnh.");
+                    ViewBag.ProductID = id;
+                    return View();
+                }
+
+                var product = CatalogDataService.GetProduct(id);
+                if (product == null) return NotFound();
+
+                // Validate file type
+                var allowedTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
+                if (!allowedTypes.Contains(photo.ContentType))
+                {
+                    ModelState.AddModelError("photo", "Chỉ chấp nhận các tệp ảnh (jpg, png, gif, webp).");
+                    ViewBag.ProductID = id;
+                    return View();
+                }
+
+                // Save file
+                var uploadsDir = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "products");
+                if (!Directory.Exists(uploadsDir)) Directory.CreateDirectory(uploadsDir);
+
+                var fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(photo.FileName);
+                var filePath = System.IO.Path.Combine(uploadsDir, fileName);
+
+                using (var stream = System.IO.File.Create(filePath))
+                {
+                    photo.CopyTo(stream);
+                }
+
+                // Save to database
+                var productPhoto = new ProductPhoto
+                {
+                    ProductID = id,
+                    Photo = fileName,
+                    DisplayOrder = 0,
+                    Description = description
+                };
+
+                CatalogDataService.AddProductPhoto(productPhoto);
+
+                TempData["Success"] = "Thêm ảnh sản phẩm thành công.";
+                return RedirectToAction("ListPhotos", new { id });
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error creating product photo (Id={ProductId})", id);
+                ModelState.AddModelError(string.Empty, "Lỗi khi thêm ảnh. Vui lòng thử lại sau.");
+                ViewBag.ProductID = id;
+                return View();
+            }
         }
 
         // =====================================================
         // Product/EditPhoto/{id}?photoId={photoId}
         // =====================================================
-        public IActionResult EditPhoto(int id, int photoId)
+        public IActionResult EditPhoto(int id, long photoId)
         {
-            return View();
+            try
+            {
+                var photo = CatalogDataService.GetProductPhoto(photoId);
+                if (photo == null || photo.ProductID != id) return NotFound();
+                ViewBag.ProductID = id;
+                return View(photo);
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading edit photo form (Id={ProductId}, PhotoId={PhotoId})", id, photoId);
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult EditPhoto(int id, ProductPhoto model)
+        public IActionResult EditPhoto(int id, long photoId, ProductPhoto model)
         {
-            return View();
+            try
+            {
+                var photo = CatalogDataService.GetProductPhoto(photoId);
+                if (photo == null || photo.ProductID != id) return NotFound();
+
+                photo.Description = model.Description;
+                photo.DisplayOrder = model.DisplayOrder;
+
+                CatalogDataService.UpdateProductPhoto(photo);
+
+                TempData["Success"] = "Cập nhật ảnh sản phẩm thành công.";
+                return RedirectToAction("ListPhotos", new { id });
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error updating product photo (Id={ProductId}, PhotoId={PhotoId})", id, photoId);
+                ModelState.AddModelError(string.Empty, "Lỗi khi cập nhật ảnh. Vui lòng thử lại sau.");
+                ViewBag.ProductID = id;
+                return View(model);
+            }
         }
 
         // =====================================================
         // Product/DeletePhoto/{id}?photoId={photoId}
         // =====================================================
-        public IActionResult DeletePhoto(int id, int photoId)
+        public IActionResult DeletePhoto(int id, long photoId)
         {
-            return View();
+            try
+            {
+                var photo = CatalogDataService.GetProductPhoto(photoId);
+                if (photo == null || photo.ProductID != id) return NotFound();
+                ViewBag.ProductID = id;
+                return View(photo);
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error loading delete photo form (Id={ProductId}, PhotoId={PhotoId})", id, photoId);
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost, ActionName("DeletePhoto")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePhotoConfirmed(int id, int photoId)
+        public IActionResult DeletePhotoConfirmed(int id, long photoId)
         {
-            return View();
+            try
+            {
+                var photo = CatalogDataService.GetProductPhoto(photoId);
+                if (photo == null || photo.ProductID != id) return NotFound();
+
+                // Delete file from disk
+                var filePath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "products", photo.Photo);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+
+                // Delete from database
+                CatalogDataService.DeleteProductPhoto(photoId);
+
+                TempData["Success"] = "Xóa ảnh sản phẩm thành công.";
+                return RedirectToAction("ListPhotos", new { id });
+            }
+            catch (System.Exception ex)
+            {
+                _logger?.LogError(ex, "Error deleting product photo (Id={ProductId}, PhotoId={PhotoId})", id, photoId);
+                TempData["Error"] = "Lỗi khi xóa ảnh. Vui lòng thử lại sau.";
+                return RedirectToAction("ListPhotos", new { id });
+            }
         }
     }
 }

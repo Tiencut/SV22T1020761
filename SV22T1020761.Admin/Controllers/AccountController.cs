@@ -14,7 +14,15 @@ namespace SV22T1020761.Admin.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (System.Exception ex)
+            {
+                TempData["Error"] = "Lỗi khi tải trang đăng nhập. Vui lòng thử lại sau.";
+                return View();
+            }
         }
 
         public async Task<IActionResult> Logout()
@@ -30,7 +38,15 @@ namespace SV22T1020761.Admin.Controllers
 
         public IActionResult ChangePassword()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (System.Exception ex)
+            {
+                TempData["Error"] = "Lỗi khi tải form. Vui lòng thử lại sau.";
+                return View();
+            }
         }
 
         [AllowAnonymous]
@@ -43,31 +59,38 @@ namespace SV22T1020761.Admin.Controllers
                 if (!ModelState.IsValid)
                     return View(model);
 
-                // Validate credentials: Mock - in production, validate against database
-                // TODO: Replace with actual employee validation from HRDataService
-                var isValidCredentials = ValidateCredentials(model.UserName, model.Password);
-                
-                if (!isValidCredentials)
+                // Kiểm tra tài khoản thật từ DB (bảng Employee)
+                var email = model.UserName?.Trim();
+                var password = model.Password;
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+                {
+                    ModelState.AddModelError(string.Empty, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.");
+                    return View(model);
+                }
+
+                // Mã hóa mật khẩu
+                var hashedPassword = CryptHelper.HashMD5(password);
+                var employee = await HRDataService.GetEmployeeByEmailAsync(email);
+                if (employee == null || string.Compare(employee.Password, hashedPassword, true) != 0)
                 {
                     ModelState.AddModelError(string.Empty, "Tên đăng nhập hoặc mật khẩu không đúng.");
                     return View(model);
                 }
 
-                // Create user data with mock employee info
+                // Tạo WebUserData từ thông tin nhân viên thật
                 var userData = new WebUserData
                 {
-                    UserId = "1",
-                    UserName = model.UserName,
-                    DisplayName = model.UserName,
-                    Email = $"{model.UserName}@example.com",
-                    Photo = "default.png",
-                    Roles = new List<string> { WebUserRoles.Administrator }
+                    UserId = employee.EmployeeID.ToString(),
+                    UserName = employee.Email,
+                    DisplayName = employee.FullName,
+                    Email = employee.Email,
+                    Photo = employee.Photo ?? "default.png",
+                    Roles = string.IsNullOrEmpty(employee.RoleNames)
+                        ? new List<string>()
+                        : employee.RoleNames.Split(',').Select(r => r.Trim()).ToList()
                 };
 
-                // Create principal from user data
                 var principal = userData.CreatePrincipal();
-
-                // Sign in with cookie authentication
                 await HttpContext.SignInAsync("Cookies", principal, new AuthenticationProperties
                 {
                     IsPersistent = true,
@@ -101,14 +124,13 @@ namespace SV22T1020761.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ChangePassword(SV22T1020761.Admin.Models.ChangePasswordViewModel model)
+        public async Task<IActionResult> ChangePassword(SV22T1020761.Admin.Models.ChangePasswordViewModel model)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return View(model);
 
-                // Verify old password
                 var currentUser = User.GetUserData();
                 if (currentUser == null)
                 {
@@ -116,8 +138,6 @@ namespace SV22T1020761.Admin.Controllers
                     return View(model);
                 }
 
-                // TODO: Replace with actual employee password validation
-                // For now, accept any non-empty old password
                 if (string.IsNullOrWhiteSpace(model.OldPassword))
                 {
                     ModelState.AddModelError(nameof(model.OldPassword), "Mật khẩu cũ không được để trống.");
@@ -136,8 +156,31 @@ namespace SV22T1020761.Admin.Controllers
                     return View(model);
                 }
 
-                // TODO: Update password in database
-                var hashedPassword = CryptHelper.HashMD5(model.NewPassword);
+                // Lấy thông tin nhân viên hiện tại từ DB
+                if (!int.TryParse(currentUser.UserId, out var employeeId))
+                {
+                    ModelState.AddModelError(string.Empty, "Không thể xác định mã nhân viên.");
+                    return View(model);
+                }
+
+                var employee = await HRDataService.GetEmployeeAsync(employeeId);
+                if (employee == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Không tìm thấy thông tin nhân viên.");
+                    return View(model);
+                }
+
+                // Kiểm tra mật khẩu cũ
+                var oldHashedPassword = CryptHelper.HashMD5(model.OldPassword);
+                if (string.Compare(employee.Password, oldHashedPassword, true) != 0)
+                {
+                    ModelState.AddModelError(nameof(model.OldPassword), "Mật khẩu cũ không đúng.");
+                    return View(model);
+                }
+
+                // Cập nhật mật khẩu mới
+                employee.Password = CryptHelper.HashMD5(model.NewPassword);
+                await HRDataService.UpdateEmployeeAsync(employee);
 
                 TempData["SuccessMessage"] = "Đổi mật khẩu thành công.";
                 return RedirectToAction("Index", "Home");
@@ -211,26 +254,6 @@ namespace SV22T1020761.Admin.Controllers
                 TempData["Error"] = "Đăng ký thất bại. Vui lòng thử lại sau: " + ex.Message;
                 return RedirectToAction("Login");
             }
-        }
-
-        /// <summary>
-        /// Kiểm tra thông tin đăng nhập (Mock - thay thế bằng validation từ database)
-        /// </summary>
-        private bool ValidateCredentials(string username, string password)
-        {
-            // Mock credentials for testing
-            // TODO: Replace with actual employee validation from HRDataService
-            var mockUser = "admin";
-            var mockPassword = "admin"; // In production, store hashed password in DB
-
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-                return false;
-
-            // Hash the input password and compare
-            var hashedPassword = CryptHelper.HashMD5(password);
-            var hashedMockPassword = CryptHelper.HashMD5(mockPassword);
-
-            return username == mockUser && hashedPassword == hashedMockPassword;
         }
     }
 }

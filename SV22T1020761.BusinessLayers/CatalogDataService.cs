@@ -30,20 +30,33 @@ namespace SV22T1020761.BusinessLayers
         {
             try
             {
-                // Map PaginationSearchInput to ProductSearchInput
-                var pInput = new ProductSearchInput
+                // If input is ProductSearchInput, use it as-is; otherwise map basic fields
+                ProductSearchInput pInput;
+                if (input is ProductSearchInput productInput)
                 {
-                    Page = input?.Page ?? 1,
-                    PageSize = input?.PageSize ?? 10,
-                    SearchValue = input?.SearchValue ?? string.Empty
-                };
-                return _productRepo.ListAsync(pInput).GetAwaiter().GetResult();
+                    pInput = productInput;
+                }
+                else
+                {
+                    pInput = new ProductSearchInput
+                    {
+                        Page = input?.Page ?? 1,
+                        PageSize = input?.PageSize ?? 10,
+                        SearchValue = input?.SearchValue ?? string.Empty
+                    };
+                }
+                
+                System.Diagnostics.Trace.TraceInformation($"CatalogDataService.ListProducts - Page: {pInput.Page}, PageSize: {pInput.PageSize}, SearchValue: {pInput.SearchValue}, CategoryID: {pInput.CategoryID}, SupplierID: {pInput.SupplierID}");
+                
+                var result = _productRepo.ListAsync(pInput).GetAwaiter().GetResult();
+                System.Diagnostics.Trace.TraceInformation($"CatalogDataService.ListProducts - Result: RowCount={result.RowCount}, DataItems={result.DataItems?.Count ?? 0}");
+                return result;
             }
             catch (Exception ex)
             {
-                // Avoid throwing raw exceptions to UI. Log minimal info and return empty result.
-                // If you have a logger, replace the Console with logger.
-                System.Diagnostics.Trace.TraceError("CatalogDataService.ListProducts error: {0}", ex.Message);
+                string errorMsg = $"CatalogDataService.ListProducts error - Message: {ex.Message} | StackTrace: {ex.StackTrace}";
+                System.Diagnostics.Trace.TraceError(errorMsg);
+                Console.WriteLine($"❌ {errorMsg}");
                 return new PagedResult<Product> { Page = input?.Page ?? 1, PageSize = input?.PageSize ?? 10, RowCount = 0, DataItems = new System.Collections.Generic.List<Product>() };
             }
         }
@@ -112,6 +125,56 @@ namespace SV22T1020761.BusinessLayers
         public static void DeleteCategory(int categoryId)
         {
             _categoryRepo.DeleteAsync(categoryId).GetAwaiter().GetResult();
+        }
+
+        // =====================================================
+        // ProductPhoto methods
+        // =====================================================
+        public static ProductPhoto GetProductPhoto(long photoId)
+        {
+            return _productRepo.GetPhotoAsync(photoId).GetAwaiter().GetResult() ?? new ProductPhoto();
+        }
+
+        public static void AddProductPhoto(ProductPhoto photo)
+        {
+            if (photo == null) return;
+            _productRepo.AddPhotoAsync(photo).GetAwaiter().GetResult();
+        }
+
+        public static void UpdateProductPhoto(ProductPhoto photo)
+        {
+            if (photo == null) return;
+            _productRepo.UpdatePhotoAsync(photo).GetAwaiter().GetResult();
+        }
+
+        public static void DeleteProductPhoto(long photoId)
+        {
+            _productRepo.DeletePhotoAsync(photoId).GetAwaiter().GetResult();
+        }
+
+        // =====================================================
+        // ProductAttribute methods
+        // =====================================================
+        public static ProductAttribute GetProductAttribute(int attributeId)
+        {
+            return _productRepo.GetAttributeAsync(attributeId).GetAwaiter().GetResult() ?? new ProductAttribute();
+        }
+
+        public static void AddProductAttribute(ProductAttribute attribute)
+        {
+            if (attribute == null) return;
+            _productRepo.AddAttributeAsync(attribute).GetAwaiter().GetResult();
+        }
+
+        public static void UpdateProductAttribute(ProductAttribute attribute)
+        {
+            if (attribute == null) return;
+            _productRepo.UpdateAttributeAsync(attribute).GetAwaiter().GetResult();
+        }
+
+        public static void DeleteProductAttribute(int attributeId)
+        {
+            _productRepo.DeleteAttributeAsync(attributeId).GetAwaiter().GetResult();
         }
     }
 }
